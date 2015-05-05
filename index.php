@@ -30,7 +30,8 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <h1><a href="#" title="scroll down for your viewing pleasure">Bootstrap 3 Layout Template</a><p class="lead">Big Top Header and Fixed Sidebar</p></h1>
+                <h1><a href="#" title="scroll down for your viewing pleasure">Bootstrap 3 Layout Template</a></h1>
+                <p class="lead">Big Top Header and Fixed Sidebar</p>
             </div>
             <div class="col-sm-6">
                 <div class="pull-right hidden-sm">
