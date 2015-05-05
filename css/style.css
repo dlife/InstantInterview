@@ -1,0 +1,35 @@
+.top {
+    width:100%;
+    max-width:1600px;
+    z-index:-10;
+    position:fixed;
+    height:65px;
+    top:0;
+    background-color:#ffffff;
+    padding-left:15px;
+    font-family: Lato, sans-serif !important;
+    padding:20px 30px 10px 28px;
+}
+.top img {
+    float:left;
+    vertical-align:bottom;
+}
+.top div {
+    float:right;
+    padding-top:14px;
+    letter-spacing:4px;
+}
+header {
+    height:280px;
+}
+
+#nav.affix {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:10;
+}
+.item {
+    text-align: center;
+    padding-bottom: 2em;
+}
