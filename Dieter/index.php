@@ -7,7 +7,13 @@
  */
 require_once 'core/init.php';
 
-echo Config::get('mysql/host');
+$user = DB::getInstance()->get('users', '=', 'billy');
+
+if(!$user->count()){
+    echo 'No user';
+}else {
+    echo 'OK!';
+}
 ?>
 
 <!DOCTYPE html>

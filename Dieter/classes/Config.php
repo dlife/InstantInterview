@@ -11,8 +11,13 @@ class Config {
             $config = $GLOBALS['config'];
             $path = explode('/', $path);
 
-            var_dump($path);
-
+            foreach($path as $bit){
+                if(isset($config[$bit])){
+                    $config = $config[$bit];
+                }
+            }
+            return $config;
         }
+        return false;
     }
 }
