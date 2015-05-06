@@ -7,13 +7,10 @@
  */
 require_once 'core/init.php';
 
-$user = DB::getInstance()->get('users', '=', 'billy');
-
-if(!$user->count()){
-    echo 'No user';
-}else {
-    echo 'OK!';
-}
+$userInsert = DB::getInstance()->update('users', 4, array(
+    'password'=> 'newpassword',
+    'name' => 'Dale Barret'
+));
 ?>
 
 <!DOCTYPE html>
