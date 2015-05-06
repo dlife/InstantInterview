@@ -5,6 +5,9 @@
  * Date: 4/05/2015
  * Time: 15:18
  */
+require_once 'core/init.php';
+
+echo Config::get('mysql/host');
 ?>
 
 <!DOCTYPE html>
