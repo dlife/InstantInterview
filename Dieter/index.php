@@ -7,10 +7,9 @@
  */
 require_once 'core/init.php';
 
-$userInsert = DB::getInstance()->update('users', 4, array(
-    'password'=> 'newpassword',
-    'name' => 'Dale Barret'
-));
+if(Session::exists('home')){
+    echo '<p>' . Session::flash('home') . '</p>';
+}
 ?>
 
 <!DOCTYPE html>
