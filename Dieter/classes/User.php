@@ -110,4 +110,15 @@ class User {
     public function exists(){
         return (!empty($this->_data)) ? true : false ;
     }
+
+    public function update($fields = array(), $id = null){
+        if(!$id && $this->isLoggedIn()){
+            $id = $this->data()->id;
+        }
+
+
+        if((!$this->_db->update('users', $id, $fields))){
+            throw new Exception('There was a problem updating.');
+        }
+    }
 }
