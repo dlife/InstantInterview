@@ -49,12 +49,30 @@ $(function(){
 </script>
 */
 
+$vragen = $controller->getVragen();
+
 ?>
 
 <div id="questions">
     <p><b>Questions View</b></p>
     This div will contain the questions
-    <!-- WRITE HTML CODE HERE WITH THE FOREACH LOOP -->
+    <?php foreach ($vragen as $vraag) { ?>
+        <div>
+            <label><input type='checkbox' onclick='handleQuestionClick(this);'><?php echo $vraag->getEchteVraag() ?></label>
+        </div>
+    <?php } ?>
+
 </div>
+
+
+<!--
+this needs to be a function that will change the session or JSON to include or exclude the id of the marked checkbox
+for now this is just alerting the value of the checkbox
+-->
+<script>
+    function handleQuestionClick(cb) {
+        alert("Clicked, new value = " + cb.checked);
+    }
+</script>
 
 
