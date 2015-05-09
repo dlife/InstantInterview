@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="ftp.trouw.benoot-cupers.com">
+  <component name="PublishConfigData">
     <serverData>
-      <paths name="ftp.trouw.benoot-cupers.com">
+      <paths name="LocalTestServer">
         <serverdata>
           <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="InstantInterview" local="$PROJECT_DIR$/David/MVCTut" web="InstantInterview" />
           </mappings>
         </serverdata>
       </paths>
