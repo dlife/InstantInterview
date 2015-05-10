@@ -53,26 +53,37 @@ $vragen = $controller->getVragen();
 
 ?>
 
+<script type="text/javascript">
+    // this will post the name of the checkbox that was clicked and the value
+    function handleQuestionClick(cb) {
+        $.ajax({
+            url: 'changechecked.php',
+            type: 'POST', // GET or POST
+            data: 'q=' + cb.name + '&v=' + cb.checked, // will be in $_POST on PHP side
+            success: function () { // data is the response from your php script
+                // This function is called if your AJAX query was successful
+            },
+            error: function () {
+                // This callback is called if your AJAX query has failed
+                alert("Error!");
+            }
+        });
+    }
+</script>
+
 <div id="questions">
     <p><b>Questions View</b></p>
     This div will contain the questions
     <?php foreach ($vragen as $vraag) { ?>
         <div>
-            <label><input type='checkbox' onclick='handleQuestionClick(this);'><?php echo $vraag->getEchteVraag() ?></label>
-        </div>
+        <label><input
+                name='<?php echo $vraag->getId()?>'
+                type='checkbox'
+                onclick='handleQuestionClick(this);'
+                <?php if ($controller->IsVraagChecked($vraag->getID())) echo 'checked'; ?>
+                ><?php echo $vraag->getEchteVraag() ?></label>
+    </div>
     <?php } ?>
-
 </div>
-
-
-<!--
-this needs to be a function that will change the session or JSON to include or exclude the id of the marked checkbox
-for now this is just alerting the value of the checkbox
--->
-<script>
-    function handleQuestionClick(cb) {
-        alert("Clicked, new value = " + cb.checked);
-    }
-</script>
 
 

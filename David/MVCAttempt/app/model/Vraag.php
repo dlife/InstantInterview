@@ -40,9 +40,10 @@ class Vraag
         return $this->competentieId;
     }
 
-    public function __construct($id, $echteVraag)
+    public function __construct($id, $echteVraag, $competenceId)
     {
         $this->id = $id;
         $this->echteVraag = $echteVraag;
+        $this->competentieId = $competenceId;
     }
 }

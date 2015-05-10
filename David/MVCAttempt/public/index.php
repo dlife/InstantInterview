@@ -15,11 +15,15 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+    <script src="jquery-1.11.2.min.js"></script>
 </head>
 <body>
-    <?php
-        require_once '../app/view/combined.php';
-    ?>
+    <div id="combined">
+        <?php
+
+            require '../app/view/combined.php';
+        ?>
+    </div>
 </body>
 </html>
 
