@@ -44,7 +44,7 @@ $competenties = $controller->getCompetenties();
     }
 
     function RefreshData() {
-        alert ('refresh triggered');
+
         if (document.getElementById("combined") != null) {
             document.getElementById("combined").innerHTML = "";
         }
@@ -60,7 +60,9 @@ $competenties = $controller->getCompetenties();
         // this will be called when loaded succesfully
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                alert ('refresh triggered');
                 document.getElementById("combined").innerHTML = xmlhttp.responseText;
+
             }
         }
         // actually call to the data
