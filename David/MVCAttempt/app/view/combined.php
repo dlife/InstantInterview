@@ -20,6 +20,9 @@ namespace app\view;
 // namespace issue, use autoloader to fix this
 include '../controller/Controller.php';
 
+// using session at some point.
+session_start();
+
 // create a controller
 use app\controller\Controller;
 
@@ -27,16 +30,46 @@ $controller = new Controller();
 
 // using testdata for now
 $controller->LoadTestData();
+$controller->SelectBasedOnSession();
+
+
+
 ?>
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+</head>
+<body>
 
 <h2>combined.php</h2>
 <h3>This page will combine the views</h3>
 
 <?php
+
+print_r($_SESSION);
+echo 'competentieIDs';
+print_r($controller->getCompetentiesIds());
+
 // Insert the CompetenceView
 require_once 'CompetenceView.php';
 
 // Insert the QuestionsView
 require_once 'QuestionsView.php';
 ?>
+
+</body>
+</html>
+
+
+
+
+
 
