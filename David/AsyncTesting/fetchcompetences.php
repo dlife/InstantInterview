@@ -6,13 +6,9 @@
  * Time: 21:16
  */
 
-include('controller/Controller.php');
-use controller\Controller;
-
-$controller = new Controller();
-$controller->LoadTestData();
-
 ?>
+
+
 
 <div>
     This div will contain the competences
@@ -29,3 +25,4 @@ $controller->LoadTestData();
         </div>
     <?php } ?>
 </div>
+

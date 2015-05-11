@@ -10,7 +10,8 @@ namespace controller;
 include('model/Vraag.php');
 include('model/Competentie.php');
 
-class Controller {
+class Controller
+{
 
     protected $vragen = array();
     protected $competenties = array();
@@ -46,5 +47,26 @@ class Controller {
         $comp2 = new \model\Competentie(2, 'Competentie 2');
         $this->competenties[$comp2->getId()] = $comp2;
 
+    }
+
+    public function SelectQuestions($competenceId)
+    {
+        $v = Array();
+
+        foreach ($this->vragen as $vraag) {
+            if ($vraag->getCompetentieId() == $competenceId) {
+                $v[] = $vraag;
+            }
+        }
+        return $v;
+    }
+
+    public function SelectCompetenceById($competenceId)
+    {
+        if (isset($competenceId)) {
+            if (array_key_exists($competenceId, $this->competenties)) {
+                return $this->competenties[$competenceId];
+            }
+        }
     }
 }

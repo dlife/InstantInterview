@@ -13,6 +13,12 @@
 // fetch with jquery when document.ready()
 // use $('[id^="content_"]').hide();
 
+include('controller/Controller.php');
+use controller\Controller;
+
+$controller = new Controller();
+$controller->LoadTestData();
+
 ?>
 
 <!DOCTYPE html>
@@ -24,9 +30,12 @@
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript">
+
+        function handleCompetenceClick(cb) {
+            $( "#questionssection" + cb.id ).toggle();
+        }
+
         function fetchdata(id) {
-
-
             if (document.getElementById(id) != null) {
                 document.getElementById(id).innerHTML = "";
             }
@@ -43,15 +52,11 @@
             xmlhttp.onreadystatechange = function () {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     document.getElementById(id).innerHTML = xmlhttp.responseText;
-
                 }
             }
-            // actually call to the data
-            xmlhttp.open("GET", "fetchquestions.php?v=" + id, true);
+            // actually make the call
+            xmlhttp.open("GET", "fetchquestions.php?q=" + id.replace('questionssection',''), true);
             xmlhttp.send();
-
-
-
         }
 
         $(document ).ready(function() {
@@ -61,12 +66,13 @@
             // one by one load the data and show them again
             $('[id^="questionssection"]').each(function(i, obj) {
                 fetchdata(obj.id);
-                alert(obj.id);
+                $( "#"+obj.id ).toggle();
             });
         });
+
     </script>
 </head>
-<body>>
+<body>
     <?php require 'fetchcompetences.php'; ?>
 </body>
 </html>
