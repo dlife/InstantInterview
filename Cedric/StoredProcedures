@@ -1,0 +1,12 @@
+SelectVragenByIdCompetentie
+SelectAllCompententies
+InsertCompetentie
+UpdateCompetentie
+DeleteCompetentie
+InsertVraag
+UpdateVraag
+DeleteVraag
+InsertFunctie
+UpdateFunctie
+DeleteFunctie
+
