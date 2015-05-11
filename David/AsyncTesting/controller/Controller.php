@@ -7,6 +7,8 @@
  */
 
 namespace controller;
+include('model/Vraag.php');
+include('model/Competentie.php');
 
 class Controller {
 
