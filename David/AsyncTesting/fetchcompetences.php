@@ -14,7 +14,7 @@
     This div will contain the competences
     <?php foreach ($controller->getCompetenties() as $competentie) { ?>
         <div>
-            <label><input name="<?php echo $competentie->getId()?>" type='checkbox' onclick='handleCompetenceClick(this);'><?php echo $competentie->getNaam() ?></label>
+            <label><input name="<?php echo $competentie->getId()?>" type='checkbox' onclick='handleCompetenceClick(this.name);'><?php echo $competentie->getNaam() ?></label>
         </div>
     <?php } ?>
 </div>

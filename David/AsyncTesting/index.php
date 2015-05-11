@@ -31,8 +31,8 @@ $controller->LoadTestData();
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript">
 
-        function handleCompetenceClick(cb) {
-            $( "#questionssection" + cb.id ).toggle();
+        function handleCompetenceClick(id) {
+            $( "#questionssection" + id ).toggle();
         }
 
         function fetchdata(id) {
@@ -66,7 +66,6 @@ $controller->LoadTestData();
             // one by one load the data and show them again
             $('[id^="questionssection"]').each(function(i, obj) {
                 fetchdata(obj.id);
-                $( "#"+obj.id ).toggle();
             });
         });
 
