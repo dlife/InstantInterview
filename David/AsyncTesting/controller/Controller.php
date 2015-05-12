@@ -63,8 +63,17 @@ class Controller
         $jobTitle2 = new \model\JobTitle(2, 'Functie 2');
         $this->jobTitles[$jobTitle2->getId()] = $jobTitle2;
 
-        $jobTitle2 = new \model\JobTitleQuestion(2, 'Functie 2');
-        $this->jobTitles[$jobTitle2->getId()] = $jobTitle2;
+        $jobTitleQuestion1 = new \model\JobTitleQuestion(1, 1, 1);
+        $this->jobTitlesQuestions[$jobTitleQuestion1->getId()] = $jobTitleQuestion1;
+
+        $jobTitleQuestion2 = new \model\JobTitleQuestion(2, 3, 1);
+        $this->jobTitlesQuestions[$jobTitleQuestion2->getId()] = $jobTitleQuestion2;
+
+        $jobTitleQuestion3 = new \model\JobTitleQuestion(3, 1, 2);
+        $this->jobTitlesQuestions[$jobTitleQuestion3->getId()] = $jobTitleQuestion3;
+
+        $jobTitleQuestion4 = new \model\JobTitleQuestion(4, 2, 2);
+        $this->jobTitlesQuestions[$jobTitleQuestion4->getId()] = $jobTitleQuestion4;
     }
 
     public function SelectQuestions($competenceId)
