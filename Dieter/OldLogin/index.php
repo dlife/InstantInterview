@@ -5,6 +5,30 @@
  * Date: 4/05/2015
  * Time: 15:18
  */
+require_once 'core/init.php';
+
+if(Session::exists('home')){
+    echo '<p>' . Session::flash('home') . '</p>';
+}
+
+$user = new User();
+if($user->isLoggedIn()){
+?>
+<p>Hello <a href="profile.php?user=<?php echo escape($user->data()->username); ?>"><?php echo escape($user->data()->username);?></a>!</p>
+    <ul>
+        <li><a href="logout.php">Log out</a> </li>
+        <li><a href="update.php">Update details</a> </li>
+        <li><a href="changepassword.php">Change password</a> </li>
+    </ul>
+<?php
+    if($user->hasPermission('admin')){
+        echo '<p>You are admin</p>';
+    }
+
+} else {
+    echo '<p> You need to <a href="login.php">log in</a> or <a href="register.php">register</a></p> ';
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -15,30 +39,27 @@
     <title>Instant Interview</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/lavish-bootstrap.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/lavish-bootstrap.css">
+    <link rel="stylesheet" href="../css/style.css">
 
     <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
     <!-- Latest compiled JavaScript -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 </head>
-<body id="scroll">
+<body>
 <header class="masthead">
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
                 <h1><a href="#" title="scroll down for your viewing pleasure">Bootstrap 3 Layout Template</a></h1>
-
                 <p class="lead">Big Top Header and Fixed Sidebar</p>
             </div>
             <div class="col-sm-6">
                 <div class="pull-right hidden-sm">
-                    <h1><a href="#"><i class="glyphicon glyphicon-user"></i> <i
-                                class="glyphicon glyphicon-chevron-down"></i></a></h1>
+                    <h1><a href="#"><i class="glyphicon glyphicon-user"></i> <i class="glyphicon glyphicon-chevron-down"></i></a></h1>
                 </div>
             </div>
         </div>
@@ -50,14 +71,14 @@
         <div class="navbar-header navbar-collapse collapse">
             <a class="navbar-brand" href="#">Instant Interview</a>
         </div>
-        <div class="scrollspy">
+        <div>
             <ul class="nav navbar-nav navbar-collapse collapse">
-                <li class="active scrollAnimate"><a href="#info">Info</a></li>
-                <li class="scrollAnimate"><a href="#contact">Contact</a></li>
+                <li class="active"><a href="#">Info</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="scrollAnimate"><a href="#login">Login</a></li>
-                <li class="scrollAnimate"><a href="#register">Register</a></li>
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Register</a></li>
             </ul>
         </div>
     </div>
@@ -75,9 +96,9 @@
         </div>
     </div>
 </nav>
-<!--Jumbotron-->
-<div class="jumbotron" id="jumbotron">
-    <div class="container">
+    <!--Jumbotron-->
+    <div class="jumbotron" id="jumbotron">
+        <div class="container">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -116,115 +137,95 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
+        </div>
+    </div>
+<!-- Content -->
+    <div class="container">
+    <div class="page-header">
+        <h1>Example Page Header</h1>
+    </div>
+    <p>This is some text.</p>
+    <p>This is another text.</p>
+</div>
+<div class="container">
+    <h1>My First Bootstrap Page</h1>
+    <p>This is some text.</p>
+</div>
+<div class="container">
+    <h1>My First Bootstrap 2 Page</h1>
+    <p>This is some text.</p>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">.col-sm-4</div>
+        <div class="col-sm-8">.col-sm-8</div>
     </div>
 </div>
-<!-- Content -->
-<section>
-    <div class="container">
-        <div class="page-header"  id="info">
-            <h1>Info</h1>
-        </div>
-        <p>This is some text.</p>
-
-        <p>This is another text.</p>
+<div class="container">
+    <div class="page-header">
+        <h1>Example Page Header</h1>
     </div>
-    <div class="container">
-        <h1>My First Bootstrap Page</h1>
-
-        <p>This is some text.</p>
+    <p>This is some text.</p>
+    <p>This is another text.</p>
+</div>
+<div class="container">
+    <h1>My First Bootstrap Page</h1>
+    <p>This is some text.</p>
+</div>
+<div class="container">
+    <h1>My First Bootstrap 2 Page</h1>
+    <p>This is some text.</p>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">.col-sm-4</div>
+        <div class="col-sm-8">.col-sm-8</div>
     </div>
-    <div class="container">
-        <h1>My First Bootstrap 2 Page</h1>
-
-        <p>This is some text.</p>
+</div>
+<div class="container">
+    <div class="page-header">
+        <h1>Example Page Header</h1>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4">.col-sm-4</div>
-            <div class="col-sm-8">.col-sm-8</div>
-        </div>
+    <p>This is some text.</p>
+    <p>This is another text.</p>
+</div>
+<div class="container">
+    <h1>My First Bootstrap Page</h1>
+    <p>This is some text.</p>
+</div>
+<div class="container">
+    <h1>My First Bootstrap 2 Page</h1>
+    <p>This is some text.</p>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">.col-sm-4</div>
+        <div class="col-sm-8">.col-sm-8</div>
     </div>
-</section>
-<section>
-    <div class="container">
-        <div class="page-header"  id="contact">
-            <h1>Contact</h1>
-        </div>
-        <p>This is some text.</p>
-
-        <p>This is another text.</p>
+</div>
+<div class="container">
+    <div class="page-header">
+        <h1>Example Page Header</h1>
     </div>
-    <div class="container">
-        <h1>My First Bootstrap Page</h1>
-
-        <p>This is some text.</p>
+    <p>This is some text.</p>
+    <p>This is another text.</p>
+</div>
+<div class="container">
+    <h1>My First Bootstrap Page</h1>
+    <p>This is some text.</p>
+</div>
+<div class="container">
+    <h1>My First Bootstrap 2 Page</h1>
+    <p>This is some text.</p>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">.col-sm-4</div>
+        <div class="col-sm-8">.col-sm-8</div>
     </div>
-    <div class="container">
-        <h1>My First Bootstrap 2 Page</h1>
-
-        <p>This is some text.</p>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4">.col-sm-4</div>
-            <div class="col-sm-8">.col-sm-8</div>
-        </div>
-    </div>
-</section>
-<section>
-    <div class="container">
-        <div class="page-header" id="login">
-            <h1>Login</h1>
-        </div>
-        <p>This is some text.</p>
-
-        <p>This is another text.</p>
-    </div>
-    <div class="container">
-        <h1>My First Bootstrap Page</h1>
-
-        <p>This is some text.</p>
-    </div>
-    <div class="container">
-        <h1>My First Bootstrap 2 Page</h1>
-
-        <p>This is some text.</p>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4">.col-sm-4</div>
-            <div class="col-sm-8">.col-sm-8</div>
-        </div>
-    </div>
-</section>
-<section>
-    <div class="container">
-        <div class="page-header" id="register">
-            <h1>Register</h1>
-        </div>
-        <p>This is some text.</p>
-
-        <p>This is another text.</p>
-    </div>
-    <div class="container">
-        <h1>My First Bootstrap Page</h1>
-
-        <p>This is some text.</p>
-    </div>
-    <div class="container">
-        <h1>My First Bootstrap 2 Page</h1>
-
-        <p>This is some text.</p>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4">.col-sm-4</div>
-            <div class="col-sm-8">.col-sm-8</div>
-        </div>
-    </div>
-</section>
+</div>
 </body>
 <!-- Local javascript -->
 <!-- Dit moet hier geplaatst worden anders werkt het niet, vanwege timing inlezen js file -->
-<script src="js/affix.js"></script>
+<script src="../js/affix.js"></script>
 </html>
