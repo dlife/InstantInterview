@@ -28,18 +28,46 @@
 </head>
 <body id="scroll">
 <header class="masthead">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-                <h1><a href="#" title="scroll down for your viewing pleasure">Bootstrap 3 Layout Template</a></h1>
+    <!--Jumbotron-->
+    <div class="jumbotron" id="jumbotron">
+        <div class="container">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                </ol>
 
-                <p class="lead">Big Top Header and Fixed Sidebar</p>
-            </div>
-            <div class="col-sm-6">
-                <div class="pull-right hidden-sm">
-                    <h1><a href="#"><i class="glyphicon glyphicon-user"></i> <i
-                                class="glyphicon glyphicon-chevron-down"></i></a></h1>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <h1>Lorem Ipsum zever 1</h1>
+                    </div>
+
+                    <div class="item">
+                        <h1>Lorem Ipsum zever 2</h1>
+                    </div>
+
+                    <div class="item">
+                        <h1>Lorem Ipsum zever 3</h1>
+                    </div>
+
+                    <div class="item">
+                        <h1>Lorem Ipsum zever 4</h1>
+                    </div>
                 </div>
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
         </div>
     </div>
@@ -47,13 +75,19 @@
 <!--Top navigation bar-->
 <nav class="navbar navbar-inverse navbar-static-top" id="nav">
     <div class="container">
-        <div class="navbar-header navbar-collapse collapse">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapse-small-devices">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
             <a class="navbar-brand" href="#">Instant Interview</a>
         </div>
-        <div class="scrollspy">
-            <ul class="nav navbar-nav navbar-collapse collapse">
-                <li class="active scrollAnimate"><a href="#info">Info</a></li>
+        <div class="collapse navbar-collapse scrollspy" id="nav-collapse-small-devices">
+            <ul class="nav navbar-nav navbar-left">
+                <li class="scrollAnimate"><a href="#info">Info</a></li>
                 <li class="scrollAnimate"><a href="#contact">Contact</a></li>
+                <li class="scrollAnimate"><a href="#interview">Interview</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="scrollAnimate"><a href="#login">Login</a></li>
@@ -75,153 +109,41 @@
         </div>
     </div>
 </nav>
-<!--Jumbotron-->
-<div class="jumbotron" id="jumbotron">
-    <div class="container">
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-                <li data-target="#myCarousel" data-slide-to="3"></li>
-            </ol>
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <h1>Lorem Ipsum zever 1</h1>
-                </div>
-
-                <div class="item">
-                    <h1>Lorem Ipsum zever 2</h1>
-                </div>
-
-                <div class="item">
-                    <h1>Lorem Ipsum zever 3</h1>
-                </div>
-
-                <div class="item">
-                    <h1>Lorem Ipsum zever 4</h1>
-                </div>
-            </div>
-
-            <!-- Left and right controls -->
-            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>
-</div>
 <!-- Content -->
 <section>
     <div class="container">
         <div class="page-header"  id="info">
             <h1>Info</h1>
         </div>
-        <p>This is some text.</p>
-
-        <p>This is another text.</p>
-    </div>
-    <div class="container">
-        <h1>My First Bootstrap Page</h1>
-
-        <p>This is some text.</p>
-    </div>
-    <div class="container">
-        <h1>My First Bootstrap 2 Page</h1>
-
-        <p>This is some text.</p>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4">.col-sm-4</div>
-            <div class="col-sm-8">.col-sm-8</div>
-        </div>
-    </div>
 </section>
 <section>
     <div class="container">
         <div class="page-header"  id="contact">
             <h1>Contact</h1>
         </div>
-        <p>This is some text.</p>
-
-        <p>This is another text.</p>
-    </div>
+</section>
+<section>
     <div class="container">
-        <h1>My First Bootstrap Page</h1>
-
-        <p>This is some text.</p>
-    </div>
-    <div class="container">
-        <h1>My First Bootstrap 2 Page</h1>
-
-        <p>This is some text.</p>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4">.col-sm-4</div>
-            <div class="col-sm-8">.col-sm-8</div>
+        <div class="page-header" id="interview">
+            <h1>Interview</h1>
         </div>
     </div>
+    <div class="container">
+        <?php include 'Views/CompetenceView.php';?>
+    </div>
 </section>
+
 <section>
     <div class="container">
         <div class="page-header" id="login">
             <h1>Login</h1>
         </div>
-        <p>This is some text.</p>
-
-        <p>This is another text.</p>
-    </div>
-    <div class="container">
-        <h1>My First Bootstrap Page</h1>
-
-        <p>This is some text.</p>
-    </div>
-    <div class="container">
-        <h1>My First Bootstrap 2 Page</h1>
-
-        <p>This is some text.</p>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4">.col-sm-4</div>
-            <div class="col-sm-8">.col-sm-8</div>
-        </div>
-    </div>
 </section>
 <section>
     <div class="container">
         <div class="page-header" id="register">
             <h1>Register</h1>
         </div>
-        <p>This is some text.</p>
-
-        <p>This is another text.</p>
-    </div>
-    <div class="container">
-        <h1>My First Bootstrap Page</h1>
-
-        <p>This is some text.</p>
-    </div>
-    <div class="container">
-        <h1>My First Bootstrap 2 Page</h1>
-
-        <p>This is some text.</p>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4">.col-sm-4</div>
-            <div class="col-sm-8">.col-sm-8</div>
-        </div>
-    </div>
 </section>
 </body>
 <!-- Local javascript -->
