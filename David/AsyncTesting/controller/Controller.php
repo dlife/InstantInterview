@@ -9,12 +9,17 @@
 namespace controller;
 include('model/Question.php');
 include('model/Competence.php');
+include('model/JobTitle.php');
+include('model/JobTitleQuestion.php');
 
 class Controller
 {
 
     protected $questions = array();
     protected $competences = array();
+    protected $jobTitles = array();
+    protected $jobTitlesQuestions = array();
+
 
     public function getVragen()
     {
@@ -24,6 +29,11 @@ class Controller
     public function getCompetences()
     {
         return $this->competences;
+    }
+
+    public function getJobTitles()
+    {
+        return $this->jobTitles;
     }
 
     public function LoadTestData()
@@ -47,6 +57,14 @@ class Controller
         $comp2 = new \model\Competence(2, 'Competentie 2');
         $this->competences[$comp2->getId()] = $comp2;
 
+        $jobTitle1 = new \model\JobTitle(1, 'Functie 1');
+        $this->jobTitles[$jobTitle1->getId()] = $jobTitle1;
+
+        $jobTitle2 = new \model\JobTitle(2, 'Functie 2');
+        $this->jobTitles[$jobTitle2->getId()] = $jobTitle2;
+
+        $jobTitle2 = new \model\JobTitleQuestion(2, 'Functie 2');
+        $this->jobTitles[$jobTitle2->getId()] = $jobTitle2;
     }
 
     public function SelectQuestions($competenceId)
