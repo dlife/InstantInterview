@@ -31,9 +31,7 @@ $controller->LoadTestData();
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript">
 
-        function handleCompetenceClick(id) {
-            $( "#questionssection" + id ).toggle();
-        }
+
 
         function fetchdata(id) {
             if (document.getElementById(id) != null) {

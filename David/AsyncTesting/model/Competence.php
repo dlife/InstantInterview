@@ -9,7 +9,7 @@
 namespace model;
 
 
-class Competentie {
+class Competence {
     private $id;
 
     public function setId($id) {
@@ -20,19 +20,19 @@ class Competentie {
         return $this->id;
     }
 
-    private $naam;
+    private $name;
 
-    public function setNaam($naam) {
-        $this->naam = $naam;
+    public function setName($name) {
+        $this->name = $name;
     }
 
-    public function getNaam() {
-        return $this->naam;
+    public function getName() {
+        return $this->name;
     }
 
-    public function __construct($id, $naam)
+    public function __construct($id, $name)
     {
         $this->id = $id;
-        $this->naam = $naam;
+        $this->name = $name;
     }
 }

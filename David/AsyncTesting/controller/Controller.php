@@ -7,45 +7,45 @@
  */
 
 namespace controller;
-include('model/Vraag.php');
-include('model/Competentie.php');
+include('model/Question.php');
+include('model/Competence.php');
 
 class Controller
 {
 
-    protected $vragen = array();
-    protected $competenties = array();
+    protected $questions = array();
+    protected $competences = array();
 
     public function getVragen()
     {
-        return $this->vragen;
+        return $this->questions;
     }
 
-    public function getCompetenties()
+    public function getCompetences()
     {
-        return $this->competenties;
+        return $this->competences;
     }
 
     public function LoadTestData()
     {
         // simple data for testing
-        $vraag1 = new \model\Vraag(1, 'Vraag 1', 1);
-        $this->vragen[$vraag1->getId()] = $vraag1;
+        $vraag1 = new \model\Question(1, 'Vraag 1', 1);
+        $this->questions[$vraag1->getId()] = $vraag1;
 
-        $vraag2 = new \model\Vraag(2, 'Vraag 2', 1);
-        $this->vragen[$vraag2->getId()] = $vraag2;
+        $vraag2 = new \model\Question(2, 'Vraag 2', 1);
+        $this->questions[$vraag2->getId()] = $vraag2;
 
-        $vraag3 = new \model\Vraag(3, 'Vraag 3', 2);
-        $this->vragen[$vraag3->getId()] = $vraag3;
+        $vraag3 = new \model\Question(3, 'Vraag 3', 2);
+        $this->questions[$vraag3->getId()] = $vraag3;
 
-        $vraag4 = new \model\Vraag(4, 'Vraag 4', 2);
-        $this->vragen[$vraag4->getId()] = $vraag4;
+        $vraag4 = new \model\Question(4, 'Vraag 4', 2);
+        $this->questions[$vraag4->getId()] = $vraag4;
 
-        $comp1 = new \model\Competentie(1, 'Competentie 1');
-        $this->competenties[$comp1->getId()] = $comp1;
+        $comp1 = new \model\Competence(1, 'Competentie 1');
+        $this->competences[$comp1->getId()] = $comp1;
 
-        $comp2 = new \model\Competentie(2, 'Competentie 2');
-        $this->competenties[$comp2->getId()] = $comp2;
+        $comp2 = new \model\Competence(2, 'Competentie 2');
+        $this->competences[$comp2->getId()] = $comp2;
 
     }
 
@@ -53,9 +53,9 @@ class Controller
     {
         $v = Array();
 
-        foreach ($this->vragen as $vraag) {
-            if ($vraag->getCompetentieId() == $competenceId) {
-                $v[] = $vraag;
+        foreach ($this->questions as $question) {
+            if ($question->getCompetenceId() == $competenceId) {
+                $v[] = $question;
             }
         }
         return $v;
@@ -64,8 +64,8 @@ class Controller
     public function SelectCompetenceById($competenceId)
     {
         if (isset($competenceId)) {
-            if (array_key_exists($competenceId, $this->competenties)) {
-                return $this->competenties[$competenceId];
+            if (array_key_exists($competenceId, $this->competences)) {
+                return $this->competences[$competenceId];
             }
         }
     }
