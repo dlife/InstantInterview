@@ -31,8 +31,6 @@ $controller->LoadTestData();
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript">
 
-
-
         function fetchdata(id) {
             if (document.getElementById(id) != null) {
                 document.getElementById(id).innerHTML = "";
@@ -61,7 +59,7 @@ $controller->LoadTestData();
             // hide all question sections
             $('.questionsection').hide();
 
-            // one by one load the data and show them again
+            // one by one load the data
             $('[id^="questionssection"]').each(function(i, obj) {
                 fetchdata(obj.id);
             });
@@ -70,6 +68,7 @@ $controller->LoadTestData();
     </script>
 </head>
 <body>
+    <?php require 'fetchjobtitles.php'; ?>
     <?php require 'fetchcompetences.php'; ?>
 </body>
 </html>
