@@ -13,20 +13,18 @@ $controller = new Controller();
 $controller->LoadTestData();
 
 parse_str($_SERVER['QUERY_STRING']); // parses the query string and makes vars with the key => $q is created
-$vragen = [];
+$questions = [];
 if (isset($q)) {
-    $vragen = $controller->SelectQuestions($q); // make the call to the controller
+    $questions = $controller->SelectQuestions($q); // make the call to the controller
 }
 ?>
-<div>
-    <p>Vragen voor Competentie
+    <p>Vragen voor Competentie "
         <?php $comp = $controller->SelectCompetenceById($q);
-        if (isset($comp)) { echo $comp->getNaam(); } ?></p>
+        if (isset($comp)) { echo $comp->getName(); } //echo the competence name for section title ?>"</p>
 <?php
 
-foreach ($vragen as $vraag) { ?>
-    <p> <?php echo $vraag->getEchteVraag(); ?><p>
+foreach ($questions as $question) { // iterate through questions array and echo each full question ?>
+    <p> <?php echo $question->getFullQuestion(); ?><p>
 <?php
 }
 ?>
-</div>

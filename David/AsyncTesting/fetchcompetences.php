@@ -9,20 +9,27 @@
 ?>
 
 
-
 <div>
     This div will contain the competences
-    <?php foreach ($controller->getCompetenties() as $competentie) { ?>
+    <?php foreach ($controller->getCompetences() as $competence) { // iterate through all the competences and make a checkbox for each competence ?>
         <div>
-            <label><input name="<?php echo $competentie->getId()?>" type='checkbox' onclick='handleCompetenceClick(this.name);'><?php echo $competentie->getNaam() ?></label>
+            <label><input name="<?php echo $competence->getId()?>" type='checkbox' onclick='handleCompetenceClick(this.name);'><?php echo $competence->getName() ?></label>
         </div>
     <?php } ?>
 </div>
 <div id="questions">
-    <?php foreach ($controller->getCompetenties() as $competentie) { ?>
-        <div id="questionssection<?php echo $competentie->getId() ?>" class="questionsection">
+    <?php foreach ($controller->getCompetences() as $competence) { // iterate through all the competences and prepare a div for questions for each competence?>
+        <div id="questionssection<?php echo $competence->getId() ?>" class="questionsection">
             Loading...
         </div>
     <?php } ?>
 </div>
+
+<script type="text/javascript">
+    function handleCompetenceClick(id) {
+        $( "#questionssection" + id ).toggle();
+    }
+</script>
+
+
 
