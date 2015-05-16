@@ -11,9 +11,9 @@ UpdateFunctie - OK
 DeleteFunctie - OK
 
 //werking bekijken//
-InsertVraagFunctie
-UpdateVraagFunctie
-DeleteVraagFunctie
+InsertVraagFunctie - OK
+UpdateVraagFunctie - OK
+DeleteVraagFunctie - OK
 
 SelectVragenobvCompmetfunctie - OK
 SelectVragenobvFunctiemetCompetentie - OK
