@@ -78,3 +78,17 @@ CREATE PROCEDURE `CompetentiesSelectAll`
     SELECT Competentie.Naam, Competentie.Id FROM `Competentie`;
   END //
 DELIMITER ;
+
+/*Specifieke competentie selecteren */
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS CompetentiesSelectOne;
+DELIMITER //
+CREATE PROCEDURE `CompetentiesSelectOne`
+  (
+  pId INT
+  )
+  BEGIN
+    SELECT Competentie.Naam, Competentie.Id FROM `Competentie`
+  WHERE `Competentie`.`Id` = pId;
+  END //
+DELIMITER ;

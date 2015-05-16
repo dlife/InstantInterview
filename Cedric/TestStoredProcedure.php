@@ -1,7 +1,6 @@
 <?php
 
-try
-{
+try {
     $dbms = 'mysql';
 
 //Replace the below connection parameters to fit your environment
@@ -10,7 +9,7 @@ try
     $user = 'CvoProject';
     $pass = '9uPZV)U;z_)+';
     $dsn = "$dbms:host=$host;dbname=$db";
-    $cn=new PDO($dsn, $user, $pass);
+    $cn = new PDO($dsn, $user, $pass);
     echo("Connected to host {$host} to database {$db}.<br>");
 
     //TEST COMPETENTIE INSERT
@@ -23,31 +22,40 @@ try
    */
 
     //TEST VRAAG INSERT
-/*
-    $competentie = 9;
-    $vraag = "Werkt dit echt?";
-    $preparedStatement = $cn->prepare("call VraagInsert(@pId,:vraag,:compId);");
-    $preparedStatement->bindParam(':vraag',$vraag,PDO::PARAM_STR);
-    $preparedStatement->bindParam(':compId',$competentie,PDO::PARAM_INT);
-    $result = $preparedStatement->execute();
-    print_r("\r\nVraag ingevoegd ".$preparedStatement->rowCount());
-*/
+    /*
+        $competentie = 9;
+        $vraag = "Werkt dit echt?";
+        $preparedStatement = $cn->prepare("call VraagInsert(@pId,:vraag,:compId);");
+        $preparedStatement->bindParam(':vraag',$vraag,PDO::PARAM_STR);
+        $preparedStatement->bindParam(':compId',$competentie,PDO::PARAM_INT);
+        $result = $preparedStatement->execute();
+        print_r("\r\nVraag ingevoegd ".$preparedStatement->rowCount());
+    */
     //TEST Functie INSERT
-/*
-    $functie = 'Werkend?';
-    $preparedStatement = $cn->prepare("call FunctieInsert(@pId,:name);");
-    $preparedStatement->bindParam(':name',$functie,PDO::PARAM_STR);
-    $result = $preparedStatement->execute();
-    echo($preparedStatement->rowCount());
-*/
+    /*
+        $functie = 'Werkend?';
+        $preparedStatement = $cn->prepare("call FunctieInsert(@pId,:name);");
+        $preparedStatement->bindParam(':name',$functie,PDO::PARAM_STR);
+        $result = $preparedStatement->execute();
+        echo($preparedStatement->rowCount());
+    */
 
-    //TEST Select alle competenties
-    $preparedStatement = $cn->prepare("call CompetentiesSelectAll();");
+    /*
+        //TEST Select alle competenties
+            $preparedStatement = $cn->prepare("call CompetentiesSelectAll();");
+            $result = $preparedStatement->execute();
+            while($data = $preparedStatement->fetch( PDO::FETCH_ASSOC )){
+                print $data['Naam'].' '.$data['Id'].'<br>';
+    */
+
+//TEST Select specifieke competenties
+    $preparedStatement = $cn->prepare("call CompetentiesSelectOne(:pId);");
+    $competentie = 10;
+    $preparedStatement->bindParam(':pId',$competentie,PDO::PARAM_INT);
     $result = $preparedStatement->execute();
-    while($data = $preparedStatement->fetch( PDO::FETCH_ASSOC )){
-        print $data['Naam'].' '.$data['Id'].'<br>';
+    while ($data = $preparedStatement->fetch(PDO::FETCH_ASSOC)) {
+        print $data['Naam'] . ' ' . $data['Id'] . '<br>';
     }
-
 }
 catch (\PDOException $e)
 {
