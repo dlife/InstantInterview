@@ -33,8 +33,8 @@ CREATE PROCEDURE `VraagInsert`
 BEGIN
 INSERT INTO `Vraag`
 	(
-		`Competentie`.`Vraag`,
-		`Competentie`.`CompetentieId`
+		`Vraag`.`Vraag`,
+		`Vraag`.`CompetentieId`
 	)
 	VALUES
 	(
@@ -42,5 +42,27 @@ INSERT INTO `Vraag`
 		pCompId
   );
 	SELECT LAST_INSERT_ID() INTO pId;
+END //
+DELIMITER ;
+
+/*Inserten Functies*/
+use InterviewDB;
+DROP PROCEDURE IF EXISTS FunctieInsert;
+DELIMITER //
+CREATE PROCEDURE `FunctieInsert`
+  (
+    OUT pId INT ,
+IN pName NVARCHAR (200)
+)
+BEGIN
+INSERT INTO `Functie`
+(
+`Functie`.`Naam`
+)
+VALUES
+(
+pName
+);
+SELECT LAST_INSERT_ID() INTO pId;
 END //
 DELIMITER ;

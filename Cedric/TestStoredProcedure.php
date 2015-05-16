@@ -22,6 +22,25 @@ try
     echo($preparedStatement->rowCount());
    */
 
+    //TEST VRAAG INSERT
+/*
+    $competentie = 9;
+    $vraag = "Werkt dit echt?";
+    $preparedStatement = $cn->prepare("call VraagInsert(@pId,:vraag,:compId);");
+    $preparedStatement->bindParam(':vraag',$vraag,PDO::PARAM_STR);
+    $preparedStatement->bindParam(':compId',$competentie,PDO::PARAM_INT);
+    $result = $preparedStatement->execute();
+    print_r("\r\nVraag ingevoegd ".$preparedStatement->rowCount());
+*/
+    //TEST Functie INSERT
+
+    $functie = 'Werkend?';
+    $preparedStatement = $cn->prepare("call FunctieInsert(@pId,:name);");
+    $preparedStatement->bindParam(':name',$functie,PDO::PARAM_STR);
+    $result = $preparedStatement->execute();
+    echo($preparedStatement->rowCount());
+
+
 }
 catch (\PDOException $e)
 {
