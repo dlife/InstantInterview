@@ -2,13 +2,13 @@ SelectVragenByIdCompetentie - OK
 SelectAllCompententies  - OK
 InsertCompetentie - OK
 UpdateCompetentie - OK
-DeleteCompetentie
+DeleteCompetentie - OK
 InsertVraag - OK
 UpdateVraag - OK
-DeleteVraag
+DeleteVraag - OK
 InsertFunctie - OK
 UpdateFunctie - OK
-DeleteFunctie
+DeleteFunctie - OK
 
 //werking bekijken//
 InsertVraagFunctie

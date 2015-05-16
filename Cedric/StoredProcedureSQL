@@ -5,7 +5,7 @@ DELIMITER //
 CREATE PROCEDURE `CompetentieInsert`
 (
 	OUT pId INT ,
-	IN pName NVARCHAR (200)
+	IN pName VARCHAR (200)
 )
 BEGIN
 INSERT INTO `Competentie`
@@ -52,7 +52,7 @@ DELIMITER //
 CREATE PROCEDURE `FunctieInsert`
   (
     OUT pId INT ,
-IN pName NVARCHAR (200)
+IN pName VARCHAR (200)
 )
 BEGIN
 INSERT INTO `Functie`
@@ -115,7 +115,7 @@ DELIMITER //
 CREATE PROCEDURE `CompetentieUpdate`
   (
     pId INT ,
-   pName NVARCHAR (200)
+   pName VARCHAR (200)
 )
 BEGIN
 UPDATE `Competentie`
@@ -149,7 +149,7 @@ DELIMITER //
 CREATE PROCEDURE `FunctieUpdate`
   (
   pId INT ,
-  pName NVARCHAR (200)
+  pName VARCHAR (200)
 )
 BEGIN
 UPDATE `Functie`
@@ -202,4 +202,63 @@ CREATE PROCEDURE `VraagDelete`
     DELETE FROM `Vraag`
     WHERE `Vraag`.`Id` = pId;
   END //
+DELIMITER ;
+
+/*Inserten Vraagfunctie*/
+use InterviewDB;
+DROP PROCEDURE IF EXISTS VraagFunctieInsert;
+DELIMITER //
+CREATE PROCEDURE `VraagFunctieInsert`
+  (
+    OUT pId INT ,
+    IN FuncId INT,
+      IN VraagId INT
+  )
+  BEGIN
+    INSERT INTO `Competentie`
+    (
+      `VraagFunctie`.`FunctieId`,
+    `VraagFunctie`.`VraagId`
+    )
+    VALUES
+    (
+    FuncId,
+      VraagId
+    );
+    SELECT LAST_INSERT_ID() INTO pId;
+  END //
+DELIMITER ;
+
+# // delete VraagFunctie
+
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS VraagFunctieDelete;
+DELIMITER //
+CREATE PROCEDURE `VraagFunctieDelete`
+  (
+    pId INT
+  )
+  BEGIN
+    DELETE FROM `VraagFunctie`
+    WHERE `VraagFunctie`.`Id` = pId;
+  END //
+DELIMITER ;
+
+/*Update van specifieke vraag*/
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS VraagFunctieUpdate();
+DELIMITER //
+CREATE PROCEDURE `VraagFunctieUpdate`
+  (
+    pId INT ,
+    IN FuncId INT,
+    IN VraagId INT
+)
+BEGIN
+UPDATE `VraagFunctie`
+SET
+  `VraagFunctie`.`VraagId` = VraagId,
+  `VraagFunctie`.`FunctieId` = FuncId,
+WHERE `VraagFunctie`.`Id` = pId;
+END //
 DELIMITER ;
