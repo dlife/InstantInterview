@@ -59,13 +59,31 @@ try {
 */
 
 // TEST Select questions from specific competence
-   $preparedStatement = $cn->prepare("call CompetentiesSelectQuestions(:pId);");
+ /*  $preparedStatement = $cn->prepare("call CompetentiesSelectQuestions(:pId);");
     $competentie = 10;
     $preparedStatement->bindParam(':pId',$competentie,PDO::PARAM_INT);
     $result = $preparedStatement->execute();
     while ($data = $preparedStatement->fetch(PDO::FETCH_ASSOC)) {
         print $data['Vraag'] . ' ' . $data['Naam'] . '<br>';
-    }
+    } */
+
+  // TEST Update specific competence
+   /* $preparedStatement = $cn->prepare("call CompetentieUpdate(:pId, :pName);");
+    $competentie = 10;
+    $compNaam = "UpdateTest";
+    $preparedStatement->bindParam(':pId',$competentie,PDO::PARAM_INT);
+    $preparedStatement->bindParam(':pName',$compNaam,PDO::PARAM_INT);
+    $result = $preparedStatement->execute();
+    echo($preparedStatement->rowCount());
+*/
+    // TEST Update specific vraag
+    $preparedStatement = $cn->prepare("call VraagUpdate(:pId, :pName);");
+    $vraagId = 5;
+    $vraag = "UpdateTestVraag";
+    $preparedStatement->bindParam(':pId',$vraagId,PDO::PARAM_INT);
+    $preparedStatement->bindParam(':pName',$vraag,PDO::PARAM_INT);
+    $result = $preparedStatement->execute();
+    echo($preparedStatement->rowCount());
 }
 catch (\PDOException $e)
 {
