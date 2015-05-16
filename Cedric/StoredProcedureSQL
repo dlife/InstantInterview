@@ -258,7 +258,43 @@ BEGIN
 UPDATE `VraagFunctie`
 SET
   `VraagFunctie`.`VraagId` = VraagId,
-  `VraagFunctie`.`FunctieId` = FuncId,
+  `VraagFunctie`.`FunctieId` = FuncId
 WHERE `VraagFunctie`.`Id` = pId;
 END //
+DELIMITER ;
+
+/*FUNCTIE + VRAGEN + COMPETENTIES obv competenties*/
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS SelectQuestionsFunctionCompetencesOrderByCompetence;
+DELIMITER //
+CREATE PROCEDURE `SelectQuestionsFunctionCompetencesOrderByCompetence`
+  (
+    IN pCompId INT
+  )
+  BEGIN
+    SELECT f.Naam as FuncNaam,c.Naam as CompNaam ,v.Vraag FROM `VraagFunctie`
+      INNER JOIN Vraag as v ON VraagId = v.Id
+      INNER JOIN Functie as f ON FunctieId = f.Id
+      INNER JOIN Competentie as c ON v.CompetentieId = c.Id
+    WHERE `v`.`CompetentieId` = pCompId
+    ORDER BY c.Naam;
+  END //
+DELIMITER ;
+
+/*FUNCTIE + VRAGEN + COMPETENTIES obv functie*/
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS SelectQuestionsFunctionCompetencesOnFunction;
+DELIMITER //
+CREATE PROCEDURE `SelectQuestionsFunctionCompetencesOnFunction`
+  (
+    IN pFuncId INT
+  )
+  BEGIN
+    SELECT f.Naam as FuncNaam,c.Naam as CompNaam ,v.Vraag FROM `VraagFunctie`
+      INNER JOIN Vraag as v ON VraagId = v.Id
+      INNER JOIN Functie as f ON FunctieId = f.Id
+      INNER JOIN Competentie as c ON v.CompetentieId = c.Id
+    WHERE `VraagFunctie`.`FunctieId` = pFuncId
+    ORDER BY c.Naam;
+  END //
 DELIMITER ;
