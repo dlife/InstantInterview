@@ -295,6 +295,6 @@ CREATE PROCEDURE `SelectQuestionsFunctionCompetencesOnFunction`
       INNER JOIN Functie as f ON FunctieId = f.Id
       INNER JOIN Competentie as c ON v.CompetentieId = c.Id
     WHERE `VraagFunctie`.`FunctieId` = pFuncId
-    ORDER BY c.Naam;
+    ORDER BY FuncNaam AND CompNaam;
   END //
 DELIMITER ;

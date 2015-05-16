@@ -114,13 +114,13 @@ try {
     echo($preparedStatement->rowCount());*/
 
     // TEST Select questions from specific competence with function
-      $preparedStatement = $cn->prepare("call SelectQuestionsFunctionCompetencesOrderByCompetence(:pId);");
+/*      $preparedStatement = $cn->prepare("call SelectQuestionsFunctionCompetencesOrderByCompetence(:pId);");
        $competentie = 9;
        $preparedStatement->bindParam(':pId',$competentie,PDO::PARAM_INT);
        $result = $preparedStatement->execute();
        while ($data = $preparedStatement->fetch(PDO::FETCH_ASSOC)) {
            print $data['FuncNaam'] . ' ' . $data['CompNaam'] . ' ' . $data['Vraag'] . '<br>';
-       }
+       }*/
 
     // TEST Select questions from specific function with competence
     $preparedStatement = $cn->prepare("call SelectQuestionsFunctionCompetencesOnFunction(:pId);");
