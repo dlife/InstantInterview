@@ -92,3 +92,18 @@ CREATE PROCEDURE `CompetentiesSelectOne`
   WHERE `Competentie`.`Id` = pId;
   END //
 DELIMITER ;
+
+/*Vragen van specifieke competentie selecteren */
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS CompetentiesSelectQuestions;
+DELIMITER //
+CREATE PROCEDURE `CompetentiesSelectQuestions`
+  (
+    IN pCompId INT
+  )
+  BEGIN
+    SELECT Vraag.Vraag, Competentie.Naam FROM `Vraag`
+      INNER JOIN Competentie ON CompetentieId = Competentie.Id
+    WHERE `Vraag`.`CompetentieId` = pCompId;
+  END //
+DELIMITER ;

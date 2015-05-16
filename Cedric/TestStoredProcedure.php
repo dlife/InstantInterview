@@ -49,12 +49,22 @@ try {
     */
 
 //TEST Select specifieke competenties
-    $preparedStatement = $cn->prepare("call CompetentiesSelectOne(:pId);");
+   /* $preparedStatement = $cn->prepare("call CompetentiesSelectOne(:pId);");
     $competentie = 10;
     $preparedStatement->bindParam(':pId',$competentie,PDO::PARAM_INT);
     $result = $preparedStatement->execute();
     while ($data = $preparedStatement->fetch(PDO::FETCH_ASSOC)) {
         print $data['Naam'] . ' ' . $data['Id'] . '<br>';
+    }
+*/
+
+// TEST Select questions from specific competence
+   $preparedStatement = $cn->prepare("call CompetentiesSelectQuestions(:pId);");
+    $competentie = 10;
+    $preparedStatement->bindParam(':pId',$competentie,PDO::PARAM_INT);
+    $result = $preparedStatement->execute();
+    while ($data = $preparedStatement->fetch(PDO::FETCH_ASSOC)) {
+        print $data['Vraag'] . ' ' . $data['Naam'] . '<br>';
     }
 }
 catch (\PDOException $e)
