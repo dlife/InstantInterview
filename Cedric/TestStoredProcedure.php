@@ -77,11 +77,20 @@ try {
     echo($preparedStatement->rowCount());
 */
     // TEST Update specific vraag
-    $preparedStatement = $cn->prepare("call VraagUpdate(:pId, :pName);");
+/*    $preparedStatement = $cn->prepare("call VraagUpdate(:pId, :pName);");
     $vraagId = 5;
     $vraag = "UpdateTestVraag";
     $preparedStatement->bindParam(':pId',$vraagId,PDO::PARAM_INT);
     $preparedStatement->bindParam(':pName',$vraag,PDO::PARAM_INT);
+    $result = $preparedStatement->execute();
+    echo($preparedStatement->rowCount());*/
+
+    // TEST Update specific functie
+    $preparedStatement = $cn->prepare("call FunctieUpdate(:pId, :pName);");
+    $FId = 1;
+    $naam = "UpdateTestFunctie";
+    $preparedStatement->bindParam(':pId',$FId,PDO::PARAM_INT);
+    $preparedStatement->bindParam(':pName',$naam,PDO::PARAM_INT);
     $result = $preparedStatement->execute();
     echo($preparedStatement->rowCount());
 }

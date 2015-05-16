@@ -141,3 +141,20 @@ SET
 WHERE `Vraag`.`Id` = pId;
 END //
 DELIMITER ;
+
+/*Update van specifieke functie*/
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS FunctieUpdate;
+DELIMITER //
+CREATE PROCEDURE `FunctieUpdate`
+  (
+  pId INT ,
+  pName NVARCHAR (200)
+)
+BEGIN
+UPDATE `Functie`
+SET
+  `Functie`.`Naam` = pName
+WHERE `Functie`.`Id` = pId;
+END //
+DELIMITER ;
