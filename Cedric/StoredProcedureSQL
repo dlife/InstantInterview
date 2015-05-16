@@ -20,19 +20,26 @@ INSERT INTO `Competentie`
 END //
 DELIMITER ;
 
+/*Inserten Vragen*/
+use InterviewDB;
+DROP PROCEDURE IF EXISTS VraagInsert;
+DELIMITER //
 CREATE PROCEDURE `VraagInsert`
 (
 	OUT pId INT ,
-	IN pVraag NVARCHAR (200) ,
+	IN pName TEXT,
+	IN pCompId INT
 )
 BEGIN
 INSERT INTO `Vraag`
 	(
 		`Competentie`.`Vraag`,
+		`Competentie`.`CompetentieId`
 	)
 	VALUES
 	(
-		pVraag,
+		pName,
+		pCompId
   );
 	SELECT LAST_INSERT_ID() INTO pId;
 END //

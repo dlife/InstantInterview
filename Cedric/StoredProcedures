@@ -1,12 +1,17 @@
 SelectVragenByIdCompetentie
 SelectAllCompententies
-InsertCompetentie
+InsertCompetentie - OK
 UpdateCompetentie
 DeleteCompetentie
-InsertVraag
+InsertVraag - OK
 UpdateVraag
 DeleteVraag
 InsertFunctie
 UpdateFunctie
 DeleteFunctie
+
+//werking bekijken//
+InsertVraagFunctie
+UpdateVraagFunctie
+DeleteVraagFunctie
 
