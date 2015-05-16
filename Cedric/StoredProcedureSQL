@@ -1,34 +1,38 @@
+/*Inserten Competenties*/
+use InterviewDB;
+DROP PROCEDURE IF EXISTS CompetentieInsert;
+DELIMITER //
 CREATE PROCEDURE `CompetentieInsert`
 (
 	OUT pId INT ,
-	IN pName NVARCHAR (200) ,
+	IN pName NVARCHAR (200)
 )
 BEGIN
 INSERT INTO `Competentie`
 	(
-		`Competentie`.`Naam`,
+		`Competentie`.`Naam`
 	)
 	VALUES
 	(
-		pName,
+		pName
   );
 	SELECT LAST_INSERT_ID() INTO pId;
 END //
 DELIMITER ;
 
-CREATE PROCEDURE `CompetentieInsert`
+CREATE PROCEDURE `VraagInsert`
 (
 	OUT pId INT ,
-	IN pName NVARCHAR (200) ,
+	IN pVraag NVARCHAR (200) ,
 )
 BEGIN
-INSERT INTO `Competentie`
+INSERT INTO `Vraag`
 	(
-		`Competentie`.`Naam`,
+		`Competentie`.`Vraag`,
 	)
 	VALUES
 	(
-		pName,
+		pVraag,
   );
 	SELECT LAST_INSERT_ID() INTO pId;
 END //
