@@ -11,7 +11,7 @@ try
     $pass = '9uPZV)U;z_)+';
     $dsn = "$dbms:host=$host;dbname=$db";
     $cn=new PDO($dsn, $user, $pass);
-    echo("Connected to host {$host} to database {$db}.");
+    echo("Connected to host {$host} to database {$db}.<br>");
 
     //TEST COMPETENTIE INSERT
     /*
@@ -33,13 +33,20 @@ try
     print_r("\r\nVraag ingevoegd ".$preparedStatement->rowCount());
 */
     //TEST Functie INSERT
-
+/*
     $functie = 'Werkend?';
     $preparedStatement = $cn->prepare("call FunctieInsert(@pId,:name);");
     $preparedStatement->bindParam(':name',$functie,PDO::PARAM_STR);
     $result = $preparedStatement->execute();
     echo($preparedStatement->rowCount());
+*/
 
+    //TEST Select alle competenties
+    $preparedStatement = $cn->prepare("call CompetentiesSelectAll();");
+    $result = $preparedStatement->execute();
+    while($data = $preparedStatement->fetch( PDO::FETCH_ASSOC )){
+        print $data['Naam'].' '.$data['Id'].'<br>';
+    }
 
 }
 catch (\PDOException $e)

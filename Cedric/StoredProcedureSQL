@@ -66,3 +66,15 @@ pName
 SELECT LAST_INSERT_ID() INTO pId;
 END //
 DELIMITER ;
+
+/*Alle competenties selecteren */
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS CompetentiesSelectAll;
+DELIMITER //
+CREATE PROCEDURE `CompetentiesSelectAll`
+  (
+  )
+  BEGIN
+    SELECT Competentie.Naam, Competentie.Id FROM `Competentie`;
+  END //
+DELIMITER ;
