@@ -10,7 +10,7 @@ $dsn = "$dbms:host=$host;dbname=$db";
 
 $cn=new PDO($dsn, $user, $pass);
 $Competentie = 'test1';
-$q=$cn->exec("call CompetentieInsert('test1')");
+$q=$cn->exec("call CompetentieInsert(@pId,'test1');)");
 
 print_r($q);
 
