@@ -94,12 +94,24 @@ try {
     $result = $preparedStatement->execute();
     echo($preparedStatement->rowCount());*/
 
-    // TEST Update specific functie
-        $preparedStatement = $cn->prepare("call FunctieUpdate(:pId, :pName);");
-        $FId = 1;
-        $preparedStatement->bindParam(':pId',$FId,PDO::PARAM_INT);
+    // TEST delete specific functie, compententie, vraag
+        $preparedStatement = $cn->prepare("call VraagDelete(:pId);");
+        $PId = 2;
+        $preparedStatement->bindParam(':pId',$PId,PDO::PARAM_INT);
         $result = $preparedStatement->execute();
         echo($preparedStatement->rowCount());
+
+    $preparedStatement = $cn->prepare("call FunctieDelete(:pId);");
+    $PId = 2;
+    $preparedStatement->bindParam(':pId',$PId,PDO::PARAM_INT);
+    $result = $preparedStatement->execute();
+    echo($preparedStatement->rowCount());
+
+    $preparedStatement = $cn->prepare("call CompetentieDelete(:pId);");
+    $PId = 11;
+    $preparedStatement->bindParam(':pId',$PId,PDO::PARAM_INT);
+    $result = $preparedStatement->execute();
+    echo($preparedStatement->rowCount());
 
 }
 catch (\PDOException $e)
