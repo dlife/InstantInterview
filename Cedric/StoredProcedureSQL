@@ -158,3 +158,48 @@ SET
 WHERE `Functie`.`Id` = pId;
 END //
 DELIMITER ;
+
+# // delete Competentie
+
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS CompetentieDelete;
+DELIMITER //
+CREATE PROCEDURE `CompetentieDelete`
+  (
+    pId INT
+  )
+  BEGIN
+    DELETE FROM `Competentie`
+    WHERE `Competentie`.`Id` = pId;
+  END //
+DELIMITER ;
+
+# // delete Functie
+
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS FunctieDelete;
+DELIMITER //
+CREATE PROCEDURE `FunctieDelete`
+  (
+    pId INT
+  )
+  BEGIN
+    DELETE FROM `Functie`
+    WHERE `Functie`.`Id` = pId;
+  END //
+DELIMITER ;
+
+# // delete Vraag
+
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS VraagDelete;
+DELIMITER //
+CREATE PROCEDURE `VraagDelete`
+  (
+    pId INT
+  )
+  BEGIN
+    DELETE FROM `Vraag`
+    WHERE `Vraag`.`Id` = pId;
+  END //
+DELIMITER ;
