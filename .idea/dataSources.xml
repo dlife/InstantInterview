@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="2574026411">
+  <component name="DataSourceManagerImpl" format="xml" hash="378020805">
     <data-source source="LOCAL" name="MySQL - InterviewDB@trouw.benoot-cupers.com" uuid="3d788fc1-7aec-432b-94fa-d1432f432fdf">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>

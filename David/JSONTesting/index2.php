@@ -2,22 +2,11 @@
 /**
  * Created by PhpStorm.
  * User: 11791
- * Date: 11/05/2015
- * Time: 21:04
+ * Date: 20/05/2015
+ * Time: 20:42
  */
 
-
-
-// then creates divs for questions based on competences that will async fill with questions using a different php page with querystring
-
-// fetch with jquery when document.ready()
-// use $('[id^="content_"]').hide();
-
-include('controller/Controller.php');
-use controller\Controller;
-
-$controller = new Controller();
-$controller->LoadTestData();
+// testing sending JSON *TO* the server
 
 ?>
 
@@ -29,8 +18,16 @@ $controller->LoadTestData();
     <title></title>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript">
+    <script language="javascript">
 
+        var postData =
+        {
+            "1": true,
+            "2": false,
+            "3": true,
+            "4": false
+        };
+        var dataString = JSON.stringify(postData);
 
 
         function fetchdata(id) {
@@ -57,19 +54,37 @@ $controller->LoadTestData();
             xmlhttp.send();
         }
 
-        $(document ).ready(function() {
-            // hide all question sections
-            $('.questionsection').hide();
+        // This just displays the first parameter passed to it
+        // in an alert.
+        function show(json) {
+            alert(json);
+        }
 
-            // one by one load the data
-            $('[id^="questionssection"]').each(function(i, obj) {
-                fetchdata(obj.id);
+        function run() {
+            $.getJSON(
+                "data.php", // The server URL
+                { id: 567 }, // Data you want to pass to the server.
+                show // The function to call on completion.
+            );
+        }
+
+        function run2() {
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "returndata.php",
+                data: {myData:postData},
+                success: function(data){
+                    alert(data);
+                },
+                error: function(e){
+                    console.log(e.message);
+                }
             });
-        });
-
+        }
     </script>
 </head>
 <body>
-    <?php require 'fetchcompetences.php'; ?>
+<button onclick="run2()">Click me</button>
 </body>
 </html>
