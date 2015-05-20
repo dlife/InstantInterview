@@ -6,7 +6,7 @@
  * Time: 20:42
  */
 
-// test sending JSON *FROM* the server
+// test sending JSON *TO* the server
 
 ?>
 
@@ -19,10 +19,15 @@
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script language="javascript">
-        function postfetchdata() {
+        // this data will be sent to the server
+        var example = [true, true, true, false, false, false];
+
+
+        function fetchdata() {
             if (document.getElementById("divtoreplace") != null) {
-                document.getElementById("divtoreplace").innerHTML = "";
+                document.getElementById("divtoreplace").innerHTML = "Waiting...";
             }
+
             var xmlhttp;
             if (window.XMLHttpRequest) {
                 // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -40,9 +45,11 @@
                     displayArray(myArr);
                 }
             }
-            // actually make the call
-            xmlhttp.open("GET", "postfetchdata.php", true);
-            xmlhttp.send();
+
+            // posting the JSON data object
+            xmlhttp.open("POST", "postfetchdata.php");
+            xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xmlhttp.send(JSON.stringify(example));
         }
 
         // display the array in the div with jQuery
