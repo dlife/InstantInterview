@@ -27,7 +27,7 @@ if (isset($q)) {
                     <?php $comp = $controller->SelectCompetenceById($q);
                     if (isset($comp)) {
                         echo $comp->getName();
-                    } //echo the competence name for section title ?></p>
+                    } //echo the competence name for section title ?>
                 </a>
             </h4>
         </div>
