@@ -18,13 +18,39 @@ if (isset($q)) {
     $questions = $controller->SelectQuestions($q); // make the call to the controller
 }
 ?>
-    <p>Vragen voor Competentie "
-        <?php $comp = $controller->SelectCompetenceById($q);
-        if (isset($comp)) { echo $comp->getName(); } //echo the competence name for section title ?>"</p>
-<?php
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-primary">
+        <div class="panel-heading" role="tab" id="headingThree">
+            <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#<?php echo 'competence-id-'. $q;?>"
+                   aria-expanded="false" aria-controls="collapseThree">
+                    <?php $comp = $controller->SelectCompetenceById($q);
+                    if (isset($comp)) {
+                        echo $comp->getName();
+                    } //echo the competence name for section title ?></p>
+                </a>
+            </h4>
+        </div>
+        <div id="<?php echo 'competence-id-'. $q;?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <?php
+            foreach ($questions as $question) { // iterate through questions array and echo each full question ?>
+        <div class="input-group">
+            <span class="input-group-addon" >
+                <input type="checkbox" id="question-<?php echo $question->getId();?>">
+                </span>
+            <div class="list-group-item">
+            <label for="question-<?php echo $question->getId();?>">
+            <?php echo $question->getFullQuestion(); ?>
+            </label>
+            </div>
+        </div>
+                <?php
+                }
+                ?>
+        </div>
+    </div>
+</div>
 
-foreach ($questions as $question) { // iterate through questions array and echo each full question ?>
-    <p> <?php echo $question->getFullQuestion(); ?><p>
-<?php
-}
-?>
+<script>
+    $(".collapse").collapse();
+</script>

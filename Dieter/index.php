@@ -89,15 +89,15 @@
                 <li class="scrollAnimate"><a href="#contact">Contact</a></li>
                 <li class="scrollAnimate"><a href="#interview">Interview</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <!--<ul class="nav navbar-nav navbar-right">
                 <li class="scrollAnimate"><a href="#login">Login</a></li>
                 <li class="scrollAnimate"><a href="#register">Register</a></li>
-            </ul>
+            </ul> Nog te bekijken-->
         </div>
     </div>
 </nav>
 <!--Bottom navigation bar-->
-<nav class="navbar navbar-inverse navbar-fixed-bottom">
+<!--<nav class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="container">
         <div>
             <ul class="nav navbar-nav">
@@ -108,7 +108,7 @@
             </ul>
         </div>
     </div>
-</nav>
+</nav> Still neccesary ?-->
 <!-- Content -->
 <section>
     <div class="container">

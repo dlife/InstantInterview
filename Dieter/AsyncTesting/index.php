@@ -70,9 +70,6 @@ $controller->LoadTestData();
         }
 
         $(document ).ready(function() {
-            // hide all question sections
-            $('.questionsection').hide();
-
             // one by one load the data
             $('[id^="questionssection"]').each(function(i, obj) {
                 fetchdata(obj.id);
@@ -144,14 +141,15 @@ $controller->LoadTestData();
                 <li class="scrollAnimate"><a href="#contact">Contact</a></li>
                 <li class="scrollAnimate"><a href="#interview">Interview</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <!--<ul class="nav navbar-nav navbar-right">
                 <li class="scrollAnimate"><a href="#login">Login</a></li>
                 <li class="scrollAnimate"><a href="#register">Register</a></li>
-            </ul>
+            </ul> Is dit nog nodig ? -->
         </div>
     </div>
 </nav>
 <!--Bottom navigation bar-->
+<!--Is dit nog nodig ?
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="container">
         <div>
@@ -163,7 +161,7 @@ $controller->LoadTestData();
             </ul>
         </div>
     </div>
-</nav>
+</nav>-->
 <!-- Content -->
 <section>
     <div class="container">
@@ -184,8 +182,8 @@ $controller->LoadTestData();
         </div>
     </div>
     <div class="container">
-        <?php require 'fetchjobtitles.php'; ?>
-        <?php require 'fetchcompetences.php'; ?>
+            <?php require 'fetchjobtitles.php'; ?>
+            <?php require 'fetchcompetences.php'; ?>
     </div>
 </section>
 

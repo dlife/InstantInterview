@@ -9,10 +9,10 @@
 // JobTitlesView
 
 ?>
-
-<div>
+<form>
+    <div class="form-group col-xs-6">
 This div will contain the jobtitles
-    <select id="jobTitleSelect" onchange="jobTitlesSelectChanged()">
+    <select  class="form-control" id="jobTitleSelect" onchange="jobTitlesSelectChanged()">
         <option selected disabled hidden value=''></option>
 
 <?php foreach ($controller->getJobTitles() as $jobTitle) { // iterate through all the jobtitles and make an option in the listbox for each jobtitles ?>
@@ -22,7 +22,8 @@ This div will contain the jobtitles
 <?php } ?>
 
     </select>
-</div>
+    </div>
+</form>
 
 <script type="text/javascript">
     function jobTitlesSelectChanged() {
