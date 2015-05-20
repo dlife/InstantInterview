@@ -23,7 +23,7 @@ if (isset($q)) {
         if (isset($comp)) { echo $comp->getName(); } //echo the competence name for section title ?>"</p>
 <?php
 
-foreach ($questions as $question) { // iterate through questiosn array and echo each full question ?>
+foreach ($questions as $question) { // iterate through questions array and echo each full question ?>
     <p> <?php echo $question->getFullQuestion(); ?><p>
 <?php
 }

@@ -31,8 +31,6 @@ $controller->LoadTestData();
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript">
 
-
-
         function fetchdata(id) {
             if (document.getElementById(id) != null) {
                 document.getElementById(id).innerHTML = "";
@@ -70,6 +68,7 @@ $controller->LoadTestData();
     </script>
 </head>
 <body>
+    <?php require 'fetchjobtitles.php'; ?>
     <?php require 'fetchcompetences.php'; ?>
 </body>
 </html>

@@ -7,17 +7,7 @@
  */
 
 ?>
-
-
-<div>
-    This div will contain the competences
-    <?php foreach ($controller->getCompetences() as $competence) { // iterate through all the competences and make a checkbox for each competence ?>
-        <div>
-            <label><input name="<?php echo $competence->getId()?>" type='checkbox' onclick='handleCompetenceClick(this.name);'><?php echo $competence->getName() ?></label>
-        </div>
-    <?php } ?>
-</div>
-<div id="questions">
+<div class="col-xs-12" id="questions">
     <?php foreach ($controller->getCompetences() as $competence) { // iterate through all the competences and prepare a div for questions for each competence?>
         <div id="questionssection<?php echo $competence->getId() ?>" class="questionsection">
             Loading...
@@ -31,5 +21,18 @@
     }
 </script>
 
+<!--
+$().button('toggle')
+
+Toggles push state. Gives the button the appearance that it has been activated.
+
+$().button('reset')
+
+Resets button state - swaps text to original text.
+
+$().button(string)
+
+Swaps text to any data defined text state.
+-->
 
 
