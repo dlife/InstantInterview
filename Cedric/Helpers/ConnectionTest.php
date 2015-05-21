@@ -4,9 +4,10 @@ include ('Feedback.php');
 include('Log.php');
 include "LogApp.php";
 include('Connection.php');
+include('Provider.php');
     // maak een logboek
     $log = new LogApp();
-    $provider = new Connection($log);
+    $provider = new Provider($log);
     $provider->open();
     $provider->close();
 ?>
