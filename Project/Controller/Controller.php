@@ -7,10 +7,10 @@
  */
 
 namespace controller;
-include('model/Question.php');
-include('model/Competence.php');
-include('model/JobTitle.php');
-include('model/JobTitleQuestion.php');
+include('Model/Question.php');
+include('Model/Competence.php');
+include('Model/JobTitle.php');
+include('Model/JobTitleQuestion.php');
 
 class Controller
 {

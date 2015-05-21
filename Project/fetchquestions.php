@@ -6,8 +6,8 @@
  * Time: 21:12
  */
 
-include('controller/Controller.php');
-use controller\Controller;
+include('Controller/Controller.php');
+use Controller\Controller;
 
 $controller = new Controller();
 $controller->LoadTestData();

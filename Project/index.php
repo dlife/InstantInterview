@@ -13,8 +13,8 @@
 // fetch with jquery when document.ready()
 // use $('[id^="content_"]').hide();
 
-include('controller/Controller.php');
-use controller\Controller;
+include('Controller/Controller.php');
+use Controller\Controller;
 
 $controller = new Controller();
 $controller->LoadTestData();
