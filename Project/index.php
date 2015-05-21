@@ -39,7 +39,6 @@ $controller->LoadTestData();
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/lavish-bootstrap.css"><!--Bootstrap color theme-->
     <link rel="stylesheet" href="css/style.css">
 
