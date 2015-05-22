@@ -13,7 +13,7 @@ $dsn = "$dbms:host=$host;dbname=$db";
     $cn = new PDO($dsn, $user, $pass);
     echo("Connected to host {$host} to database {$db}.<br>");
 
-    //TEST COMPETENTIE INSERT
+    //TEST COMPETENTIE INSERT //OK
 
     $competentie = 'Werkend?';
     $preparedStatement = $cn->prepare("call CompetentieInsert(@pId,:name);");
@@ -22,7 +22,7 @@ $dsn = "$dbms:host=$host;dbname=$db";
     echo($preparedStatement->rowCount());
 
 
-    //TEST VRAAG INSERT
+    //TEST VRAAG INSERT // OK
 
         $competentie = 9;
         $vraag = "Werkt dit echt?";
