@@ -13,8 +13,8 @@
 // fetch with jquery when document.ready()
 // use $('[id^="content_"]').hide();
 
-include('controller/Controller.php');
-use controller\Controller;
+include('Controller/Controller.php');
+use Controller\Controller;
 
 $controller = new Controller();
 $controller->LoadTestData();
@@ -39,7 +39,6 @@ $controller->LoadTestData();
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/lavish-bootstrap.css"><!--Bootstrap color theme-->
     <link rel="stylesheet" href="css/style.css">
 
@@ -187,6 +186,26 @@ $controller->LoadTestData();
     <div class="container">
             <?php require 'fetchjobtitles.php'; ?>
             <?php require 'fetchcompetences.php'; ?>
+        <!--Button to right to submit -->
+        <div class="pull-right">
+            <button class="btn btn-primary" id="QSubmit">Submit</button>
+        </div>
+        <script type="text/javascript">
+            $('#QSubmit').click(function(){
+                var checkboxes = document.getElementsByClassName('questionsCheck');
+                var ids = [];
+                for(x= 0;x < checkboxes.length; x++){
+                    if(checkboxes[x].checked ){
+                        ids.push(checkboxes[x].id);
+                    }
+                }
+                var result = "";
+                ids.forEach(function(element, index){
+                    result += element + " \n";
+                });
+                alert(result);
+            });
+        </script>
     </div>
 </section>
 <section>

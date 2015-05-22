@@ -6,8 +6,8 @@
  * Time: 21:12
  */
 
-include('controller/Controller.php');
-use controller\Controller;
+include('Controller/Controller.php');
+use Controller\Controller;
 
 $controller = new Controller();
 $controller->LoadTestData();
@@ -34,7 +34,7 @@ if (isset($q)) {
     foreach ($questions as $question) { // iterate through questions array and echo each full question ?>
         <div class="input-group">
                     <span class="input-group-addon">
-                        <input type="checkbox" id="question-<?php echo $question->getId(); ?>">
+                        <input type="checkbox" class="questionsCheck" id="question-<?php echo $question->getId(); ?>">
                         </span>
 
             <div class="list-group-item">
