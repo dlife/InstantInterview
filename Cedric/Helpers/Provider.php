@@ -15,8 +15,6 @@ class Provider extends \InstantInterview\Helpers\Connection
         $this->userName = 'CvoProject';
         $this->hostName = 'trouw.benoot-cupers.com:3306';
         $this->connectionString = "mysql:host=$this->hostName;dbname=$this->databaseName";
-        $this->pdoString = $this->connectionString.";".$this->userName.";".$this->password;
-
     }
 }
 

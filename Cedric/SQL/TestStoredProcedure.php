@@ -68,7 +68,7 @@ $dsn = "$dbms:host=$host;dbname=$db";
 //        print $data['Vraag'] . ' ' . $data['Naam'] . '<br>';
 //    }
 
-  // TEST Update specific competence
+  // TEST Update specific  //OK
    $preparedStatement = $cn->prepare("call CompetentieUpdate(:pId, :pName);");
     $competentie = 10;
     $compNaam = "UpdateTest";
@@ -77,7 +77,7 @@ $dsn = "$dbms:host=$host;dbname=$db";
     $result = $preparedStatement->execute();
     echo($preparedStatement->rowCount());
 
-    // TEST Update specific vraag
+    // TEST Update specific vraag  //OK
     $preparedStatement = $cn->prepare("call VraagUpdate(:pId, :pName);");
     $vraagId = 5;
     $vraag = "UpdateTestVraag";
@@ -86,7 +86,7 @@ $dsn = "$dbms:host=$host;dbname=$db";
     $result = $preparedStatement->execute();
     echo($preparedStatement->rowCount());
 
-    // TEST Update specific functie
+    // TEST Update specific functie //OK
    $preparedStatement = $cn->prepare("call FunctieUpdate(:pId, :pName);");
     $FId = 1;
     $naam = "UpdateTestFunctie";
@@ -95,7 +95,7 @@ $dsn = "$dbms:host=$host;dbname=$db";
     $result = $preparedStatement->execute();
     echo($preparedStatement->rowCount());
 
-    // TEST delete specific functie, compententie, vraag
+    // TEST delete specific functie, compententie, vraag //OK
         $preparedStatement = $cn->prepare("call VraagDelete(:pId);");
         $PId = 2;
         $preparedStatement->bindParam(':pId',$PId,PDO::PARAM_INT);
@@ -114,7 +114,7 @@ $dsn = "$dbms:host=$host;dbname=$db";
     $result = $preparedStatement->execute();
     echo($preparedStatement->rowCount());
 
-    // TEST Select questions from specific competence with function
+    // TEST Select questions from specific competence with function //OK
       $preparedStatement = $cn->prepare("call SelectQuestionsFunctionCompetencesOrderByCompetence(:pId);");
        $competentie = 9;
        $preparedStatement->bindParam(':pId',$competentie,PDO::PARAM_INT);
@@ -123,7 +123,7 @@ $dsn = "$dbms:host=$host;dbname=$db";
            print $data['FuncNaam'] . ' ' . $data['CompNaam'] . ' ' . $data['Vraag'] . '<br>';
        }
 
-    // TEST Select questions from specific function with competence
+    // TEST Select questions from specific function with competence //OK
     $preparedStatement = $cn->prepare("call SelectQuestionsFunctionCompetencesOnFunction(:pId);");
     $competentie = 3;
     $preparedStatement->bindParam(':pId',$competentie,PDO::PARAM_INT);

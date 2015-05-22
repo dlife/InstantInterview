@@ -1,18 +1,9 @@
 <?php
-
 namespace InstantInterview\DAL;
+
 use InstantInterview\Helpers\LogApp;
 use InstantInterview\Helpers\Provider;
 
-define('VENDOR_PATH', $_SERVER['DOCUMENT_ROOT'] . '/Cedric/');
-require(VENDOR_PATH.'Helpers/Feedback.php');
-require(VENDOR_PATH.'Helpers/Log.php');
-require(VENDOR_PATH.'Helpers/LogApp.php');
-require(VENDOR_PATH.'Helpers/Connection.php');
-require(VENDOR_PATH.'Helpers/Provider.php');
-
-$dal = new Dal();
-$dal->SelectQuestionsFromOneCompetence(10);
 class Dal
 {
 
@@ -28,14 +19,14 @@ class Dal
         return $result;
     }
 
-    public function InsertQuestion($vraag, $competentie)
+    public function InsertQuestion($vraag, $cId)
     {
         $log = new LogApp('en_US');
         $connection = new Provider($log);
         $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call VraagInsert(@pId,:vraag,:compId);");
         $preparedStatement->bindParam(':vraag', $vraag, \PDO::PARAM_STR);
-        $preparedStatement->bindParam(':compId', $competentie, \PDO::PARAM_INT);
+        $preparedStatement->bindParam(':compId', $cId, \PDO::PARAM_INT);
         $result = $preparedStatement->execute();
         return $result;
     }
@@ -63,30 +54,125 @@ class Dal
 //        echo http_build_query($data) . "\n";
     }
 
-    public function SelectOneCompetence($competentieId)
+    public function SelectOneCompetence($cId)
     {
         $log = new LogApp('en_US');
         $connection = new Provider($log);
         $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call CompetentiesSelectOne(:pId);");
-        $preparedStatement->bindParam(':pId',$competentieId,\PDO::PARAM_INT);
+        $preparedStatement->bindParam(':pId',$cId,\PDO::PARAM_INT);
         $result = $preparedStatement->execute();
         $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
         return $data;
 //        echo http_build_query($data) . "\n";
     }
 
-    public function SelectQuestionsFromOneCompetence($competentieId)
+    public function SelectQuestionsFromOneCompetence($cId)
     {
         $log = new LogApp('en_US');
         $connection = new Provider($log);
         $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call CompetentiesSelectQuestions(:pId);");
-        $preparedStatement->bindParam(':pId',$competentieId,\PDO::PARAM_INT);
+        $preparedStatement->bindParam(':pId',$cId,\PDO::PARAM_INT);
         $result = $preparedStatement->execute();
         $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
         return $data;
 //        echo http_build_query($data) . "\n";
+    }
+
+    public function UpdateCompetence($cId,$cName)
+    {
+        $log = new LogApp('en_US');
+        $connection = new Provider($log);
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
+        $preparedStatement = $pdo->prepare("call CompetentieUpdate(:pId, :pName);");
+        $competentie = 10;
+        $compNaam = "UpdateTest";
+        $preparedStatement->bindParam(':pId',$cId,\PDO::PARAM_INT);
+        $preparedStatement->bindParam(':pName',$cName,\PDO::PARAM_INT);
+        $result = $preparedStatement->execute();
+        return $result;
+    }
+
+    public function UpdateQuestion($qId,$qName)
+    {
+        $log = new LogApp('en_US');
+        $connection = new Provider($log);
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
+        $preparedStatement = $pdo->prepare("call VraagUpdate(:pId, :pName);");
+        $preparedStatement->bindParam(':pId',$qId,\PDO::PARAM_INT);
+        $preparedStatement->bindParam(':pName',$qName,\PDO::PARAM_INT);
+        $result = $preparedStatement->execute();
+        return $result;
+    }
+
+    public function UpdateFunction($fId,$fName)
+    {
+        $log = new LogApp('en_US');
+        $connection = new Provider($log);
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
+        $preparedStatement = $pdo->prepare("call FunctieUpdate(:pId, :pName);");
+        $preparedStatement->bindParam(':pId',$fId,\PDO::PARAM_INT);
+        $preparedStatement->bindParam(':pName',$fName,\PDO::PARAM_INT);
+        $result = $preparedStatement->execute();
+        return $result;
+    }
+
+    public function DeleteCompetence($cId)
+    {
+        $log = new LogApp('en_US');
+        $connection = new Provider($log);
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
+        $preparedStatement = $pdo->prepare("call CompetentieDelete(:pId);");
+        $preparedStatement->bindParam(':pId', $cId, \PDO::PARAM_INT);
+        $result = $preparedStatement->execute();
+        return $result;
+    }
+
+    public function DeleteQuestion($qId)
+    {
+        $log = new LogApp('en_US');
+        $connection = new Provider($log);
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
+        $preparedStatement = $pdo->prepare("call VraagDelete(:pId);");
+        $preparedStatement->bindParam(':pId', $qId, \PDO::PARAM_INT);
+        $result = $preparedStatement->execute();
+        return $result;
+    }
+    public function DeleteFunction($fId)
+    {
+        $log = new LogApp('en_US');
+        $connection = new Provider($log);
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
+        $preparedStatement = $pdo->prepare("call FunctieDelete(:pId);");
+        $preparedStatement->bindParam(':pId', $fId, \PDO::PARAM_INT);
+        $result = $preparedStatement->execute();
+        return $result;
+    }
+
+    public function SelectQuestionsFromCompetenceWithFunction($cId)
+    {
+        $log = new LogApp('en_US');
+        $connection = new Provider($log);
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
+        $preparedStatement = $pdo->prepare("call SelectQuestionsFunctionCompetencesOrderByCompetence(:pId);");
+        $preparedStatement->bindParam(':pId',$cId,\PDO::PARAM_INT);
+        $result = $preparedStatement->execute();
+        $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+//        echo http_build_query($data) . "<Br>";
+    }
+    public function SelectQuestionsFromFunction($fId)
+    {
+        $log = new LogApp('en_US');
+        $connection = new Provider($log);
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
+        $preparedStatement = $pdo->prepare("call SelectQuestionsFunctionCompetencesOnFunction(:pId);");
+        $preparedStatement->bindParam(':pId',$fId,\PDO::PARAM_INT);
+        $result = $preparedStatement->execute();
+        $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+//        echo http_build_query($data) . "<Br>";
     }
 }
 ?>
