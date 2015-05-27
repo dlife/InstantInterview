@@ -79,12 +79,12 @@ $controller->LoadTestData();
             xmlhttp.send();
         }
 
-        $(document ).ready(function() {
+        /*$(document ).ready(function() {
             // one by one load the data
             $('[id^="questionssection"]').each(function(i, obj) {
                 fetchdata(obj.id);
             });
-        });
+        });*/
 
     </script>
 </head>
@@ -188,7 +188,12 @@ $controller->LoadTestData();
     </div>
     <div class="container">
             <?php require '../app/views/fetchjobtitles.php'; ?>
-            <?php require '../app/views/fetchcompetences.php'; ?>
+            <?php /* wordt pas later opgevraagd na selecteren van een functie
+                require '../app/views/fetchcompetences.php';
+            */?>
+        <div id="fetchCompetencesDiv">
+            <!-- Hier komen de competencies en vragen behorende bij de functies-->
+        </div>
         <!--Button to right to submit -->
         <div class="pull-right">
             <button class="btn btn-primary" id="QSubmit">Submit</button>

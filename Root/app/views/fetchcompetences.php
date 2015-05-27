@@ -5,6 +5,13 @@
  * Date: 11/05/2015
  * Time: 21:16
  */
+include('../../vendor/autoload.php');
+
+//include('../app/controller/Controller.php');
+
+
+$controller = new Controller\Controller();
+$controller->LoadTestData();
 
 ?>
 <div class="col-xs-12" id="questions">
