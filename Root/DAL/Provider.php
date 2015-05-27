@@ -4,11 +4,15 @@
  * Adapted by Cedric Jacobs
  *
  */
-namespace InstantInterview\Helpers;
-class Provider extends \InstantInterview\Helpers\Connection
+namespace DAL;
+
+include_once('../vendor/autoload.php');
+
+class Provider extends \DAL\Helpers\Connection
 {
-    public function __construct()
+    public function __construct($log)
     {
+        $this->log = $log;
         $this->databaseName = 'InterviewDB';
         $this->password = '9uPZV)U;z_)+';
         $this->userName = 'CvoProject';

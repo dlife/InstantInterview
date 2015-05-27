@@ -1,15 +1,13 @@
 <?php
-namespace InstantInterview\DAL;
+namespace DAL;
 
-use InstantInterview\Helpers\LogApp;
-use InstantInterview\Helpers\Provider;
 
-class Dal
+class InterviewContext
 {
 
     public function InsertCompentence($competentie)
     {
-        $log = new LogApp('en_US');
+        $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
 
@@ -21,7 +19,7 @@ class Dal
 
     public function InsertQuestion($vraag, $cId)
     {
-        $log = new LogApp('en_US');
+        $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call VraagInsert(@pId,:vraag,:compId);");
@@ -33,7 +31,7 @@ class Dal
 
     public function InsertFunction($functie)
     {
-        $log = new LogApp('en_US');
+        $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call FunctieInsert(@pId,:name);");
@@ -44,7 +42,7 @@ class Dal
 
     public function SelectAllCompetences()
     {
-        $log = new LogApp('en_US');
+        $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call CompetentiesSelectAll();");
@@ -56,7 +54,7 @@ class Dal
 
     public function SelectOneCompetence($cId)
     {
-        $log = new LogApp('en_US');
+        $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call CompetentiesSelectOne(:pId);");
@@ -69,7 +67,7 @@ class Dal
 
     public function SelectQuestionsFromOneCompetence($cId)
     {
-        $log = new LogApp('en_US');
+        $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call CompetentiesSelectQuestions(:pId);");
@@ -82,7 +80,7 @@ class Dal
 
     public function UpdateCompetence($cId,$cName)
     {
-        $log = new LogApp('en_US');
+        $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call CompetentieUpdate(:pId, :pName);");
@@ -96,7 +94,7 @@ class Dal
 
     public function UpdateQuestion($qId,$qName)
     {
-        $log = new LogApp('en_US');
+        $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call VraagUpdate(:pId, :pName);");
@@ -108,7 +106,7 @@ class Dal
 
     public function UpdateFunction($fId,$fName)
     {
-        $log = new LogApp('en_US');
+        $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call FunctieUpdate(:pId, :pName);");
@@ -120,7 +118,7 @@ class Dal
 
     public function DeleteCompetence($cId)
     {
-        $log = new LogApp('en_US');
+        $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call CompetentieDelete(:pId);");
@@ -131,7 +129,7 @@ class Dal
 
     public function DeleteQuestion($qId)
     {
-        $log = new LogApp('en_US');
+        $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call VraagDelete(:pId);");
@@ -141,7 +139,7 @@ class Dal
     }
     public function DeleteFunction($fId)
     {
-        $log = new LogApp('en_US');
+        $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call FunctieDelete(:pId);");
@@ -152,7 +150,7 @@ class Dal
 
     public function SelectQuestionsFromCompetenceWithFunction($cId)
     {
-        $log = new LogApp('en_US');
+        $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call SelectQuestionsFunctionCompetencesOrderByCompetence(:pId);");
@@ -164,7 +162,7 @@ class Dal
     }
     public function SelectQuestionsFromFunction($fId)
     {
-        $log = new LogApp('en_US');
+        $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call SelectQuestionsFunctionCompetencesOnFunction(:pId);");
@@ -177,7 +175,7 @@ class Dal
 
     public function SelectAllFunctions()
     {
-        $log = new LogApp('en_US');
+        $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call FunctiesSelectAll();");

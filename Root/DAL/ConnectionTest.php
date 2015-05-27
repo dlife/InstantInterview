@@ -1,12 +1,21 @@
 <?php
-namespace InstantInterview\Helpers;
-include ('Feedback.php');
-include('Log.php');
-include "LogApp.php";
-include('Connection.php');
+namespace DAL;
+//include ('Feedback.php');
+//include('Log.php');
+//include "LogApp.php";
+//include('Connection.php');
+
     // maak een logboek
-    $log = new LogApp();
-    $provider = new Connection($log);
+    //$log = new LogApp();
+
+include_once('../vendor/autoload.php');
+
+    $log = new Helpers\LogApp('en_US');
+
+    $provider = new Provider($log);
+    echo '<pre>';
+    var_dump($provider);
+    echo '</pre>';
     $provider->open();
     $provider->close();
 ?>
@@ -15,7 +24,7 @@ include('Connection.php');
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Connection clas test</title>
+    <title>Connection class test</title>
 </head>
 <body>
 <?php

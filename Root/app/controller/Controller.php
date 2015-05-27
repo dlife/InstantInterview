@@ -35,6 +35,7 @@ class Controller
 
     public function getJobTitles()
     {
+        // change this to a stored procedure
         return $this->jobTitles;
     }
 
