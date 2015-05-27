@@ -10,6 +10,8 @@
     }
   ],
   "require": {
-    "nette/mail": "2.3.x-dev"
+    "nette/mail": "2.3.x-dev",
+    "itbz/fpdf": "1.7.2",
+    "itbz/fpdi": "1.5.2-patch2"
   }
 }
