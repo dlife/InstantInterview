@@ -12,12 +12,15 @@
 
 // fetch with jquery when document.ready()
 // use $('[id^="content_"]').hide();
+include('../vendor/autoload.php');
 
-include('Controller/Controller.php');
-use Controller\Controller;
+//include('../app/controller/Controller.php');
 
-$controller = new Controller();
+
+$controller = new Controller\Controller();
 $controller->LoadTestData();
+
+
 
 ?>
 
@@ -72,7 +75,7 @@ $controller->LoadTestData();
                 }
             };
             // actually make the call
-            xmlhttp.open("GET", "fetchquestions.php?q=" + id.replace('questionssection',''), true);
+            xmlhttp.open("GET", "../app/views/fetchquestions.php?q=" + id.replace('questionssection',''), true);
             xmlhttp.send();
         }
 
@@ -184,8 +187,8 @@ $controller->LoadTestData();
         </div>
     </div>
     <div class="container">
-            <?php require 'fetchjobtitles.php'; ?>
-            <?php require 'fetchcompetences.php'; ?>
+            <?php require '../app/views/fetchjobtitles.php'; ?>
+            <?php require '../app/views/fetchcompetences.php'; ?>
         <!--Button to right to submit -->
         <div class="pull-right">
             <button class="btn btn-primary" id="QSubmit">Submit</button>
@@ -219,3 +222,4 @@ $controller->LoadTestData();
 </body>
 <script src="js/affix.js"></script>
 </html>
+
