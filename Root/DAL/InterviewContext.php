@@ -174,5 +174,17 @@ class Dal
         return $data;
 //        echo http_build_query($data) . "<Br>";
     }
+
+    public function SelectAllFunctions()
+    {
+        $log = new LogApp('en_US');
+        $connection = new Provider($log);
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
+        $preparedStatement = $pdo->prepare("call FunctiesSelectAll();");
+        $result = $preparedStatement->execute();
+        $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+//        echo http_build_query($data) . "\n";
+    }
 }
 ?>
