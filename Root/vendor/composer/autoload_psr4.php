@@ -4,14 +4,6 @@
 
 $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
-$appDir = realpath($baseDir . '/app/');
-$dalDir = realpath($baseDir . '/DAL/');
-
 
 return array(
-    'Controller\\' => array($appDir . '/controller'),
-    'InstantInterview\\' => array($appDir . '/InstantInterview'),
-    'Models\\' => array($appDir . '/models'),
-    'Views\\' => array($appDir . '/views'),
-    'DAL\\' => array($dalDir),
 );

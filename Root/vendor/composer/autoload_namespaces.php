@@ -6,4 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'fpdi' => array($vendorDir . '/itbz/fpdi/src'),
+    'fpdf' => array($vendorDir . '/itbz/fpdf/src'),
 );
