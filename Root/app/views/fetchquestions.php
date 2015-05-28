@@ -5,6 +5,14 @@
  * Date: 11/05/2015
  * Time: 21:12
  */
+
+/*
+ *
+ * NOT LONGER NEEDED
+ *
+ * this has been integrated in fetchCompetences
+ * downside of not doing so would be to persist the controller through session
+ *
 include('../../vendor/autoload.php');
 
 $controller = new Controller\Controller();
@@ -49,3 +57,8 @@ if (isset($q)) {
 <script>
     $(".collapse").collapse();
 </script>
+
+
+
+*/
+

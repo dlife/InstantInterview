@@ -21,6 +21,8 @@ class Controller
     protected $competences = array();
     protected $jobTitles = array();
     protected $jobTitlesQuestions = array();
+    protected $questionsMarked = array();
+    protected $competencesNotNeeded = array();
 
 
     public function getVragen()
@@ -35,8 +37,19 @@ class Controller
 
     public function getJobTitles()
     {
-        // change this to a stored procedure
+        // change this to a stored procedure that fetches ALL jobTitles
+
         return $this->jobTitles;
+    }
+
+    public function getQuestionsMarked()
+    {
+        return $this->questionsMarked;
+    }
+
+    public function getCompetencesNotNeeded()
+    {
+        return $this->competencesNotNeeded;
     }
 
     public function LoadTestData()
@@ -77,6 +90,9 @@ class Controller
 
         $jobTitleQuestion4 = new \Models\JobTitleQuestion(4, 2, 2);
         $this->jobTitlesQuestions[$jobTitleQuestion4->getId()] = $jobTitleQuestion4;
+
+        $this->questionsMarked[] = 3;
+        $this->questionsMarked[] = 4;
     }
 
     public function SelectQuestions($competenceId)
@@ -91,11 +107,69 @@ class Controller
         return $v;
     }
 
+
+    public function FillCompetencesNotNeeded()
+    {
+        $this->competencesNotNeeded = Array();
+
+        foreach ($this->competences as $comp) {
+            $this->competencesNotNeeded[$comp->getId()] = $comp->getId();
+        } // this is a distinct array already!!
+
+
+        foreach ($this->questionsMarked as $questionId) {
+            $question = $this->SelectQuestionById($questionId);
+            if (isset ($question)) {
+                if (array_key_exists($question->getCompetenceId(), $this->competencesNotNeeded)) {
+                    unset($this->competencesNotNeeded[$question->getCompetenceId()]);
+                }
+            }
+        }
+
+        /* for testing the results
+        echo '<pre>';
+        var_dump($this->competencesNotNeeded);
+        echo '</pre>';
+         */
+
+    }
+
+    public function LoadDataByFunction($functionId)
+    {
+        // this should call stored procedures doing
+        // - loading ALL questions in $this->questions
+        // - loading ALL competences in $this->competences
+        // - loading all the questions that are tied to a function in $this->questionsMarked
+
+        // then make an array $this->competencesNotNeeded using $this->questions and $this->questionsMarked that will be used to hide competences
+        $this->questionsMarked = Array();
+
+        if ($functionId == 1) {
+            $this->questionsMarked[1] = 1;
+            $this->questionsMarked[3] = 3;
+        } else if ($functionId == 2) {
+            $this->questionsMarked[1] = 1;
+            $this->questionsMarked[2] = 2;
+        }
+
+        $this->FillCompetencesNotNeeded();
+    }
+
+
     public function SelectCompetenceById($competenceId)
     {
         if (isset($competenceId)) {
             if (array_key_exists($competenceId, $this->competences)) {
                 return $this->competences[$competenceId];
+            }
+        }
+    }
+
+    public function SelectQuestionById($questionId)
+    {
+        if (isset($questionId)) {
+            if (array_key_exists($questionId, $this->questions)) {
+                return $this->questions[$questionId];
             }
         }
     }

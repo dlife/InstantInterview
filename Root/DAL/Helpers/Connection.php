@@ -80,23 +80,28 @@
             {
                 try
                 {
-                    $connectionString = 
+
+                     $connectionString =
                         "mysql:host={$this->hostName};dbname={$this->databaseName}";
                     // je moet aangeven dat de PDO klasse in de root namespace
                     // gezocht moet worden in niet in MyBib\Dal
                     $this->pdo = new \PDO($connectionString, $this->userName, $this->password);
                     $text = $this->log->connectionOpened($this->hostName, $this->databaseName);
                     $this->log->setText($text);
- 			        $this->log->setErrorCodeDriver('ModernWays DAL Connction');
+ 			        $this->log->setErrorCodeDriver('DAL Connection');
                     $this->log->log();
                 }
                 catch (\PDOException $e)
                 {
+                    echo '<pre>';
+                    var_dump( $this->pdo);
+                    echo '</pre>';
+
                     $text = $this->log->connectionFailed($this->hostName, $this->databaseName);
                     $this->log->setText($text);
  				    $this->log->setErrorMessage('Fout: ' . $e->getMessage());
 				    $this->log->setErrorCode($e->getCode());
- 			        $this->log->setErrorCodeDriver('ModernWays DAL Connection');
+ 			        $this->log->setErrorCodeDriver('DAL Connection');
                     $this->log->end();
                     $this->log->log();
                }
@@ -106,7 +111,6 @@
 
         public function close()
         {
-
             // $this->log->clear();
             $this->log->startTimeInKey('close connection');
             if (is_null($this->pdo))

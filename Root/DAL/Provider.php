@@ -6,8 +6,6 @@
  */
 namespace DAL;
 
-include_once('../vendor/autoload.php');
-
 class Provider extends \DAL\Helpers\Connection
 {
     public function __construct($log)

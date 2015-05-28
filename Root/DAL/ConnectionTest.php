@@ -13,9 +13,6 @@ include_once('../vendor/autoload.php');
     $log = new Helpers\LogApp('en_US');
 
     $provider = new Provider($log);
-    echo '<pre>';
-    var_dump($provider);
-    echo '</pre>';
     $provider->open();
     $provider->close();
 ?>

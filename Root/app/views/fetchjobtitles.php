@@ -27,8 +27,10 @@ This div will contain the jobtitles
 
 <script type="text/javascript">
     function jobTitlesSelectChanged() {
-        var select = document.getElementById("jobTitleSelect");
-        // alert("Should call fetch with Id="+select.options[select.selectedIndex].value);
+        // this funtion will be called whenever the user selects a function from the dropdown
+        // fetchcompetences wordt gebruikt om in de div fetchCompetencesDiv te steken
+        // nadat de php pagina is ingeladen wordt op elek questionssection class div fetchdata toegepast die data uit de controller haalt.
+
         var div = document.getElementById("fetchCompetencesDiv");
         var xmlhttp;
 
@@ -41,16 +43,20 @@ This div will contain the jobtitles
         }
 
         // this will be called when loaded succesfully
-        xmlhttp.onreadystatechange = function() {
+        xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 div.innerHTML = xmlhttp.responseText;
-                $('[id^="questionssection"]').each(function(i, obj) {
+                /*
+                $('[id^="questionssection"]').each(function (i, obj) {
                     fetchdata(obj.id);
                 });
+                // fetchquestions is now obsolete
+                */
             }
         }
         // actually make the call
-        xmlhttp.open("GET", "../app/views/fetchcompetences.php", true);
+        var select = document.getElementById("jobTitleSelect");
+        xmlhttp.open("GET", "../app/views/fetchcompetences.php?q=" + select.options[select.selectedIndex].value , true);
         xmlhttp.send();
 
     }
