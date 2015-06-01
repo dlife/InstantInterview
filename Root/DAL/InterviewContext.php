@@ -196,6 +196,8 @@ class InterviewContext
         return $data;
 //        echo http_build_query($data) . "\n";
     }
+
+    //Added stored procedures
     public function SelectAllQuestions()
     {
         $log = new Helpers\LogApp('en_US');
