@@ -11,7 +11,7 @@
 ?>
 <form>
     <div class="form-group col-xs-12 col-md-6">
-This div will contain the jobtitles
+        <h2>Selecteer hier een functie.</h2>
     <select  class="form-control" id="jobTitleSelect" onchange="jobTitlesSelectChanged()">
         <option selected disabled hidden value=''></option>
 
@@ -56,7 +56,8 @@ This div will contain the jobtitles
         }
         // actually make the call
         var select = document.getElementById("jobTitleSelect");
-        xmlhttp.open("GET", "../app/views/fetchcompetences.php?q=" + select.options[select.selectedIndex].value , true);
+        var id = select.options[select.selectedIndex].value;
+        xmlhttp.open("GET", "../app/views/fetchcompetences.php?q=" + id , true); // subtstring to cut function- off
         xmlhttp.send();
 
     }

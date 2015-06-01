@@ -6,9 +6,7 @@
  */
 namespace DAL;
 
-use DAL\Helpers\Connection;
-
-class Provider extends Connection
+class Provider extends \DAL\Helpers\Connection
 {
     public function __construct($log)
     {

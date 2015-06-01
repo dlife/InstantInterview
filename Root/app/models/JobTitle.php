@@ -6,7 +6,7 @@
  * Time: 23:34
  */
 
-namespace models;
+namespace Models;
 
 
 class JobTitle {

@@ -6,7 +6,7 @@
 * Time: 21:12
 */
 
-namespace controller;
+namespace Controller;
 
 //include('../vendor/autoload.php');
 //include('../models/Question.php');
@@ -38,7 +38,13 @@ class Controller
     public function getJobTitles()
     {
         // change this to a stored procedure that fetches ALL jobTitles
-
+        $context = new \DAL\InterviewContext();
+        $return = $context->SelectAllFunctions();
+        $result = array();
+        foreach ($return as $value){
+            array_push($result, new \Models\JobTitle($value['Id'], $value['Naam']));
+        }
+        $this->jobTitles = $result; // Nogal raar, mischien de jobTitles ergens anders inladen ?
         return $this->jobTitles;
     }
 
@@ -73,11 +79,11 @@ class Controller
         $comp2 = new \Models\Competence(2, 'Competentie 2');
         $this->competences[$comp2->getId()] = $comp2;
 
-        $jobTitle1 = new \Models\JobTitle(1, 'Functie 1');
-        $this->jobTitles[$jobTitle1->getId()] = $jobTitle1;
+        //$jobTitle1 = new \Models\JobTitle(1, 'Functie 1');
+        //$this->jobTitles[$jobTitle1->getId()] = $jobTitle1;
 
-        $jobTitle2 = new \Models\JobTitle(2, 'Functie 2');
-        $this->jobTitles[$jobTitle2->getId()] = $jobTitle2;
+        //$jobTitle2 = new \Models\JobTitle(2, 'Functie 2');
+        //$this->jobTitles[$jobTitle2->getId()] = $jobTitle2;
 
         $jobTitleQuestion1 = new \Models\JobTitleQuestion(1, 1, 1);
         $this->jobTitlesQuestions[$jobTitleQuestion1->getId()] = $jobTitleQuestion1;

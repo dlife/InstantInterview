@@ -201,16 +201,19 @@ $controller->LoadTestData();
         <script type="text/javascript">
             $('#QSubmit').click(function(){
                 var checkboxes = document.getElementsByClassName('questionsCheck');
+                var func = document.getElementById('jobTitleSelect');
+                var jobTitle = func.options[func.selectedIndex].value;
                 var ids = [];
                 for(x= 0;x < checkboxes.length; x++){
                     if(checkboxes[x].checked ){
                         ids.push(checkboxes[x].id);
                     }
                 }
-                var result = "";
+                var result = jobTitle + " \n";
                 ids.forEach(function(element, index){
                     result += element + " \n";
                 });
+
                 alert(result);
             });
         </script>

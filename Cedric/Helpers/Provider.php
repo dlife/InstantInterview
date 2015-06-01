@@ -5,7 +5,8 @@
  *
  */
 namespace InstantInterview\Helpers;
-class Provider extends \InstantInterview\Helpers\Connection
+
+class Provider extends Connection
 {
     public function __construct($log)
     {
