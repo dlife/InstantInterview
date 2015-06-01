@@ -146,15 +146,17 @@ class Controller
  $this->questions = $result; // voorlopig bijhouden in controller
 
 
-
+*/
         $this->questions = array();
         $context = new \DAL\InterviewContext();
         $return = $context->SelectAllQuestions();
+        $result = array();
         foreach ($return as $value) {
             $this->questions[intval($value['Id'])] = new \Models\Question(intval($value['Id']), $value['Vraag'], intval($value['CompetentieId']));
+            //array_push($result, new \Models\Question(intval($value['Id']), $value['Vraag'], intval($value['CompetentieId'])));
         }
-*/
-
+        //var_dump($result);
+/*
         $vraag1 = new \Models\Question(1, 'Vraag 1', 1);
         $this->questions[$vraag1->getId()] = $vraag1;
 
@@ -166,6 +168,8 @@ class Controller
 
         $vraag4 = new \Models\Question(4, 'Vraag 4', 2);
         $this->questions[$vraag4->getId()] = $vraag4;
+*/
+        //var_dump($this->questions);
     }
 
     public function LoadCompetences()

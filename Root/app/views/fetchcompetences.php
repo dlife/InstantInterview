@@ -62,10 +62,6 @@ if (isset($q)) {
     </div>
 </div>
 
-<pre>
-    <?php var_dump($controller); ?>
-</pre>
-
 <!--
 $().button('toggle')
 

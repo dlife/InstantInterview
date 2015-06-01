@@ -8,6 +8,8 @@ namespace DAL;
 
 class Provider extends \DAL\Helpers\Connection
 {
+    public $connectionString;
+
     public function __construct($log)
     {
         $this->log = $log;
