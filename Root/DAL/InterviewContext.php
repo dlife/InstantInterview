@@ -16,7 +16,6 @@ class InterviewContext
         $connection->close();
         return $result;
     }
-
     public function InsertQuestion($vraag, $cId)
     {
         $log = new Helpers\LogApp('en_US');
@@ -30,7 +29,6 @@ class InterviewContext
         $connection->close();
         return $result;
     }
-
     public function InsertFunction($functie)
     {
         $log = new Helpers\LogApp('en_US');
@@ -43,21 +41,17 @@ class InterviewContext
         $connection->close();
         return $result;
     }
-
     public function SelectAllCompetences()
     {
         $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
-        $connection->open();
-        $pdo = new \PDO($connection->getConnectionString(), $connection->getUserName(), $connection->getPassword());
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call CompetentiesSelectAll();");
         $result = $preparedStatement->execute();
         $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
-        $connection->close();
         return $data;
 //        echo http_build_query($data) . "\n";
     }
-
     public function SelectOneCompetence($cId)
     {
         $log = new Helpers\LogApp('en_US');
@@ -72,7 +66,6 @@ class InterviewContext
         return $data;
 //        echo http_build_query($data) . "\n";
     }
-
     public function SelectQuestionsFromOneCompetence($cId)
     {
         $log = new Helpers\LogApp('en_US');
@@ -87,7 +80,6 @@ class InterviewContext
         return $data;
 //        echo http_build_query($data) . "\n";
     }
-
     public function UpdateCompetence($cId,$cName)
     {
         $log = new Helpers\LogApp('en_US');
@@ -103,7 +95,6 @@ class InterviewContext
         $connection->close();
         return $result;
     }
-
     public function UpdateQuestion($qId,$qName)
     {
         $log = new Helpers\LogApp('en_US');
@@ -117,7 +108,6 @@ class InterviewContext
         $connection->close();
         return $result;
     }
-
     public function UpdateFunction($fId,$fName)
     {
         $log = new Helpers\LogApp('en_US');
@@ -131,7 +121,6 @@ class InterviewContext
         $connection->close();
         return $result;
     }
-
     public function DeleteCompetence($cId)
     {
         $log = new Helpers\LogApp('en_US');
@@ -144,7 +133,6 @@ class InterviewContext
         $connection->close();
         return $result;
     }
-
     public function DeleteQuestion($qId)
     {
         $log = new Helpers\LogApp('en_US');
@@ -169,7 +157,6 @@ class InterviewContext
         $connection->close();
         return $result;
     }
-
     public function SelectQuestionsFromCompetenceWithFunction($cId)
     {
         $log = new Helpers\LogApp('en_US');
@@ -198,48 +185,37 @@ class InterviewContext
         return $data;
 //        echo http_build_query($data) . "<Br>";
     }
-
     public function SelectAllFunctions()
     {
         $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
-        $connection->open();
-        $pdo = new \PDO($connection->getConnectionString(), $connection->getUserName(), $connection->getPassword());
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call FunctiesSelectAll();");
         $result = $preparedStatement->execute();
         $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
-        $connection->close();
         return $data;
-
 //        echo http_build_query($data) . "\n";
     }
-
     public function SelectAllQuestions()
     {
         $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
-        $connection->open();
-        $pdo = new \PDO($connection->getConnectionString(), $connection->getUserName(), $connection->getPassword());
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call QuestionsSelectAll();");
         $result = $preparedStatement->execute();
         $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
-        $connection->close();
         return $data;
-
 //        echo http_build_query($data) . "\n";
     }
-
     public function SelectQuestionIdsFromFunction($fId)
     {
         $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
-        $connection->open();
-        $pdo = new \PDO($connection->getConnectionString(), $connection->getUserName(), $connection->getPassword());
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call SelectQuestionsIdsOnFunction(:pId);");
         $preparedStatement->bindParam(':pId',$fId,\PDO::PARAM_INT);
         $result = $preparedStatement->execute();
         $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
-        $connection->close();
         return $data;
 //        echo http_build_query($data) . "<Br>";
     }

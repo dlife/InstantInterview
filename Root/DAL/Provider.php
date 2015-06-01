@@ -15,7 +15,7 @@ class Provider extends \DAL\Helpers\Connection
         $this->password = '9uPZV)U;z_)+';
         $this->userName = 'CvoProject';
         $this->hostName = 'trouw.benoot-cupers.com:3306';
-
+        $this->connectionString = "mysql:host=$this->hostName;dbname=$this->databaseName";
     }
 }
 

@@ -20,17 +20,11 @@
         protected $userName;
         protected $hostName;
         protected $password;
-        protected $connectionString;
 
 	    public function getDatabaseName()
 	    {
 		    return $this->databaseName;
 	    }
-
-        public function getConnectionString()
-        {
-            return $this->connectionString;
-        }
 
         public function getUserName()
         {
@@ -98,11 +92,11 @@
                 try
                 {
 
-                     $this->connectionString =
+                     $connectionString =
                         "mysql:host={$this->hostName};dbname={$this->databaseName}";
                     // je moet aangeven dat de PDO klasse in de root namespace
                     // gezocht moet worden in niet in MyBib\Dal
-                    $this->pdo = new \PDO($this->connectionString, $this->userName, $this->password);
+                    $this->pdo = new \PDO($connectionString, $this->userName, $this->password);
                     $text = $this->log->connectionOpened($this->hostName, $this->databaseName);
                     $this->log->setText($text);
  			        $this->log->setErrorCodeDriver('DAL Connection');

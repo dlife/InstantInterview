@@ -313,3 +313,15 @@ BEGIN
     WHERE `VraagFunctie`.`FunctieId` = pFuncId;
   END //
 DELIMITER ;
+
+/*Alle vragen selecteren */
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS QuestionsSelectAll;
+DELIMITER //
+CREATE PROCEDURE `QuestionsSelectAll`
+  (
+  )
+  BEGIN
+    SELECT * FROM `Vraag`;
+  END //
+DELIMITER ;
