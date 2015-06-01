@@ -22,7 +22,7 @@ class Controller
     protected $jobTitles = array();
     protected $jobTitlesQuestions = array();
     protected $questionsMarked = array();
-    protected $competencesNotNeeded = array();
+    protected $competencesToShow = array();
 
 
     public function getQuestions()
@@ -53,9 +53,9 @@ class Controller
         return $this->questionsMarked;
     }
 
-    public function getCompetencesNotNeeded()
+    public function getCompetencesToShow()
     {
-        return $this->competencesNotNeeded;
+        return $this->competencesToShow;
     }
 
     public function LoadTestData()
@@ -115,37 +115,25 @@ class Controller
     }
 
 
-    public function FillCompetencesNotNeeded()
+    public function FillCompetencesToShow()
     {
         // makes an array $this->competencesNotNeeded using $this->questions and $this->questionsMarked 
         // that will be used to hide competences that don't have any marked questions
 
-        $this->competencesNotNeeded = Array();
-
-        foreach ($this->competences as $comp) {
-            $this->competencesNotNeeded[$comp->getId()] = $comp->getId();
-        } // this is a distinct array already!!
-
+        $this->competencesToShow = Array();
 
         foreach ($this->questionsMarked as $questionId) {
             $question = $this->SelectQuestionById($questionId);
             if (isset ($question)) {
-                if (array_key_exists($question->getCompetenceId(), $this->competencesNotNeeded)) {
-                    unset($this->competencesNotNeeded[$question->getCompetenceId()]);
+                if (!array_key_exists($question->getCompetenceId(), $this->competencesToShow)) {
+                    $this->competencesToShow[$question->getCompetenceId()] = $question->getCompetenceId();
                 }
             }
         }
-
-        /* for testing the results
-        echo '<pre>';
-        var_dump($this->competencesNotNeeded);
-        echo '</pre>';
-         */
     }
 
     public function LoadQuestions()
     {
-        /*
         // change this to a stored procedure that fetches ALL Competences
         $context = new \DAL\InterviewContext();
         $return = $context->SelectAllQuestions();
@@ -154,8 +142,6 @@ class Controller
             array_push($result, new \Models\Question($value['Id'], $value['Vraag'], $value['CompetentieId']));
         }
         $this->questions = $result; // voorlopig bijhouden in controller
-
-        */
     }
 
     public function LoadCompetences()
@@ -182,7 +168,6 @@ class Controller
     public function LoadDataByFunction($functionId)
     {
         // calling stored procedures
-
         // - loading ALL questions in $this->questions
         $this->LoadQuestions();
         // - loading ALL competences in $this->competences
@@ -190,7 +175,7 @@ class Controller
         // - loading all the questions that are tied to a function in $this->questionsMarked
         $this->LoadQuestionsToMark($functionId);
         // then make an array $this->competencesNotNeeded using $this->questions and $this->questionsMarked that will be used to hide competences
-        $this->FillCompetencesNotNeeded();
+        $this->FillCompetencesToShow();
     }
 
 

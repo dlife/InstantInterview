@@ -7,19 +7,18 @@
  */
 include "../../vendor/autoload.php";
 $controller = new \Controller\Controller();
-$jobTitles = $controller->getJobTitles();
+$controller->LoadDataByFunction(2);
 
 ?>
-    <html>
-    <head>
-        <title>ControllerTest</title>
-    </head>
+<html>
+<head>
+    <title>ControllerTest</title>
+</head>
 <body>
+<pre>
 <?php
-foreach ($jobTitles as $obj){
+    var_dump($controller);
 ?>
-
-    <p>ID = <?php echo $obj->getId();?> Name = <?php echo $obj->getName();?></p>
-<?php } ?>
+    </pre>
 </body>
-    </html>
+</html>

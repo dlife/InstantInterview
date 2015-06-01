@@ -25,7 +25,7 @@ if (isset($q)) {
         <?php foreach ($controller->getCompetences() as $competence) { // iterate through all the competences and prepare a div for questions for each competence
             $questions = $controller->SelectQuestions($competence->getId()); // make the call to the controller ?>
             <div class="panel panel-primary
-            <?php if (array_key_exists($competence->getId(), $controller->getCompetencesNotNeeded())) {
+            <?php if (!array_key_exists($competence->getId(), $controller->getCompetencesToShow())) {
                 echo ' collapse';
             } ?>
             " id="questionssection<?php echo $competence->getId() ?>">
@@ -61,6 +61,10 @@ if (isset($q)) {
         <?php } ?>
     </div>
 </div>
+
+<pre>
+    <?php var_dump($controller->getQuestionsMarked()) ?>
+</pre>
 
 <!--
 $().button('toggle')

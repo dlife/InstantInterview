@@ -18,7 +18,7 @@ include('../vendor/autoload.php');
 
 
 $controller = new Controller\Controller();
-$controller->LoadTestData();
+//$controller->LoadTestData();
 
 
 
