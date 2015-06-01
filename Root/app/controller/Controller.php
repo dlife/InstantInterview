@@ -42,7 +42,7 @@ class Controller
         $return = $context->SelectAllFunctions();
         $result = array();
         foreach ($return as $value) {
-            array_push($result, new \Models\JobTitle($value['Id'], $value['Naam']));
+            array_push($result, new \Models\JobTitle(intval($value['Id']), $value['Naam']));
         }
         $this->jobTitles = $result; // voorlopig bijhouden in controller
         return $this->jobTitles;
@@ -101,7 +101,7 @@ class Controller
         $this->questionsMarked[] = 4;
     }
 
-    public function SelectQuestions($competenceId)
+    public function SelectQuestionsByCompetenceId($competenceId)
     {
         // selects all questions from 1 competence, needed for the view
         $v = Array();
@@ -112,6 +112,7 @@ class Controller
             }
         }
         return $v;
+
     }
 
 
@@ -134,6 +135,7 @@ class Controller
 
     public function LoadQuestions()
     {
+/*
         // change this to a stored procedure that fetches ALL Competences
         $context = new \DAL\InterviewContext();
         $return = $context->SelectAllQuestions();
@@ -141,18 +143,39 @@ class Controller
         foreach ($return as $value){
             array_push($result, new \Models\Question($value['Id'], $value['Vraag'], $value['CompetentieId']));
         }
-        $this->questions = $result; // voorlopig bijhouden in controller
+ $this->questions = $result; // voorlopig bijhouden in controller
+
+
+
+        $this->questions = array();
+        $context = new \DAL\InterviewContext();
+        $return = $context->SelectAllQuestions();
+        foreach ($return as $value) {
+            $this->questions[intval($value['Id'])] = new \Models\Question(intval($value['Id']), $value['Vraag'], intval($value['CompetentieId']));
+        }
+*/
+
+        $vraag1 = new \Models\Question(1, 'Vraag 1', 1);
+        $this->questions[$vraag1->getId()] = $vraag1;
+
+        $vraag2 = new \Models\Question(2, 'Vraag 2', 1);
+        $this->questions[$vraag2->getId()] = $vraag2;
+
+        $vraag3 = new \Models\Question(3, 'Vraag 3', 2);
+        $this->questions[$vraag3->getId()] = $vraag3;
+
+        $vraag4 = new \Models\Question(4, 'Vraag 4', 2);
+        $this->questions[$vraag4->getId()] = $vraag4;
     }
 
     public function LoadCompetences()
     {
         $context = new \DAL\InterviewContext();
         $return = $context->SelectAllCompetences();
-        $result = array();
+        $this->competences = array();
         foreach ($return as $value) {
-            array_push($result, new \Models\Competence($value['Id'], $value['Naam']));
+            $this->competences[intval($value['Id'])] = new \Models\Competence(intval($value['Id']), $value['Naam']);
         }
-        $this->competences = $result;
     }
 
     public function LoadQuestionsToMark($functionId)
@@ -161,7 +184,7 @@ class Controller
         $context = new \DAL\InterviewContext();
         $return = $context->SelectQuestionIdsFromFunction($functionId);
         foreach ($return as $value) {
-            array_push($this->questionsMarked, $value['Id']);
+            $this->questionsMarked[intval($value['Id'])] = intval($value['Id']);
         }
     }
 

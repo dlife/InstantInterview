@@ -8,7 +8,7 @@
 include('../../vendor/autoload.php');
 
 $controller = new Controller\Controller();
-$controller->LoadTestData();
+//$controller->LoadTestData();
 
 parse_str($_SERVER['QUERY_STRING']); // parses the query string and makes vars with the key => $q is created
 if (isset($q)) {
@@ -23,7 +23,7 @@ if (isset($q)) {
 <div class="col-xs-12" id="questions">
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
         <?php foreach ($controller->getCompetences() as $competence) { // iterate through all the competences and prepare a div for questions for each competence
-            $questions = $controller->SelectQuestions($competence->getId()); // make the call to the controller ?>
+            $questions = $controller->SelectQuestionsByCompetenceId($competence->getId()); // make the call to the controller ?>
             <div class="panel panel-primary
             <?php if (!array_key_exists($competence->getId(), $controller->getCompetencesToShow())) {
                 echo ' collapse';
@@ -63,7 +63,7 @@ if (isset($q)) {
 </div>
 
 <pre>
-    <?php var_dump($controller->getQuestionsMarked()) ?>
+    <?php var_dump($controller); ?>
 </pre>
 
 <!--

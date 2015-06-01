@@ -6,21 +6,10 @@
  * Time: 21:04
  */
 
-
-
-// then creates divs for questions based on competences that will async fill with questions using a different php page with querystring
-
-// fetch with jquery when document.ready()
-// use $('[id^="content_"]').hide();
 include('../vendor/autoload.php');
-
-//include('../app/controller/Controller.php');
-
 
 $controller = new Controller\Controller();
 //$controller->LoadTestData();
-
-
 
 ?>
 
