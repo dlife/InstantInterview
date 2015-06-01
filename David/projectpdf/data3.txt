@@ -1,0 +1,13 @@
+NV Zeepfabriek
+Zeepstraat 73
+1050 Brussel
+BTW 123.456.789
+IBAN BE12 3456 7890 1234
+BIC GEBABEBB
+Van Dingenen
+Borstelplein 11
+1010 Brussel
+BTW 123.456.789
+FACTUUR;2012/212
+Datum;6/04/2012
+Levering;31/03/3012

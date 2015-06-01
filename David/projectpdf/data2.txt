@@ -1,0 +1,6 @@
+Basisbedrag;;106,00
+Handelskorting;;5,3
+Subtotaal;;100,70
+Vervoerskosten;;5,85
+Maatstaf van Heffing;;106,55
+BTW 21%;;22.3755
