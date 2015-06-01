@@ -213,5 +213,35 @@ class InterviewContext
 
 //        echo http_build_query($data) . "\n";
     }
+
+    public function SelectAllQuestions()
+    {
+        $log = new Helpers\LogApp('en_US');
+        $connection = new Provider($log);
+        $connection->open();
+        $pdo = new \PDO($connection->getConnectionString(), $connection->getUserName(), $connection->getPassword());
+        $preparedStatement = $pdo->prepare("call QuestionsSelectAll();");
+        $result = $preparedStatement->execute();
+        $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
+        $connection->close();
+        return $data;
+
+//        echo http_build_query($data) . "\n";
+    }
+
+    public function SelectQuestionIdsFromFunction($fId)
+    {
+        $log = new Helpers\LogApp('en_US');
+        $connection = new Provider($log);
+        $connection->open();
+        $pdo = new \PDO($connection->getConnectionString(), $connection->getUserName(), $connection->getPassword());
+        $preparedStatement = $pdo->prepare("call SelectQuestionsIdsOnFunction(:pId);");
+        $preparedStatement->bindParam(':pId',$fId,\PDO::PARAM_INT);
+        $result = $preparedStatement->execute();
+        $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
+        $connection->close();
+        return $data;
+//        echo http_build_query($data) . "<Br>";
+    }
 }
 ?>

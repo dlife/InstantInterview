@@ -23,7 +23,7 @@
                 }
 
                 // actually call to the data
-                xmlhttp.open("GET","getdata.php?q="+str,true);
+                xmlhttp.open("GET","getdata.php",true);
                 xmlhttp.send();
             }
         }
