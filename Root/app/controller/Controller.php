@@ -34,19 +34,26 @@ class Controller
     public function getCompetences()
     {
         // change this to a stored procedure that fetches ALL Competences
+        $context = new \DAL\InterviewContext();
+        $return = $context->SelectAllCompetences();
+        $result = array();
+        foreach ($return as $value){
+            array_push($result, new \Models\Competence($value['Id'], $value['Naam']));
+        }
+        $this->competences = $result; // voorlopig bijhouden in controller
         return $this->competences;
     }
 
     public function getJobTitles()
     {
-        // change this to a stored procedure that fetches ALL jobTitles
+        // change this to a stored procedure that fetches ALL jobTitles -- DONE!
         $context = new \DAL\InterviewContext();
         $return = $context->SelectAllFunctions();
         $result = array();
         foreach ($return as $value){
             array_push($result, new \Models\JobTitle($value['Id'], $value['Naam']));
         }
-        $this->jobTitles = $result; // Nogal raar, mischien de jobTitles ergens anders inladen ?
+        $this->jobTitles = $result; // voorlopig bijhouden in controller
         return $this->jobTitles;
     }
 
@@ -75,11 +82,11 @@ class Controller
         $vraag4 = new \Models\Question(4, 'Vraag 4', 2);
         $this->questions[$vraag4->getId()] = $vraag4;
 
-        $comp1 = new \Models\Competence(1, 'Competentie 1');
-        $this->competences[$comp1->getId()] = $comp1;
+        //$comp1 = new \Models\Competence(1, 'Competentie 1');
+        //$this->competences[$comp1->getId()] = $comp1;
 
-        $comp2 = new \Models\Competence(2, 'Competentie 2');
-        $this->competences[$comp2->getId()] = $comp2;
+        //$comp2 = new \Models\Competence(2, 'Competentie 2');
+        //$this->competences[$comp2->getId()] = $comp2;
 
         //$jobTitle1 = new \Models\JobTitle(1, 'Functie 1');
         //$this->jobTitles[$jobTitle1->getId()] = $jobTitle1;
