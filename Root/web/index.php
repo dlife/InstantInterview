@@ -53,40 +53,6 @@ $controller->LoadTestData();
 
     <!-- Latest compiled JavaScript -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-
-        function fetchdata(id) {
-            if (document.getElementById(id) != null) {
-                document.getElementById(id).innerHTML = "";
-            }
-            var xmlhttp;
-            if (window.XMLHttpRequest) {
-                // code for IE7+, Firefox, Chrome, Opera, Safari
-                xmlhttp = new XMLHttpRequest();
-            } else {
-                // code for IE6, IE5
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-
-            // this will be called when loaded succesfully
-            xmlhttp.onreadystatechange = function () {
-                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    document.getElementById(id).innerHTML = xmlhttp.responseText;
-                }
-            };
-            // actually make the call
-            xmlhttp.open("GET", "../app/views/fetchquestions.php?q=" + id.replace('questionssection',''), true);
-            xmlhttp.send();
-        }
-
-        /*$(document ).ready(function() {
-            // one by one load the data
-            $('[id^="questionssection"]').each(function(i, obj) {
-                fetchdata(obj.id);
-            });
-        });*/
-
-    </script>
 </head>
 <body id="scroll">
 <header class="masthead">
@@ -188,35 +154,13 @@ $controller->LoadTestData();
     </div>
     <div class="container">
             <?php require '../app/views/fetchjobtitles.php'; ?>
-            <?php /* wordt pas later opgevraagd na selecteren van een functie
-                require '../app/views/fetchcompetences.php';
-            */?>
         <div id="fetchCompetencesDiv">
             <!-- Hier komen de competencies en vragen behorende bij de functies-->
         </div>
-        <!--Button to right to submit -->
+        <!--Button to right to submit standard hidden until a function is selected -->
         <div class="pull-right">
-            <button class="btn btn-primary" id="QSubmit">Submit</button>
+            <button class="btn btn-primary hidden" id="QSubmit">Submit</button>
         </div>
-        <script type="text/javascript">
-            $('#QSubmit').click(function(){
-                var checkboxes = document.getElementsByClassName('questionsCheck');
-                var func = document.getElementById('jobTitleSelect');
-                var jobTitle = func.options[func.selectedIndex].value;
-                var ids = [];
-                for(x= 0;x < checkboxes.length; x++){
-                    if(checkboxes[x].checked ){
-                        ids.push(checkboxes[x].id);
-                    }
-                }
-                var result = jobTitle + " \n";
-                ids.forEach(function(element, index){
-                    result += element + " \n";
-                });
-
-                alert(result);
-            });
-        </script>
     </div>
 </section>
 <section>
@@ -228,6 +172,7 @@ $controller->LoadTestData();
 <!-- Local javascript -->
 <!-- Dit moet hier geplaatst worden anders werkt affix navbar niet, vanwege timing inlezen js file -->
 </body>
-<script src="js/affix.js"></script>
+<script type="text/javascript" src="js/affix.js"></script>
+<script type="text/javascript" src="js/scripts.js"></script>
 </html>
 
