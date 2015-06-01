@@ -27,11 +27,13 @@ class Controller
 
     public function getVragen()
     {
+        // change this to a stored procedure that fetches ALL Questions
         return $this->questions;
     }
 
     public function getCompetences()
     {
+        // change this to a stored procedure that fetches ALL Competences
         return $this->competences;
     }
 
@@ -116,6 +118,9 @@ class Controller
 
     public function FillCompetencesNotNeeded()
     {
+        // makes an array $this->competencesNotNeeded using $this->questions and $this->questionsMarked 
+        // that will be used to hide competences that don't have any marked questions
+        
         $this->competencesNotNeeded = Array();
 
         foreach ($this->competences as $comp) {
@@ -137,7 +142,6 @@ class Controller
         var_dump($this->competencesNotNeeded);
         echo '</pre>';
          */
-
     }
 
     public function LoadDataByFunction($functionId)
