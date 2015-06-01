@@ -1,7 +1,6 @@
 <?php
 namespace DAL;
 
-
 class InterviewContext
 {
 
@@ -183,6 +182,10 @@ class InterviewContext
         $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
         return $data;
 //        echo http_build_query($data) . "\n";
+    }
+
+    public function __construct__(){
+
     }
 }
 ?>

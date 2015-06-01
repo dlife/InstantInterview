@@ -1,5 +1,4 @@
 <?php
-namespace DAL;
 //include ('Feedback.php');
 //include('Log.php');
 //include "LogApp.php";
@@ -10,9 +9,9 @@ namespace DAL;
 
 include_once('../vendor/autoload.php');
 
-    $log = new Helpers\LogApp('en_US');
+    $log = new DAL\Helpers\LogApp('en_US');
 
-    $provider = new Provider($log);
+    $provider = new DAL\Provider($log);
     $provider->open();
     $provider->close();
 ?>
