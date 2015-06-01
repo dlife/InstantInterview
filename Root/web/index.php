@@ -148,7 +148,7 @@ $controller = new Controller\Controller();
         </div>
         <!--Button to right to submit standard hidden until a function is selected -->
         <div class="pull-right">
-            <button class="btn btn-primary hidden" id="QSubmit">Submit</button>
+            <button class="btn btn-primary hidden" id="QSubmit">Rapport</button>
         </div>
     </div>
 </section>

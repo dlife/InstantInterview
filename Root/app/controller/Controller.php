@@ -134,8 +134,7 @@ class Controller
     }
 
     public function LoadQuestions()
-    {
-/*
+    {/*
         // change this to a stored procedure that fetches ALL Competences
         $context = new \DAL\InterviewContext();
         $return = $context->SelectAllQuestions();
@@ -147,29 +146,13 @@ class Controller
 
 
 */
-        $this->questions = array();
+        //$this->questions = array(); wordt al gedaan bij uw field
         $context = new \DAL\InterviewContext();
         $return = $context->SelectAllQuestions();
         $result = array();
         foreach ($return as $value) {
             $this->questions[intval($value['Id'])] = new \Models\Question(intval($value['Id']), $value['Vraag'], intval($value['CompetentieId']));
-            //array_push($result, new \Models\Question(intval($value['Id']), $value['Vraag'], intval($value['CompetentieId'])));
         }
-        //var_dump($result);
-/*
-        $vraag1 = new \Models\Question(1, 'Vraag 1', 1);
-        $this->questions[$vraag1->getId()] = $vraag1;
-
-        $vraag2 = new \Models\Question(2, 'Vraag 2', 1);
-        $this->questions[$vraag2->getId()] = $vraag2;
-
-        $vraag3 = new \Models\Question(3, 'Vraag 3', 2);
-        $this->questions[$vraag3->getId()] = $vraag3;
-
-        $vraag4 = new \Models\Question(4, 'Vraag 4', 2);
-        $this->questions[$vraag4->getId()] = $vraag4;
-*/
-        //var_dump($this->questions);
     }
 
     public function LoadCompetences()
