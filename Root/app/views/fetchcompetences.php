@@ -57,20 +57,10 @@ if (isset($q)) {
                     }
                     ?>
                 </div>
-
-                <script>
-                    $(".collapse").collapse();
-                </script>
             </div>
         <?php } ?>
     </div>
 </div>
-
-<script type="text/javascript">
-    function handleCompetenceClick(id) {
-        $("#questionssection" + id).toggle();
-    }
-</script>
 
 <!--
 $().button('toggle')

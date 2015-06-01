@@ -298,3 +298,18 @@ CREATE PROCEDURE `SelectQuestionsFunctionCompetencesOnFunction`
     ORDER BY FuncNaam AND CompNaam;
   END //
 DELIMITER ;
+
+/*VRAGEN + ID obv id*/
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS SelectQuestionsIdsOnFunction;
+DELIMITER //
+CREATE DEFINER=`CvoProject`@`%` PROCEDURE `SelectQuestionsIdsOnFunction`(
+    IN pFuncId INT
+  )
+BEGIN
+    SELECT v.Id FROM `VraagFunctie`
+      INNER JOIN Vraag as v ON VraagId = v.Id
+      INNER JOIN Functie as f ON FunctieId = f.Id
+    WHERE `VraagFunctie`.`FunctieId` = pFuncId;
+  END //
+DELIMITER ;
