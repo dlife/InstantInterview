@@ -9,7 +9,7 @@
 namespace Models;
 
 
-class JobTitle {
+class JobFunction {
     private $id;
 
     public function setId($id) {

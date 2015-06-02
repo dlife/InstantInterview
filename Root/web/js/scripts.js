@@ -41,7 +41,7 @@ function fetchdata(id) {
 /*
 * Used by fetchjobtitles.php
 **/
-function jobTitlesSelectChanged() {
+function jobFunctionSelectChanged() {
     // this funtion will be called whenever the user selects a function from the dropdown
     // fetchcompetences wordt gebruikt om in de div fetchCompetencesDiv te steken
     // nadat de php pagina is ingeladen wordt op elek questionssection class div fetchdata toegepast die data uit de controller haalt.

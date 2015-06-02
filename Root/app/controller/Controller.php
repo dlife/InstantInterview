@@ -12,7 +12,7 @@ class Controller
 {
     protected $questions = array();
     protected $competences = array();
-    protected $jobTitles = array();
+    protected $jobFunctions = array();
     protected $questionsMarked = array();
     protected $competencesToShow = array();
 
@@ -36,17 +36,17 @@ class Controller
         return $this->competencesToShow;
     }
     
-    public function getJobTitles()
+    public function getJobFunctions()
     {
         // uses a stored procedure that gets all job functions
         $context = new \DAL\InterviewContext();
         $return = $context->SelectAllFunctions();
         $result = array();
         foreach ($return as $value) {
-            array_push($result, new \Models\JobTitle(intval($value['Id']), $value['Naam']));
+            array_push($result, new \Models\JobFunction(intval($value['Id']), $value['Naam']));
         }
-        $this->jobTitles = $result; // voorlopig bijhouden in controller
-        return $this->jobTitles;
+        $this->jobFunctions = $result; // voorlopig bijhouden in controller
+        return $this->jobFunctions;
     }
     
     public function LoadDataByFunction($functionId)
