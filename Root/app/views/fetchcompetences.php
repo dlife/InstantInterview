@@ -8,27 +8,26 @@
 include('../../vendor/autoload.php');
 
 $controller = new Controller\Controller();
-//$controller->LoadTestData();
 
 parse_str($_SERVER['QUERY_STRING']); // parses the query string and makes vars with the key => $q is created
 if (isset($q)) {
-    $controller->LoadDataByFunction($q);
+    $controller->LoadDataByFunction($q); // loads all data needed to construct the view
 }
 
-// after this $controller->getCompetencesNotNeeded() will contain the competences that need to be hidden
+// after this $controller->getCompetencesToShow() will contain the competences that need to be shown
 // and $controller->getQuestionsMarked() will contain the questions that have to be marked
-// this is used to generate the controls
+// this is used when generating the controls
 
 ?>
 <div class="col-xs-12" id="questions">
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
         <?php foreach ($controller->getCompetences() as $competence) { // iterate through all the competences and prepare a div for questions for each competence
-            $questions = $controller->SelectQuestionsByCompetenceId($competence->getId()); // make the call to the controller ?>
+            $questions = $controller->SelectQuestionsByCompetenceId($competence->getId()); // gets all questions for this competence ?>
             <div class="panel panel-primary
             <?php if (!array_key_exists($competence->getId(), $controller->getCompetencesToShow())) {
-                echo ' collapse';
+                echo ' collapse'; // hide the compence if its id can't be found in getCompetencesToShow
             } ?>
-            " id="questionssection<?php echo $competence->getId() ?>">
+            " id="questionssection<?php echo $competence->getId() // name the div questionssection + competence Id ?>">
                 <div class="panel-heading" role="tab" id="heading-<?php echo $q; ?>">
                     <h4 class="panel-title">
                         <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
@@ -39,23 +38,20 @@ if (isset($q)) {
                     </h4>
                 </div>
                 <div id="<?php echo 'competence-id-' . $competence->getId(); ?>" class="panel-collapse collapse" role="tabpanel">
-                    <?php
-                    foreach ($questions as $question) { // iterate through questions array and echo each full question ?>
+                    <?php foreach ($questions as $question) { // iterate through the questions array and echo each full question ?>
                         <div class="input-group">
-                    <span class="input-group-addon">
-                        <input type="checkbox" class="questionsCheck" id="question-<?php echo $question->getId(); ?>"
-                            <?php if (array_key_exists($question->getId(), $controller->getQuestionsMarked())) { echo ' checked'; } ?>>
-                        </span>
-
+                            <span class="input-group-addon">
+                                <input type="checkbox" class="questionsCheck" id="question-<?php echo $question->getId(); // name the checkbox ?>"
+                                    <?php if (array_key_exists($question->getId(), $controller->getQuestionsMarked())) 
+                                        { echo ' checked'; } // check the checkbox if the question Id is in getQuestionsMarked ?>>
+                            </span>
                             <div class="list-group-item">
                                 <label for="question-<?php echo $question->getId(); ?>">
                                     <?php echo $question->getFullQuestion(); ?>
                                 </label>
                             </div>
                         </div>
-                    <?php
-                    }
-                    ?>
+                    <?php } ?>
                 </div>
             </div>
         <?php } ?>
