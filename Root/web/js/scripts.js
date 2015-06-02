@@ -146,9 +146,9 @@ function getReport(jsonObj){
     function displayArray(arr){
         var out = "";
         var i;
-        out += "FunctionID = " + arr['functionId'] + '</br>';
+        out += "functionId = " + arr['functionId'] + '</br>';
         for (i = 1; i<arr['questionId'].length;i++){
-            out += "QuestionID = " + arr['questionId'][i] + '</br>';
+            out += "questionId = " + arr['questionId'][i] + '</br>';
         }
         document.getElementById('reportBody').innerHTML = out;
     }
