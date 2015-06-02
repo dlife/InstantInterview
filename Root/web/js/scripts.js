@@ -115,8 +115,11 @@ $(document).ready(function(){
 * */
 function getReport(jsonObj){
     var div = document.getElementById("reportBody");
-    var xmlhttp;
+    if (div != null){
+        div.innerHTML = "Loading...";
+    }
 
+    var xmlhttp;
     if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp = new XMLHttpRequest();
@@ -128,18 +131,27 @@ function getReport(jsonObj){
     // this will be called when loaded succesfully
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            div.innerHTML = xmlhttp.responseText;
-            /*
-             $('[id^="questionssection"]').each(function (i, obj) {
-             fetchdata(obj.id);
-             });
-             // fetchquestions is now obsolete
-             */
+
+            var reportArray = JSON.parse(xmlhttp.responseText);
+            displayArray(reportArray);
         }
     }
-    // actually make the call
-    xmlhttp.open("GET", "../app/views/fetchReport.php?q=" + jsonObj , true); // substring to cut function- off
-    xmlhttp.send();
+
+    // posting the JSON data object
+    xmlhttp.open("POST", "../app/views/fetchReport.php");
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xmlhttp.send(jsonObj);
+
+    // Display the array in the div with JQuery
+    function displayArray(arr){
+        var out = "";
+        var i;
+        out += "FunctionID = " + arr['functionId'] + '</br>';
+        for (i = 1; i<arr['questionId'].length;i++){
+            out += "QuestionID = " + arr['questionId'][i] + '</br>';
+        }
+        document.getElementById('reportBody').innerHTML = out;
+    }
 
 }
 
