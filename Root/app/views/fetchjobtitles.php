@@ -15,7 +15,7 @@
     <select  class="form-control" id="jobTitleSelect" onchange="jobTitlesSelectChanged()">
         <option selected disabled hidden value=''></option>
 
-<?php foreach ($controller->getJobTitles() as $jobTitle) { // iterate through all the jobtitles and make an option in the listbox for each jobtitles ?>
+<?php foreach ($controller->getJobTitles() as $jobTitle) { // iterate through all the jobfunctions and make an option in the listbox for each fucntion ?>
     <option
          value="<?php echo $jobTitle->getId()?>" ><?php echo $jobTitle->getName() ?>
     </option>
