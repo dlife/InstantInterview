@@ -14,12 +14,11 @@ if (isset($q)) {
     //$controller->SelectFunctionById($q);
     var_dump(json_decode($q));
 }
-?>
+
+// check David/JSONTesting/index3.php en David/JSONTesting/postfetchdata.php
 
 
-
-
-<?php /*<div class="col-xs-12" id="questions">
+/*<div class="col-xs-12" id="questions">
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
         <?php foreach ($controller->getCompetences() as $competence) { // iterate through all the competences and prepare a div for questions for each competence
             $questions = $controller->SelectQuestionsByCompetenceId($competence->getId()); // make the call to the controller ?>
