@@ -31,6 +31,8 @@ $controller = new Controller\Controller();
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">-->
     <link rel="stylesheet" href="css/lavish-bootstrap.css"><!--Bootstrap color theme-->
     <link rel="stylesheet" href="css/style.css">
 
@@ -146,9 +148,30 @@ $controller = new Controller\Controller();
         <div id="fetchCompetencesDiv">
             <!-- Hier komen de competencies en vragen behorende bij de functies-->
         </div>
+    </div>
         <!--Button to right to submit standard hidden until a function is selected -->
-        <div class="pull-right">
+    <div class="container">
+        <div class="row">
             <button class="btn btn-primary hidden" id="QSubmit">Rapport</button>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="report" role="dialog" aria-labelledby="reportLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="reportLabel">Rapport</h4>
+                    </div>
+                    <div class="modal-body" id="reportBody">
+                        <!-- Fetch questions for report-->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>

@@ -82,24 +82,34 @@ function jobTitlesSelectChanged() {
 /*
 * Button functionality used in index.php
  */
-$('#QSubmit').click(function(){
-    var checkboxes = document.getElementsByClassName('questionsCheck');
-    var func = document.getElementById('jobTitleSelect');
-    var jobTitle = func.options[func.selectedIndex].value;
-    var ids = [];
-    for(x= 0;x < checkboxes.length; x++){
-        if(checkboxes[x].checked ){
-            ids.push(checkboxes[x].id);
+$(document).ready(function(){
+    $('#QSubmit').click(function(){
+        $('#report').modal();
+        var checkboxes = document.getElementsByClassName('questionsCheck');
+        var func = document.getElementById('jobTitleSelect');
+        var jobTitle = func.options[func.selectedIndex].value;
+        var ids = [];
+        for(x= 0;x < checkboxes.length; x++){
+            if(checkboxes[x].checked ){
+                ids.push(checkboxes[x].id);
+            }
         }
-    }
-    var result = jobTitle + " \n";
-    ids.forEach(function(element, index){
-        result += element + " \n";
+        /*var result = jobTitle + " \n";
+        ids.forEach(function(element, index){
+            result += element + " \n";
+        });*/
+
+        var result = {"functionId": jobTitle};
+        var arr = [];
+        ids.forEach(function(element, index){
+            arr.push(element);
+        });
+        result.questionId = arr;
+        var jsonObj = JSON.stringify(result);
+        document.getElementById('reportBody').innerHTML = jsonObj;
     });
 
-    alert(result);
 });
-
 /*
 * Collapse for collapsing the questions in the fetchCompetences.php
 * */
