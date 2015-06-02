@@ -102,15 +102,48 @@ $(document).ready(function(){
         var result = {"functionId": jobTitle};
         var arr = [];
         ids.forEach(function(element, index){
-            arr.push(element);
+            arr.push(element.substring(9));
         });
         result.questionId = arr;
         var jsonObj = JSON.stringify(result);
-        document.getElementById('reportBody').innerHTML = jsonObj;
+        getReport(jsonObj);
     });
-
 });
+
 /*
+* Function to request data for report
+* */
+function getReport(jsonObj){
+    var div = document.getElementById("reportBody");
+    var xmlhttp;
+
+    if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    // this will be called when loaded succesfully
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            div.innerHTML = xmlhttp.responseText;
+            /*
+             $('[id^="questionssection"]').each(function (i, obj) {
+             fetchdata(obj.id);
+             });
+             // fetchquestions is now obsolete
+             */
+        }
+    }
+    // actually make the call
+    xmlhttp.open("GET", "../app/views/fetchReport.php?q=" + jsonObj , true); // substring to cut function- off
+    xmlhttp.send();
+
+}
+
+ /*
 * Collapse for collapsing the questions in the fetchCompetences.php
 * */
 $(".collapse").collapse();

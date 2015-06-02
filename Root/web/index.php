@@ -9,8 +9,6 @@
 include('../vendor/autoload.php');
 
 $controller = new Controller\Controller();
-//$controller->LoadTestData();
-
 ?>
 
 <!DOCTYPE html>
@@ -109,28 +107,9 @@ $controller = new Controller\Controller();
                 <li class="scrollAnimate"><a href="#interview">Interview</a></li>
                 <li class="scrollAnimate"><a href="#contact">Contact</a></li>
             </ul>
-            <!--<ul class="nav navbar-nav navbar-right">
-                <li class="scrollAnimate"><a href="#login">Login</a></li>
-                <li class="scrollAnimate"><a href="#register">Register</a></li>
-            </ul> Is dit nog nodig ? -->
         </div>
     </div>
 </nav>
-<!--Bottom navigation bar-->
-<!--Is dit nog nodig ?
-<nav class="navbar navbar-inverse navbar-fixed-bottom">
-    <div class="container">
-        <div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Page 1</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>-->
-<!-- Content -->
 <section>
     <div class="container">
         <div class="page-header"  id="info">
