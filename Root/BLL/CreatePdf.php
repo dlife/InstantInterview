@@ -50,7 +50,7 @@ class createPdf
         $context = new DAL\InterviewContext();
         $idList = preg_replace("/[^0-9,]/", "", $this->questionString);
         $this->PdfData = $context->SelectReportData($idList);
-    //    print_r($this->PdfData);
+        print_r($this->PdfData);
       //  echo '<Br><Br>';
     }
 
@@ -60,10 +60,11 @@ class createPdf
         $pdf->AddPage();
         $pdf->SetFont("Arial", "", 15);
 // breedte, hoogte, tekst, rand, ln, align, fill, link
-//        echo 'testbuild<Br><Br>';
-//        print_r($this->PdfData);
-//        echo '<Br><Br>';
 
+        for ($i=0; $i <=count($this->PdfData);$i++)
+        {
+            print_r( $this->PdfData['CompNaam'][$i]);
+        }
         foreach ($this->PdfData as $comp) {
             foreach ($this->PdfData as $vraag) {
 //                echo $vraag['Vraag'] . '<Br>';
@@ -75,27 +76,8 @@ class createPdf
         $pdf->Ln(50);
         $pdf->Cell(0, 10, 'Lijn3', 1, 1);
         $this->name = 'example2.pdf';
-        $pdf->Output($this->name,'D');
+//        $pdf->Output($this->name,'D');
     }
 
-    public function ExportPDF()
-    {
-        $file = $this->name;
 
-        if (file_exists($file)) {
-            header('Content-Description: File Transfer');
-            header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename=' . basename($file));
-            header('Content-Transfer-Encoding: binary');
-            header('Expires: 0');
-            header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-            header('Pragma: public');
-            header('Content-Length: ' . filesize($file));
-            ob_clean();
-            flush();
-            readfile($file);
-            exit;
-        }
-
-    }
 }
