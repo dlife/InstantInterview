@@ -94,20 +94,27 @@ function FillModelWithQuestions(){
     document.getElementById('reportBody').innerHTML = out;
 }
 
-function Test(){
-    var out = "";
+function FillModalSelect(){
 
-    var competenceElements = $("div[id^='questionssection']").each(function() {
-        $(this).find(".panel-title").firstElementChild.href + '</br>'; // innerText = option text
-    });
-    alert (competenceElements.length);
+    var select = $('#competenceSelect');
+    var competenceElements = $("div[id^='questionssection']").find(".panel-title");
+    var competenceIDs = $("div[id^='questionssection']");
 
-    document.getElementById('reportBody').innerHTML = out;
+    for (var i=0;i<competenceElements.length;i++) {
+        select.append(
+            $('<option></option>').val(competenceIDs[i].id.substring(16)).html(competenceElements[i].innerText)
+        );
+        //out += competenceIDs[i].id + ' : ' + competenceElements[i].innerText + '<br/>';
+    }
 }
 
 function showAll() {
     $("div[id^='questionssection']").collapse('show');
     document.getElementById('ShowAll').classList.add('hidden');
+}
+
+function sendQuestion() {
+    // do stuff
 }
 
 
@@ -178,7 +185,7 @@ function handleCompetenceClick(id) {
 $(document).ready(function(){
     $('#QSubmit').click(function(){
         $('#report').modal();
-        Test();
+        FillModelWithQuestions();
     });
 
     $('#GetPdf').click(function(){
@@ -201,14 +208,14 @@ $(document).ready(function(){
         var jsonObj = JSON.stringify(result);
         getReport(jsonObj);
     });
+
+    $('#AddQuestionButton').click(function(){
+        $('#AddQuestionModal').modal();
+        FillModalSelect();
+    });
 });
 
 /*
  * Add question button
  * */
 
-$(document).ready(function(){
-    $('#AddQuestionButton').click(function(){
-        $('#AddQuestionModal').modal();
-    });
-});
