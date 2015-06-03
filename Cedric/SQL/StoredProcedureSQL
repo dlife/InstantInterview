@@ -132,7 +132,7 @@ DELIMITER //
 CREATE PROCEDURE `VraagUpdate`
   (
     pId INT ,
-  pName NVARCHAR (200)
+  pName VARCHAR (200)
 )
 BEGIN
 UPDATE `Vraag`
@@ -246,7 +246,7 @@ DELIMITER ;
 
 /*Update van specifieke vraag*/
 USE InterviewDB;
-DROP PROCEDURE IF EXISTS VraagFunctieUpdate();
+DROP PROCEDURE IF EXISTS VraagFunctieUpdate;
 DELIMITER //
 CREATE PROCEDURE `VraagFunctieUpdate`
   (
@@ -324,4 +324,18 @@ CREATE PROCEDURE `QuestionsSelectAll`
   BEGIN
     SELECT * FROM `Vraag`;
   END //
+DELIMITER ;
+
+/*Selecteer vragen aan hand van aantal Ids*/
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS SelectReportData;
+DELIMITER //
+  CREATE PROCEDURE `SelectReportData`(
+    IN pListId nvarchar(255)
+  )
+BEGIN
+    SELECT Vraag
+    FROM `Vraag`
+    WHERE FIND_IN_SET(Id, pListId);
+  END//
 DELIMITER ;

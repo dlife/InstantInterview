@@ -17,7 +17,7 @@ $controller->LoadDataByFunction(2);
 <body>
 <pre>
 <?php
-    var_dump($controller);
+    var_dump($controller->getQuestions());
 ?>
     </pre>
 </body>

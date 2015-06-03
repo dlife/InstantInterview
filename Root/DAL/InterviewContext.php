@@ -209,6 +209,20 @@ class InterviewContext
         return $data;
 //        echo http_build_query($data) . "\n";
     }
+
+    public function SelectQuestionsOnID($Ids)
+    {
+        $log = new Helpers\LogApp('en_US');
+        $connection = new Provider($log);
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
+        $preparedStatement = $pdo->prepare("call SelectReportData(:pListId);");
+        $preparedStatement->bindParam(':pListId',$Ids,\PDO::PARAM_STR);
+        $result = $preparedStatement->execute();
+        $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+//        echo http_build_query($data) . "\n";
+    }
+
     public function SelectQuestionIdsFromFunction($fId)
     {
         $log = new Helpers\LogApp('en_US');
@@ -223,3 +237,4 @@ class InterviewContext
     }
 }
 ?>
+//Added stored procedures
