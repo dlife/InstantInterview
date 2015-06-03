@@ -150,11 +150,8 @@ function getReport(jsonObj){
         for (i = 0; i<checkedboxes.length;i++){
             out += checkedboxes[i].innerText + '</br>';
         }
-
-
         document.getElementById('reportBody').innerHTML = out;
     }
-
 }
 
  /*
@@ -169,3 +166,41 @@ $(".collapse").collapse();
 function handleCompetenceClick(id) {
     $("#questionssection" + id).toggle();
 }
+
+/*
+* Button to get and download the report
+* */
+
+
+$(document).ready(function(){
+    $('#GetPdf').click(function(){
+        var checkboxes = document.getElementsByClassName('questionsCheck');
+        var func = document.getElementById('jobTitleSelect');
+        var jobTitle = func.options[func.selectedIndex].value;
+        var ids = [];
+        for(x= 0;x < checkboxes.length; x++){
+            if(checkboxes[x].checked ){
+                ids.push(checkboxes[x].id);
+            }
+        }
+
+        var result = {"functionId": jobTitle};
+        var arr = [];
+        ids.forEach(function(element, index){
+            arr.push(element.substring(9));
+        });
+        result.questionId = arr;
+        var jsonObj = JSON.stringify(result);
+        getReport(jsonObj);
+    });
+});
+
+/*
+* Add question button
+* */
+
+$(document).ready(function(){
+    $('#AddQuestionButton').click(function(){
+        $('#AddQuestionModal').modal();
+    });
+});

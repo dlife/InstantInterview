@@ -150,11 +150,7 @@ class Controller
         // save each object at index object Id => makes it easier to search by id
         $context = new \DAL\InterviewContext();
         $return = $context->SelectQuestionsOnID($ids);
-        $result = array();
-        foreach ($return as $value) {
-            array_push($result, $value);
-        }
-        return $result;
+        return $return;
     }
     
     /*

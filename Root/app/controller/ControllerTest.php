@@ -17,7 +17,7 @@ $controller->LoadDataByFunction(2);
 <body>
 <pre>
 <?php
-    var_dump($controller->getQuestions());
+    var_dump($controller->GetReport("1,31"));
 ?>
     </pre>
 </body>
