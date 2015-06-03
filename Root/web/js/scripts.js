@@ -98,8 +98,8 @@ function Test(){
     var out = "";
 
     var competenceElements = $("div[id^='questionssection']").each(function() {
-        this.find(".panel-title").firstElementChild.href + '</br>'; // innerText = option text
-    }
+        $(this).find(".panel-title").firstElementChild.href + '</br>'; // innerText = option text
+    });
     alert (competenceElements.length);
 
     document.getElementById('reportBody').innerHTML = out;
