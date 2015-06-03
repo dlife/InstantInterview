@@ -61,12 +61,10 @@ function jobFunctionSelectChanged() {
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             div.innerHTML = xmlhttp.responseText;
-            /*
-             $('[id^="questionssection"]').each(function (i, obj) {
-             fetchdata(obj.id);
-             });
-             // fetchquestions is now obsolete
-             */
+
+            // Unhide buttons
+            document.getElementById('QSubmit').classList.remove('hidden');
+            document.getElementById('ShowAll').classList.remove('hidden');
         }
     }
     // actually make the call
@@ -75,9 +73,9 @@ function jobFunctionSelectChanged() {
     xmlhttp.open("GET", "../app/views/fetchcompetences.php?q=" + id , true); // substring to cut function- off
     xmlhttp.send();
 
-    // Unhide button
-    document.getElementById('QSubmit').classList.remove('hidden');
-
+    // Hide buttons
+    document.getElementById('QSubmit').classList.add('hidden');
+    document.getElementById('ShowAll').classList.add('hidden');
 }
 
 /*
@@ -86,30 +84,35 @@ function jobFunctionSelectChanged() {
 $(document).ready(function(){
     $('#QSubmit').click(function(){
         $('#report').modal();
-        var checkboxes = document.getElementsByClassName('questionsCheck');
-        var func = document.getElementById('jobTitleSelect');
-        var jobTitle = func.options[func.selectedIndex].value;
-        var ids = [];
-        for(x= 0;x < checkboxes.length; x++){
-            if(checkboxes[x].checked ){
-                ids.push(checkboxes[x].id);
-            }
-        }
-        /*var result = jobTitle + " \n";
-        ids.forEach(function(element, index){
-            result += element + " \n";
-        });*/
-
-        var result = {"functionId": jobTitle};
-        var arr = [];
-        ids.forEach(function(element, index){
-            arr.push(element.substring(9));
-        });
-        result.questionId = arr;
-        var jsonObj = JSON.stringify(result);
-        getReport(jsonObj);
+        Test();
     });
 });
+
+function FillModelWithQuestions(){
+    var out = "";
+    var checkedboxes = $("input:checked").parent().next('div').find('label');
+    for (var i = 0; i<checkedboxes.length;i++){
+        out += checkedboxes[i].innerText + '</br>';
+    }
+
+    document.getElementById('reportBody').innerHTML = out;
+}
+
+function Test(){
+    var out = "";
+    var competences = $("input:checked").parent().next('div').find('label');
+    for (var i = 0; i<competences.length;i++){
+        out += competences[i].innerText + '</br>';
+    }
+
+    document.getElementById('reportBody').innerHTML = out;
+}
+
+function showAll() {
+    $("div[id^='questionssection']").collapse('show');
+    document.getElementById('ShowAll').classList.add('hidden');
+}
+
 
 /*
 * Function to request data for report
