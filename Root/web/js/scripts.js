@@ -81,12 +81,6 @@ function jobFunctionSelectChanged() {
 /*
 * Button functionality used in index.php
  */
-$(document).ready(function(){
-    $('#QSubmit').click(function(){
-        $('#report').modal();
-        Test();
-    });
-});
 
 function FillModelWithQuestions(){
     var out = "";
@@ -100,10 +94,11 @@ function FillModelWithQuestions(){
 
 function Test(){
     var out = "";
-    var competences = $("input:checked").parent().next('div').find('label');
-    for (var i = 0; i<competences.length;i++){
-        out += competences[i].innerText + '</br>';
+
+    var competenceElements = $("div[id^='questionssection']").each(function() {
+        this.find(".panel-title").firstElementChild.href + '</br>'; // innerText = option text
     }
+    alert (competenceElements.length);
 
     document.getElementById('reportBody').innerHTML = out;
 }
@@ -179,6 +174,11 @@ function handleCompetenceClick(id) {
 
 
 $(document).ready(function(){
+    $('#QSubmit').click(function(){
+        $('#report').modal();
+        Test();
+    });
+
     $('#GetPdf').click(function(){
         var checkboxes = document.getElementsByClassName('questionsCheck');
         var func = document.getElementById('jobTitleSelect');
