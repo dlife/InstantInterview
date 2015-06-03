@@ -69,8 +69,4 @@ class createPdf
         $pdf->Output('example1.pdf','D');
     }
 
-    public function ExportPdf()
-    {
-
-    }
 }
