@@ -31,12 +31,6 @@ function fetchdata(id) {
     xmlhttp.send();
 }
 
-/*$(document ).ready(function() {
- // one by one load the data
- $('[id^="questionssection"]').each(function(i, obj) {
- fetchdata(obj.id);
- });
- });*/
 
 /*
 * Used by fetchjobtitles.php
@@ -114,8 +108,6 @@ function showAll() {
 }
 
 function sendQuestion() {
-    // do stuff
-    alert('make a new question');
     var xmlhttp;
 
     if (window.XMLHttpRequest) {
@@ -129,20 +121,23 @@ function sendQuestion() {
     // this will be called when loaded succesfully
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            document.getElementById("testdiv").innerHTML = xmlhttp.responseText;
+            document.getElementById("newquestion-error").innerHTML = xmlhttp.responseText;
            // location.reload(true);
         }
     }
     // actually make the call
-    var select = $('#competenceSelect');
-    var cValue = select.options[select.selectedIndex].value;
-    var text = $('#newQuestion');
-    if (cValue != null & text.value != "") {
-        xmlhttp.open("GET", "../app/views/addquestion.php?c=" + cValue + "&q=" + text.value, true);
+    //var select = $('#competenceSelect');
+    var compId = $( "#competenceSelect option:selected" ).val(); // gets the selected option
+    var text = $.trim($('#newQuestion').val()); // gets the content of the textarea and trim it
+    if (compId != "" & text != "") { // check to see if a competence was selected and if the textarea was not empty
+        document.getElementById("newquestion-error").innerHTML = "";
+        alert("using values" + compId + " / " + text);
+        xmlhttp.open("GET", "../app/views/addquestion.php?c=" + compId + "&q=" + text, true);
         xmlhttp.send();
-    } else
-    {
-        alert ("not sent");
+
+    } else {
+        // make this error message appear
+        document.getElementById("newquestion-error").innerHTML = "U moet een competentie selecteren en een vraag invullen.";
     }
 
 }

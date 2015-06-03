@@ -180,7 +180,7 @@ $controller = new Controller\Controller();
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" id="sendQuestionButton" onclick="sendQuestion()">Voeg Toe</button>
-                        <div id="testdiv"></div>
+                        <div id="newquestion-error" style="color:red;"></div>
                     </div>
                 </div>
             </div>

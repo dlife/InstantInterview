@@ -8,10 +8,23 @@
 
 include('../../vendor/autoload.php');
 
+$compId = 0;
+parse_str($_SERVER['QUERY_STRING']); // parses the query string and makes vars with the keys
 
-parse_str($_SERVER['QUERY_STRING']); // parses the query string and makes vars with the key => $q is created
 if (isset($q)) {
-    var_dump($q); // loads all data needed to construct the view
+    var_dump($q); // question to be added
 }
-echo 'tst';
+if (isset($c)) {
+    $compId = intval($c);
+    var_dump($compId); // competence Id;
+}
 
+// to do here:
+
+if ($q != "" & $compId != 0) {
+
+// perform data verification (absolutely needed !!)
+// use the stored procedure parameters: question and competence Id
+// uncomment the location.reload in scripts.js to make the page refresh itself so the result can be seen.
+
+}
