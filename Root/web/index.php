@@ -132,6 +132,7 @@ $controller = new Controller\Controller();
     <div class="container">
         <div class="row">
             <button class="btn btn-primary hidden" id="QSubmit">Rapport</button>
+            <button class="btn btn-primary hidden" id="ShowAll" onclick="showAll()">Laat alles zien</button>
         </div>
 
         <!-- Modal -->
