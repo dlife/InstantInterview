@@ -18,4 +18,4 @@ $pdf->Cell(0,10,'Lijn2',1,1);
 $pdf->Ln(50);
 $pdf->Cell(0,10,'Lijn3',1,1);
 
-$pdf->Output('example1.pdf','I');
+$pdf->Output('example1.pdf','D');
