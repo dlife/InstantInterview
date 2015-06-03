@@ -9,7 +9,7 @@ class InterviewContext
         $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $connection->open();
-        $pdo = new \PDO($connection->getConnectionString(), $connection->getUserName(), $connection->getPassword());
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call CompetentieInsert(@pId,:name);");
         $preparedStatement->bindParam(':name', $competentie, \PDO::PARAM_STR);
         $result = $preparedStatement->execute();
@@ -21,7 +21,7 @@ class InterviewContext
         $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $connection->open();
-        $pdo = new \PDO($connection->getConnectionString(), $connection->getUserName(), $connection->getPassword());
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call VraagInsert(@pId,:vraag,:compId);");
         $preparedStatement->bindParam(':vraag', $vraag, \PDO::PARAM_STR);
         $preparedStatement->bindParam(':compId', $cId, \PDO::PARAM_INT);
@@ -34,7 +34,7 @@ class InterviewContext
         $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $connection->open();
-        $pdo = new \PDO($connection->getConnectionString(), $connection->getUserName(), $connection->getPassword());
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call FunctieInsert(@pId,:name);");
         $preparedStatement->bindParam(':name', $functie, \PDO::PARAM_STR);
         $result = $preparedStatement->execute();
@@ -57,7 +57,7 @@ class InterviewContext
         $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $connection->open();
-        $pdo = new \PDO($connection->getConnectionString(), $connection->getUserName(), $connection->getPassword());
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call CompetentiesSelectOne(:pId);");
         $preparedStatement->bindParam(':pId',$cId,\PDO::PARAM_INT);
         $result = $preparedStatement->execute();
@@ -71,7 +71,7 @@ class InterviewContext
         $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $connection->open();
-        $pdo = new \PDO($connection->getConnectionString(), $connection->getUserName(), $connection->getPassword());
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call CompetentiesSelectQuestions(:pId);");
         $preparedStatement->bindParam(':pId',$cId,\PDO::PARAM_INT);
         $result = $preparedStatement->execute();
@@ -85,7 +85,7 @@ class InterviewContext
         $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $connection->open();
-        $pdo = new \PDO($connection->getConnectionString(), $connection->getUserName(), $connection->getPassword());
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call CompetentieUpdate(:pId, :pName);");
         $competentie = 10;
         $compNaam = "UpdateTest";
@@ -100,7 +100,7 @@ class InterviewContext
         $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $connection->open();
-        $pdo = new \PDO($connection->getConnectionString(), $connection->getUserName(), $connection->getPassword());
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call VraagUpdate(:pId, :pName);");
         $preparedStatement->bindParam(':pId',$qId,\PDO::PARAM_INT);
         $preparedStatement->bindParam(':pName',$qName,\PDO::PARAM_INT);
@@ -113,7 +113,7 @@ class InterviewContext
         $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $connection->open();
-        $pdo = new \PDO($connection->getConnectionString(), $connection->getUserName(), $connection->getPassword());
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call FunctieUpdate(:pId, :pName);");
         $preparedStatement->bindParam(':pId',$fId,\PDO::PARAM_INT);
         $preparedStatement->bindParam(':pName',$fName,\PDO::PARAM_INT);
@@ -126,7 +126,7 @@ class InterviewContext
         $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $connection->open();
-        $pdo = new \PDO($connection->getConnectionString(), $connection->getUserName(), $connection->getPassword());
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call CompetentieDelete(:pId);");
         $preparedStatement->bindParam(':pId', $cId, \PDO::PARAM_INT);
         $result = $preparedStatement->execute();
@@ -138,7 +138,7 @@ class InterviewContext
         $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $connection->open();
-        $pdo = new \PDO($connection->getConnectionString(), $connection->getUserName(), $connection->getPassword());
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call VraagDelete(:pId);");
         $preparedStatement->bindParam(':pId', $qId, \PDO::PARAM_INT);
         $result = $preparedStatement->execute();
@@ -150,7 +150,7 @@ class InterviewContext
         $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $connection->open();
-        $pdo = new \PDO($connection->getConnectionString(), $connection->getUserName(), $connection->getPassword());
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call FunctieDelete(:pId);");
         $preparedStatement->bindParam(':pId', $fId, \PDO::PARAM_INT);
         $result = $preparedStatement->execute();
@@ -162,7 +162,7 @@ class InterviewContext
         $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $connection->open();
-        $pdo = new \PDO($connection->getConnectionString(), $connection->getUserName(), $connection->getPassword());
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call SelectQuestionsFunctionCompetencesOrderByCompetence(:pId);");
         $preparedStatement->bindParam(':pId',$cId,\PDO::PARAM_INT);
         $result = $preparedStatement->execute();
@@ -176,7 +176,7 @@ class InterviewContext
         $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $connection->open();
-        $pdo = new \PDO($connection->getConnectionString(), $connection->getUserName(), $connection->getPassword());
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call SelectQuestionsFunctionCompetencesOnFunction(:pId);");
         $preparedStatement->bindParam(':pId',$fId,\PDO::PARAM_INT);
         $result = $preparedStatement->execute();
@@ -234,6 +234,20 @@ class InterviewContext
         $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
         return $data;
 //        echo http_build_query($data) . "<Br>";
+    }
+
+    public function SelectReportData($qId)
+    {
+        $log = new Helpers\LogApp('en_US');
+        $connection = new Provider($log);
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
+        $preparedStatement = $pdo->prepare("call SelectReportData(:pId);");
+        $preparedStatement->bindParam(':pId',$qId,\PDO::PARAM_STR);
+        $result = $preparedStatement->execute();
+        $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
+//      echo http_build_query($data) . "<Br>";
+        return $data;
+
     }
 }
 //Added stored procedures
