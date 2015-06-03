@@ -152,6 +152,11 @@ class Controller
         $return = $context->SelectQuestionsOnID($ids);
         return $return;
     }
+
+    public function InsertNewQuestion($competenceId, $question){
+        $context = new \DAL\InterviewContext();
+        return $context->InsertQuestion($question, $competenceId);
+    }
     
     /*
     // loads test date, should no longer be needed

@@ -114,7 +114,7 @@ function showAll() {
 }
 
 function sendQuestion() {
-    // do stuff
+    /*// do stuff
     alert('make a new question');
     var xmlhttp;
 
@@ -144,6 +144,19 @@ function sendQuestion() {
     {
         alert ("not sent");
     }
+    */
+    $.ajax({
+        type: "POST",
+        url: "../app/views/addquestion.php", //process to mail
+        data: $('form#formAddQuestion').serialize(),
+        success: function(msg){
+            $("#testdiv").html(msg); //hide button and show thank you
+            $("#AddQuestionModal").modal('hide'); //hide popup
+        },
+        error: function(){
+            alert("failure");
+        }
+    });
 
 }
 

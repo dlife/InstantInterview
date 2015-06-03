@@ -124,8 +124,8 @@ $controller = new Controller\Controller();
     </div>
     <div class="container">
             <?php require '../app/views/fetchjobtitles.php'; ?>
-        <div id="fetchCompetencesDiv">
-            <!-- Hier komen de competencies en vragen behorende bij de functies-->
+        <!-- Hier komen de competencies en vragen behorende bij de functies-->
+       <div id="fetchCompetencesDiv">
         </div>
     </div>
         <!--Button to right to submit standard hidden until a function is selected -->
@@ -135,7 +135,9 @@ $controller = new Controller\Controller();
             <button class="btn btn-primary hidden" id="ShowAll" onclick="showAll()">Laat alles zien</button>
             <button class="btn btn-primary hidden" id="AddQuestionButton">Voeg vraag toe</button>
         </div>
-
+        <div class="row">
+            <div id="testdiv"></div>
+        </div>
         <!-- Modal -->
         <div class="modal fade" id="report" role="dialog" aria-labelledby="reportLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -164,23 +166,22 @@ $controller = new Controller\Controller();
                         <h4 class="modal-title" id="AddQuestionLabel">Voeg een niewe vraag toe.</h4>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form id="formAddQuestion" name="formAddQuesiton">
                             <div class="form-group">
                                         <h2>Selecteer hier een competentie.</h2>
-                                        <select  class="form-control" id="competenceSelect">
+                                        <select class="form-control" id="competenceSelect" name="selectCompetence">
                                             <option selected disabled hidden value=''></option>
                                         </select>
                             </div>
                             <div class="form-group">
                                 <label for="newQuestion" class="control-label">Niewe vraag:</label>
-                                <textarea class="form-control" id="newQuestion"></textarea>
+                                <textarea class="form-control" id="newQuestion" name="questionText"></textarea>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="sendQuestionButton" onclick="sendQuestion()">Voeg Toe</button>
-                        <div id="testdiv"></div>
+                        <button type="button" class="btn btn-primary" id="sendQuestionButton" type="submit" onclick="sendQuestion()">Voeg Toe</button>
                     </div>
                 </div>
             </div>
