@@ -169,9 +169,6 @@ $controller = new Controller\Controller();
                                         <h2>Selecteer hier een competentie.</h2>
                                         <select  class="form-control" id="competenceSelect">
                                             <option selected disabled hidden value=''></option>
-                                            <option
-                                                    value="test">Test
-                                            </option>
                                         </select>
                             </div>
                             <div class="form-group">
@@ -182,7 +179,7 @@ $controller = new Controller\Controller();
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Voeg Toe</button>
+                        <button type="button" class="btn btn-primary" id="sendQuestionButton" onclick="sendQuestion()">Voeg Toe</button>
                     </div>
                 </div>
             </div>
