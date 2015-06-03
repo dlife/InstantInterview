@@ -56,7 +56,7 @@ class createPdf
 
     public function BuildPdf()
     {
-        $pdf = new fpdf\FPDF();
+        $pdf = new FPDF();
         $pdf->AddPage();
         $pdf->SetFont("Arial", "", 15);
 // breedte, hoogte, tekst, rand, ln, align, fill, link

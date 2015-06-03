@@ -6,6 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'fpdi' => array($vendorDir . '/setasign/fpdi/src'),
-    'fpdf' => array($vendorDir . '/setasign/fpdf/src'),
+    'fpdi' => array($vendorDir . '/setasign/fpdi'),
+    'fpdf' => array($vendorDir . '/setasign/fpdf')
 );
