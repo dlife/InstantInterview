@@ -6,6 +6,12 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'FPDF' => $vendorDir . '/setasign/fpdf/fpdf.php',
+    'FPDF_TPL' => $vendorDir . '/setasign/fpdi/fpdf_tpl.php',
+    'FPDI' => $vendorDir . '/setasign/fpdi/fpdi.php',
+    'FilterASCII85' => $vendorDir . '/setasign/fpdi/filters/FilterASCII85.php',
+    'FilterASCIIHexDecode' => $vendorDir . '/setasign/fpdi/filters/FilterASCIIHexDecode.php',
+    'FilterLZW' => $vendorDir . '/setasign/fpdi/filters/FilterLZW.php',
     'Nette\\ArgumentOutOfRangeException' => $vendorDir . '/nette/utils/src/Utils/exceptions.php',
     'Nette\\Bridges\\MailDI\\MailExtension' => $vendorDir . '/nette/mail/src/Bridges/MailDI/MailExtension.php',
     'Nette\\DeprecatedException' => $vendorDir . '/nette/utils/src/Utils/exceptions.php',
@@ -52,4 +58,6 @@ return array(
     'Nette\\Utils\\Strings' => $vendorDir . '/nette/utils/src/Utils/Strings.php',
     'Nette\\Utils\\UnknownImageFileException' => $vendorDir . '/nette/utils/src/Utils/Image.php',
     'Nette\\Utils\\Validators' => $vendorDir . '/nette/utils/src/Utils/Validators.php',
+    'fpdi_pdf_parser' => $vendorDir . '/setasign/fpdi/fpdi_pdf_parser.php',
+    'pdf_context' => $vendorDir . '/setasign/fpdi/pdf_context.php',
 );
