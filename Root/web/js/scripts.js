@@ -65,6 +65,7 @@ function jobFunctionSelectChanged() {
             // Unhide buttons
             document.getElementById('QSubmit').classList.remove('hidden');
             document.getElementById('ShowAll').classList.remove('hidden');
+            document.getElementById('AddQuestionButton').classList.remove('hidden');
         }
     }
     // actually make the call
@@ -76,6 +77,7 @@ function jobFunctionSelectChanged() {
     // Hide buttons
     document.getElementById('QSubmit').classList.add('hidden');
     document.getElementById('ShowAll').classList.add('hidden');
+    document.getElementById('AddQuestionButton').classList.add('hidden');
 }
 
 /*
