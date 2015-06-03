@@ -65,6 +65,7 @@ function jobFunctionSelectChanged() {
             // Unhide buttons
             document.getElementById('QSubmit').classList.remove('hidden');
             document.getElementById('ShowAll').classList.remove('hidden');
+            document.getElementById('AddQuestionButton').classList.remove('hidden');
         }
     }
     // actually make the call
@@ -76,6 +77,7 @@ function jobFunctionSelectChanged() {
     // Hide buttons
     document.getElementById('QSubmit').classList.add('hidden');
     document.getElementById('ShowAll').classList.add('hidden');
+    document.getElementById('AddQuestionButton').classList.add('hidden');
 }
 
 /*
@@ -172,3 +174,41 @@ $(".collapse").collapse();
 function handleCompetenceClick(id) {
     $("#questionssection" + id).toggle();
 }
+
+/*
+ * Button to get and download the report
+ * */
+
+
+$(document).ready(function(){
+    $('#GetPdf').click(function(){
+        var checkboxes = document.getElementsByClassName('questionsCheck');
+        var func = document.getElementById('jobTitleSelect');
+        var jobTitle = func.options[func.selectedIndex].value;
+        var ids = [];
+        for(x= 0;x < checkboxes.length; x++){
+            if(checkboxes[x].checked ){
+                ids.push(checkboxes[x].id);
+            }
+        }
+
+        var result = {"functionId": jobTitle};
+        var arr = [];
+        ids.forEach(function(element, index){
+            arr.push(element.substring(9));
+        });
+        result.questionId = arr;
+        var jsonObj = JSON.stringify(result);
+        getReport(jsonObj);
+    });
+});
+
+/*
+ * Add question button
+ * */
+
+$(document).ready(function(){
+    $('#AddQuestionButton').click(function(){
+        $('#AddQuestionModal').modal();
+    });
+});
