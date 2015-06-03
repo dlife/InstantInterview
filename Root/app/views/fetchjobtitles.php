@@ -24,3 +24,4 @@
     </select>
     </div>
 </form>
+<div id="fetchCompetencesDiv"></div>

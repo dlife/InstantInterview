@@ -67,13 +67,17 @@ function jobFunctionSelectChanged() {
             document.getElementById('ShowAll').classList.remove('hidden');
             document.getElementById('AddQuestionButton').classList.remove('hidden');
         }
-    }
+    };
     // actually make the call
     var select = document.getElementById("jobTitleSelect");
     var id = select.options[select.selectedIndex].value;
     xmlhttp.open("GET", "../app/views/fetchcompetences.php?q=" + id , true); // substring to cut function- off
     xmlhttp.send();
 
+    HideButtons();
+}
+
+function HideButtons(){
     // Hide buttons
     document.getElementById('QSubmit').classList.add('hidden');
     document.getElementById('ShowAll').classList.add('hidden');
@@ -151,7 +155,10 @@ function sendQuestion() {
         data: $('form#formAddQuestion').serialize(),
         success: function(msg){
             $("#testdiv").html(msg); //hide button and show thank you
+            $("#interviewForm").empty();
+            HideButtons();
             $("#AddQuestionModal").modal('hide'); //hide popup
+            window.setTimeout(function(){location.reload()},3000);
         },
         error: function(){
             alert("failure");

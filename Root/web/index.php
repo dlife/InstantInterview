@@ -122,11 +122,11 @@ $controller = new Controller\Controller();
             <h1>Interview</h1>
         </div>
     </div>
-    <div class="container">
+    <div class="container" id="interviewForm">
             <?php require '../app/views/fetchjobtitles.php'; ?>
         <!-- Hier komen de competencies en vragen behorende bij de functies-->
-       <div id="fetchCompetencesDiv">
-        </div>
+        <!--<div id="fetchCompetencesDiv">
+        </div>-->
     </div>
         <!--Button to right to submit standard hidden until a function is selected -->
     <div class="container">
