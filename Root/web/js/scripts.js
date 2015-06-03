@@ -46,6 +46,7 @@ function jobFunctionSelectChanged() {
     // fetchcompetences wordt gebruikt om in de div fetchCompetencesDiv te steken
     // nadat de php pagina is ingeladen wordt op elek questionssection class div fetchdata toegepast die data uit de controller haalt.
     var div = document.getElementById("fetchCompetencesDiv");
+    div.innerHTML = "<img src='img/loading.gif' width='30'/><span>Loading...</span>";
     var xmlhttp;
 
     if (window.XMLHttpRequest) {
@@ -144,12 +145,13 @@ function getReport(jsonObj){
 
     // Display the array in the div with JQuery
     function displayArray(arr){
-        var out = "";
-        var i;
-        out += "functionId = " + arr['functionId'] + '</br>';
-        for (i = 1; i<arr['questionId'].length;i++){
-            out += "questionId = " + arr['questionId'][i] + '</br>';
+        var out = ""; var i;
+        var checkedboxes = $("input:checked").parent().next('div').find('label');
+        for (i = 0; i<checkedboxes.length;i++){
+            out += checkedboxes[i].innerText + '</br>';
         }
+
+
         document.getElementById('reportBody').innerHTML = out;
     }
 
