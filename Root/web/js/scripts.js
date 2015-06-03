@@ -115,6 +115,36 @@ function showAll() {
 
 function sendQuestion() {
     // do stuff
+    alert('make a new question');
+    var xmlhttp;
+
+    if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    // this will be called when loaded succesfully
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById("testdiv").innerHTML = xmlhttp.responseText;
+           // location.reload(true);
+        }
+    }
+    // actually make the call
+    var select = $('#competenceSelect');
+    var cValue = select.options[select.selectedIndex].value;
+    var text = $('#newQuestion');
+    if (cValue != null & text.value != "") {
+        xmlhttp.open("GET", "../app/views/addquestion.php?c=" + cValue + "&q=" + text.value, true);
+        xmlhttp.send();
+    } else
+    {
+        alert ("not sent");
+    }
+
 }
 
 
@@ -157,7 +187,6 @@ function getReport(jsonObj){
         for (i = 0; i<checkedboxes.length;i++){
             out += checkedboxes[i].innerText + '</br>';
         }
-
 
         document.getElementById('reportBody').innerHTML = out;
     }
