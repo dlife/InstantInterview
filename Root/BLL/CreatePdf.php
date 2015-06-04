@@ -51,21 +51,10 @@ class createPdf
         $this->fpdf->AliasNbPages();
         $this->fpdf->AddPage();
         $this->fpdf->SetFont("Arial", "", 12);
-// breedte, hoogte, tekst, rand, ln, align, fill, link
-
-        /*for ($i=0; $i <=count($this->PdfData);$i++)
-        {
-            print_r( $this->PdfData['CompNaam'][$i]);
-        }
-        foreach ($this->PdfData as $comp) {
-            foreach ($this->PdfData as $vraag) {
-//                echo $vraag['Vraag'] . '<Br>';
-            }
-        }*/
+        // breedte, hoogte, tekst, rand, ln, align, fill, link
         // Naam = competentie
         // // Vraag = vraag voluit
 
-        //Needs rework door value key
         if ($this->PdfData[0]['CompNaam'] == null) { // should not be empty
             return;
         }
