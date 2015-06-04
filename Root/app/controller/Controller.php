@@ -148,10 +148,11 @@ class Controller
     public function GetReport($data){
         // uses a stored procedure that gets Selected Ids
         // save each object at index object Id => makes it easier to search by id
-
+        $array = $data->{'questionId'};
+        $fId = $data->{'functionId'};
         $context = new \DAL\InterviewContext();
-        $pdf = new \BLL\createPdf(new \DAL\InterviewContext(),new \BLL\PDF(), '../web/tempData/');
-        $pdf->ParseData($data['questionId'], $data['functionId']);
+        $pdf = new \BLL\createPdf($context,new \BLL\PDF());
+        $pdf->ParseData($array, $fId);
         $pdf->GetData();
         return $pdf->BuildPdf();
     }

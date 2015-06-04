@@ -11,7 +11,7 @@ $controller = new Controller\Controller();
 
 // Send Headers
 header('Content-type: application/pdf');
-header('Content-Disposition: attachment; filename="../../web/tempData/temp1.pdf');
+header('Content-Disposition: attachment; filename="temp1.pdf');
 
 // Send Headers: Prevent Caching of File
 header('Cache-Control: private');
@@ -21,9 +21,10 @@ header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 // request the data and put it in $jsondata
 $request_body = file_get_contents('php://input');
 $jsondata = json_decode($request_body);
-
+//$return = $controller->GetReport($jsondata);
 $return = $controller->GetReport($jsondata);
-$return->Output('../../web/tempData/temp1.pdf','D');
+$return->Output('../../web/tempData/temp1.pdf','F');
+echo "web/tempData/temp1.pdf";//readfile("../../web/tempData/temp1.pdf");
 // Use controller to get the right data to return
 //$dataReturn = $controller->getReport($jsondata);
 
