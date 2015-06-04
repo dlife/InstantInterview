@@ -6,7 +6,6 @@ include_once('../vendor/autoload.php');
 
 class createPdf
 {
-
     protected $fId;
     protected $questionString;
     protected $PdfData;
@@ -49,8 +48,9 @@ class createPdf
 
     public function BuildPdf()
     {
+        $this->fpdf->AliasNbPages();
         $this->fpdf->AddPage();
-        $this->fpdf->SetFont("Arial", "", 15);
+        $this->fpdf->SetFont("Arial", "", 12);
 // breedte, hoogte, tekst, rand, ln, align, fill, link
 
         /*for ($i=0; $i <=count($this->PdfData);$i++)
@@ -82,15 +82,15 @@ class createPdf
 
             // access data:
 
-        $this->fpdf->Cell(20, 10, 'Mijn eerste pdf', 1, 1);
             foreach ($data as $key => $value) {
                 $comp = $key;
-                $this->fpdf->Cell(0, 10, $comp, 1, 1);
+                $this->fpdf->Cell(50, 10, $comp, 1, 1);
                 foreach ($value as $vraag) {
                 // gebruik
-                    $this->fpdf->Cell(0, 10, $vraag, 1, 1);
-                    $this->fpdf->Ln(50);
+                    $this->fpdf->MultiCell(0, 10, $vraag, 1, 1);
+                    //$this->fpdf->Ln(0);
                 }
+                $this->fpdf->Ln(10);
             }
         $this->name = 'example2.pdf';
         $this->fpdf->Output(/*$this->name,'D'*/);
