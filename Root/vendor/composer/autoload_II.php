@@ -10,6 +10,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 $appDir = realpath($baseDir . '/app/');
 $dalDir = realpath($baseDir . '/DAL/');
+$bllDir = realpath($baseDir . '/BLL/');
 
 
 return array(
@@ -18,4 +19,6 @@ return array(
     'Models\\' => array($appDir . '/models'),
     'Views\\' => array($appDir . '/views'),
     'DAL\\' => array($dalDir),
+    'BLL\\' => array($bllDir),
+
 );

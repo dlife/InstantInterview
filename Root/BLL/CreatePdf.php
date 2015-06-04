@@ -1,17 +1,8 @@
 <?php
 
+namespace BLL;
+
 include_once('../vendor/autoload.php');
-
-
-
-$pdf = new createPdf();
-$array = [1,2,'dummy',4];
-$fId = 2;
-
-$pdf->ParseData($array,$fId);
-$pdf->GetData();
-$pdf->BuildPdf();
-//$pdf->ExportPDF();
 
 class createPdf
 {
@@ -21,6 +12,8 @@ class createPdf
     protected $PdfData;
     protected $Pdf;
     protected $name;
+    protected $fpdf;
+    protected $context;
 
     public function ParseData($array, $funcId)
     {
@@ -47,21 +40,20 @@ class createPdf
 
     public function GetData()
     {
-        $context = new DAL\InterviewContext();
         $idList = preg_replace("/[^0-9,]/", "", $this->questionString);
-        $this->PdfData = $context->SelectReportData($idList);
-        print_r($this->PdfData);
+        $this->PdfData = $this->context->SelectReportData($idList);
+       // print_r($this->PdfData);
+
       //  echo '<Br><Br>';
     }
 
     public function BuildPdf()
     {
-        $pdf = new FPDF();
-        $pdf->AddPage();
-        $pdf->SetFont("Arial", "", 15);
+        $this->fpdf->AddPage();
+        $this->fpdf->SetFont("Arial", "", 15);
 // breedte, hoogte, tekst, rand, ln, align, fill, link
 
-        for ($i=0; $i <=count($this->PdfData);$i++)
+        /*for ($i=0; $i <=count($this->PdfData);$i++)
         {
             print_r( $this->PdfData['CompNaam'][$i]);
         }
@@ -69,15 +61,43 @@ class createPdf
             foreach ($this->PdfData as $vraag) {
 //                echo $vraag['Vraag'] . '<Br>';
             }
+        }*/
+        // Naam = competentie
+        // // Vraag = vraag voluit
+
+        //Needs rework door value key
+        if ($this->PdfData[0]['CompNaam'] == null) { // should not be empty
+            return;
         }
-        $pdf->Cell(20, 10, 'Mijn eerste pdf', 1, 1);
-        $pdf->Cell(0, 10, 'Lijn2', 1, 1);
+        $comp ="";
+        $data = array();
+        foreach ($this->PdfData as $datarow) {
+            if ($datarow['CompNaam'] != $comp) {
+                // if new competence, create a new array
+                $data = array($datarow['CompNaam'] => $datarow['Vraag']);
+                $comp = $datarow['CompNaam'];
+            }
+            array_push($data[$datarow['CompNaam']], $datarow['Vraag']); // put question in the array
+        }
+            // access data:
 
-        $pdf->Ln(50);
-        $pdf->Cell(0, 10, 'Lijn3', 1, 1);
+        $this->fpdf->Cell(20, 10, 'Mijn eerste pdf', 1, 1);
+            foreach ($data as $key => $value) {
+                $comp = $key;
+                $this->fpdf->Cell(0, 10, $value, 1, 1);
+                foreach ($compArray as $vraag) {
+                // gebruik
+                    $this->fpdf->Cell(0, 10, $vraag, 1, 1);
+                    $this->fpdf->Ln(50);
+                }
+            }
         $this->name = 'example2.pdf';
-//        $pdf->Output($this->name,'D');
+        $this->fpdf->Output(/*$this->name,'D'*/);
+
+        }
+
+    public function __construct($_context, $_fpdf){
+        $this->context = $_context;
+        $this->fpdf = $_fpdf;
     }
-
-
 }
