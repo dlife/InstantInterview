@@ -151,7 +151,7 @@ $controller = new Controller\Controller();
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="getPdf">Download PDF</button>
+                        <button type="button" class="btn btn-primary" id="GetPdf">Download PDF</button>
                     </div>
                 </div>
             </div>

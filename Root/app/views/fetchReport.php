@@ -9,21 +9,25 @@ include('../../vendor/autoload.php');
 
 $controller = new Controller\Controller();
 
-// Prevent caching.
-header('Cache-Control: no-cache, must-revalidate');
-header('Expires: Mon, 01 Jan 1996 00:00:00 GMT');
-// The JSON standard MIME header.
-header('Content-type: application/json');
+// Send Headers
+header('Content-type: application/pdf');
+header('Content-Disposition: attachment; filename="../../web/tempData/temp1.pdf');
+
+// Send Headers: Prevent Caching of File
+header('Cache-Control: private');
+header('Pragma: private');
+header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 
 // request the data and put it in $jsondata
 $request_body = file_get_contents('php://input');
 $jsondata = json_decode($request_body);
 
+$return = $controller->GetReport($jsondata);
+$return->Output('../../web/tempData/temp1.pdf','D');
 // Use controller to get the right data to return
 //$dataReturn = $controller->getReport($jsondata);
 
 // output again using JSON
-echo json_encode($jsondata);
 
 // check David/JSONTesting/index3.php en David/JSONTesting/postfetchdata.php
 

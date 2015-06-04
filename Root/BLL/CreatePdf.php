@@ -2,7 +2,7 @@
 
 namespace BLL;
 
-include_once('../vendor/autoload.php');
+//include_once('../vendor/autoload.php');
 
 class createPdf
 {
@@ -82,8 +82,8 @@ class createPdf
                 $this->fpdf->Ln(10);
             }
         $this->name = 'example2.pdf';
-        $this->fpdf->Output(/*$this->name,'D'*/);
-
+        //$this->fpdf->Output($this->path . $this->name,'I');
+         return $this->fpdf;
         }
 
     public function __construct($_context, $_fpdf){

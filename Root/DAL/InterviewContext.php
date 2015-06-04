@@ -171,6 +171,19 @@ class InterviewContext
 //        echo http_build_query($data) . "\n";
     }
 
+    public function SelectFunctionById($id)
+    {
+        $log = new Helpers\LogApp('en_US');
+        $connection = new Provider($log);
+        $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
+        $preparedStatement = $pdo->prepare("call FunctiesSelectAll(:pId);");
+        $preparedStatement->bindParam(':pId',$id,\PDO::PARAM_INT);
+        $result = $preparedStatement->execute();
+        $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+//        echo http_build_query($data) . "\n";
+    }
+
     //Added stored procedures
     public function SelectAllQuestions()
     {

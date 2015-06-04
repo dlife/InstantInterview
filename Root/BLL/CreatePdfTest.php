@@ -9,11 +9,12 @@ include_once('../vendor/autoload.php');
 
 
 
-$pdf = new \BLL\createPdf(new \DAL\InterviewContext(),new \BLL\PDF());
+$pdf = new \BLL\createPdf(new \DAL\InterviewContext(),new \BLL\PDF(), '../web/tempData/');
 $array = [1,2,31,4,11,50];
 $fId = 2;
 
 $pdf->ParseData($array,$fId);
 $pdf->GetData();
-$pdf->BuildPdf();
+$file = $pdf->BuildPdf();
+$file->Output($this->path . $this->name,'I');
 //$pdf->ExportPDF();

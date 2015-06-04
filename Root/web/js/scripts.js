@@ -172,11 +172,6 @@ function sendQuestion() {
 * Function to request data for report
 * */
 function getReport(jsonObj){
-    var div = document.getElementById("reportBody");
-    if (div != null){
-        div.innerHTML = "Loading...";
-    }
-
     var xmlhttp;
     if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -190,8 +185,7 @@ function getReport(jsonObj){
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 
-            var reportArray = JSON.parse(xmlhttp.responseText);
-            displayArray(reportArray);
+           // var reportArray = JSON.parse(xmlhttp.responseText);
         }
     }
 
@@ -200,16 +194,6 @@ function getReport(jsonObj){
     xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xmlhttp.send(jsonObj);
 
-    // Display the array in the div with JQuery
-    function displayArray(arr){
-        var out = ""; var i;
-        var checkedboxes = $("input:checked").parent().next('div').find('label');
-        for (i = 0; i<checkedboxes.length;i++){
-            out += checkedboxes[i].innerText + '</br>';
-        }
-
-        document.getElementById('reportBody').innerHTML = out;
-    }
 
 }
 
@@ -238,7 +222,7 @@ $(document).ready(function(){
     });
 
     $('#GetPdf').click(function(){
-        var checkboxes = document.getElementsByClassName('questionsCheck');
+        var checkboxes = $("input.questionsCheck:checked");
         var func = document.getElementById('jobTitleSelect');
         var jobTitle = func.options[func.selectedIndex].value;
         var ids = [];
@@ -258,6 +242,9 @@ $(document).ready(function(){
         getReport(jsonObj);
     });
 
+    /*
+     * Add question button
+     * */
     $('#AddQuestionButton').click(function(){
         $('#AddQuestionModal').modal();
         FillModalSelect();
@@ -265,6 +252,10 @@ $(document).ready(function(){
 });
 
 /*
- * Add question button
+ * Fetch report for pdf download
  * */
 
+
+function downloadPDF(data){
+
+}

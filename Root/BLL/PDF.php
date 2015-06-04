@@ -7,7 +7,7 @@
  */
 namespace BLL;
 
-include_once('../vendor/autoload.php');
+//include_once('../vendor/autoload.php');
 
 class PDF extends \FPDF
 {

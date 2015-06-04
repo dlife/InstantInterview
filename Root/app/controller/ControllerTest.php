@@ -7,7 +7,15 @@
  */
 include "../../vendor/autoload.php";
 $controller = new \Controller\Controller();
-$controller->LoadDataByFunction(2);
+$data = array(
+    'functionId'=> 1,
+    'questionId' => array(
+        1,11,2,33,12
+    )
+
+);
+$return = $controller->GetReport($data);
+$return->Output('../../web/tempData/temp1.pdf','I');
 
 ?>
 <html>
@@ -17,7 +25,6 @@ $controller->LoadDataByFunction(2);
 <body>
 <pre>
 <?php
-    var_dump($controller->GetReport("1,31"));
 ?>
     </pre>
 </body>
