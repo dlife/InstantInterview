@@ -74,18 +74,19 @@ class createPdf
         foreach ($this->PdfData as $datarow) {
             if ($datarow['CompNaam'] != $comp) {
                 // if new competence, create a new array
-                $data = array($datarow['CompNaam'] => $datarow['Vraag']);
+                $data[$datarow['CompNaam']] = array();
                 $comp = $datarow['CompNaam'];
             }
-            array_push($data[$datarow['CompNaam']], $datarow['Vraag']); // put question in the array
+               array_push($data[$datarow['CompNaam']], $datarow['Vraag']); // put question in the array
         }
+
             // access data:
 
         $this->fpdf->Cell(20, 10, 'Mijn eerste pdf', 1, 1);
             foreach ($data as $key => $value) {
                 $comp = $key;
-                $this->fpdf->Cell(0, 10, $value, 1, 1);
-                foreach ($compArray as $vraag) {
+                $this->fpdf->Cell(0, 10, $comp, 1, 1);
+                foreach ($value as $vraag) {
                 // gebruik
                     $this->fpdf->Cell(0, 10, $vraag, 1, 1);
                     $this->fpdf->Ln(50);
