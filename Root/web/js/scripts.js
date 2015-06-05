@@ -192,7 +192,7 @@ function getReport(jsonObj){
     }
 
     // posting the JSON data object
-    xmlhttp.open("POST", "../app/views/fetchReport.php");
+    xmlhttp.open("POST", "../BLL/fetchReport.php");
     xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xmlhttp.send(jsonObj);
 

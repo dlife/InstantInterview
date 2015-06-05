@@ -5,7 +5,7 @@
  * Date: 2/06/2015
  * Time: 9:05
  */
-include('../../vendor/autoload.php');
+include('../vendor/autoload.php');
 
 $dataController = new BLL\DataController();
 

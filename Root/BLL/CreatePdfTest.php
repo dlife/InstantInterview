@@ -17,9 +17,8 @@ $fId = 2;
 $pdf->ParseData($array,$fId);
 $pdf->GetData();
 $pdf->BuildPdf();
-$pdf->OutputDirect();
+//$pdf->OutputDirect();
 
-/*
+$pdf->OutputToDownloadLater();
 $datacontroller = new \BLL\DataController();
 $datacontroller->DeleteOldTempFiles();
-*/
