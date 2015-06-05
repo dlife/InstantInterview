@@ -90,7 +90,8 @@ class CreatePdf
             }
             $this->fpdf->Ln(10);
         }
-        $this->name = 'example2.pdf';
+        $t = time();
+        $this->name = 'Interview_' . date('Y-m-d_H-i-s', $t) . '.pdf';
     }
 
     public function OutputDirect()
@@ -98,7 +99,7 @@ class CreatePdf
         // for testing
 
         //$this->fpdf->Output($this->path . $this->name,'I');
-        $this->fpdf->Output($this->name,'I');
+        $this->fpdf->Output($this->name, 'I');
     }
 
     public function OutputToDownloadLater()
@@ -106,7 +107,8 @@ class CreatePdf
         $this->fpdf->Output('../../temp/' . $this->name, 'F');
     }
 
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 }

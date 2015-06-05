@@ -13,7 +13,13 @@ $pdf = new \BLL\CreatePdf(new \DAL\InterviewContext(),new \BLL\PDF(), '../web/te
 $array = [1,2,31,4,11,50,15,18,40,7,9];
 $fId = 2;
 
+
 $pdf->ParseData($array,$fId);
 $pdf->GetData();
 $pdf->BuildPdf();
 $pdf->OutputDirect();
+
+/*
+$datacontroller = new \BLL\DataController();
+$datacontroller->DeleteOldTempFiles();
+*/

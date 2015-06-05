@@ -84,5 +84,9 @@ $client->setRawData($json, 'application/json')->request('POST');
 </head>
 <body>
     <button onclick="run2()">Click me</button>
+    <?php
+        $t = time();
+        echo(date("Y-m-d_H:i:s",$t));
+    ?>
 </body>
 </html>
