@@ -7,7 +7,7 @@
  */
 include('../../vendor/autoload.php');
 
-$controller = new Controller\Controller();
+$dataController = new BLL\DataController();
 
 // Send Headers
 header('Content-type: application/pdf');
@@ -22,9 +22,12 @@ header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 $request_body = file_get_contents('php://input');
 $jsondata = json_decode($request_body);
 //$return = $controller->GetReport($jsondata);
-$return = $controller->GetReport($jsondata);
-$return->Output('../../web/tempData/temp1.pdf','F');
-echo "web/tempData/temp1.pdf";//readfile("../../web/tempData/temp1.pdf");
+$dataController->GetReport($jsondata);
+
+
+//$return->Output('../../web/tempData/temp1.pdf','F');
+//OutputToDownload
+//echo "web/tempData/temp1.pdf";//readfile("../../web/tempData/temp1.pdf");
 // Use controller to get the right data to return
 //$dataReturn = $controller->getReport($jsondata);
 

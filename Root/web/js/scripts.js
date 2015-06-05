@@ -184,9 +184,10 @@ function getReport(jsonObj){
     // this will be called when loaded succesfully
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            window.open(xmlhttp.responseText, '_blank');
+           // window.open(xmlhttp.responseText, '_blank');
           // var reportArray = xmlhttp.responseText;
-
+            //document.getElementById('reportBody').innerHTML = xmlhttp.responseText;
+            window.location="../BLL/Download.php?filename=" + xmlhttp.responseText;
         }
     }
 

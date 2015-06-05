@@ -4,7 +4,7 @@ namespace BLL;
 
 //include_once('../vendor/autoload.php');
 
-class createPdf
+class CreatePdf
 {
     protected $fId;
     protected $questionString;
@@ -14,20 +14,26 @@ class createPdf
     protected $fpdf;
     protected $context;
 
+    public function __construct($_context, $_fpdf)
+    {
+        $this->context = $_context;
+        $this->fpdf = $_fpdf;
+    }
+
     public function ParseData($array, $funcId)
     {
         try {
             $funcId = intval($funcId);
-           // print $funcId . '<Br>';
+            // print $funcId . '<Br>';
             foreach ($array as $val) {
                 $valint = intval($val);
                 if ($valint != 0) {
                     if (strlen($this->questionString) != 0) {
                         $this->questionString .= ",$valint";
-            //            print $this->questionString . '<Br>';
+                        //            print $this->questionString . '<Br>';
                     } else {
                         $this->questionString .= "$valint";
-               //         print $this->questionString . '<Br>';
+                        //         print $this->questionString . '<Br>';
                     }
                 }
             }
@@ -41,11 +47,14 @@ class createPdf
     {
         $idList = preg_replace("/[^0-9,]/", "", $this->questionString);
         $this->PdfData = $this->context->SelectReportData($idList);
-       // print_r($this->PdfData);
+        // print_r($this->PdfData);
 
-      //  echo '<Br><Br>';
+        //  echo '<Br><Br>';
     }
 
+    /**
+     *
+     */
     public function BuildPdf()
     {
         $this->fpdf->AliasNbPages();
@@ -58,7 +67,7 @@ class createPdf
         if ($this->PdfData[0]['CompNaam'] == null) { // should not be empty
             return;
         }
-        $comp ="";
+        $comp = "";
         $data = array();
         foreach ($this->PdfData as $datarow) {
             if ($datarow['CompNaam'] != $comp) {
@@ -66,28 +75,38 @@ class createPdf
                 $data[$datarow['CompNaam']] = array();
                 $comp = $datarow['CompNaam'];
             }
-               array_push($data[$datarow['CompNaam']], $datarow['Vraag']); // put question in the array
+            array_push($data[$datarow['CompNaam']], $datarow['Vraag']); // put question in the array
         }
 
-            // access data:
+        // access data:
 
-            foreach ($data as $key => $value) {
-                $comp = $key;
-                $this->fpdf->Cell(50, 10, $comp, 1, 1);
-                foreach ($value as $vraag) {
+        foreach ($data as $key => $value) {
+            $comp = $key;
+            $this->fpdf->Cell(50, 10, $comp, 1, 1);
+            foreach ($value as $vraag) {
                 // gebruik
-                    $this->fpdf->MultiCell(0, 10, $vraag, 1, 1);
-                    //$this->fpdf->Ln(0);
-                }
-                $this->fpdf->Ln(10);
+                $this->fpdf->MultiCell(0, 10, $vraag, 1, 1);
+                //$this->fpdf->Ln(0);
             }
-        $this->name = 'example2.pdf';
-        //$this->fpdf->Output($this->path . $this->name,'I');
-         return $this->fpdf;
+            $this->fpdf->Ln(10);
         }
+        $this->name = 'example2.pdf';
+    }
 
-    public function __construct($_context, $_fpdf){
-        $this->context = $_context;
-        $this->fpdf = $_fpdf;
+    public function OutputDirect()
+    {
+        // for testing
+
+        //$this->fpdf->Output($this->path . $this->name,'I');
+        $this->fpdf->Output($this->name,'I');
+    }
+
+    public function OutputToDownloadLater()
+    {
+        $this->fpdf->Output('../../temp/' . $this->name, 'F');
+    }
+
+    public function getName() {
+        return $this->name;
     }
 }

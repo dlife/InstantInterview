@@ -35,7 +35,7 @@ class Controller
     {
         return $this->competencesToShow;
     }
-    
+
     public function getJobFunctions()
     {
         // uses a stored procedure that gets all job functions
@@ -48,11 +48,11 @@ class Controller
         $this->jobFunctions = $result; // voorlopig bijhouden in controller
         return $this->jobFunctions;
     }
-    
+
     public function LoadDataByFunction($functionId)
     {
         // this should only be called once per controller !! 
-        
+
         // - loading ALL questions in $this->questions
         $this->LoadQuestions();
         // - loading ALL competences in $this->competences
@@ -95,8 +95,8 @@ class Controller
             $this->questionsMarked[intval($value['Id'])] = intval($value['Id']);
         }
     }
-    
-    
+
+
     public function FillCompetencesToShow()
     {
         // makes an array $this->competencesToShow using $this->questions and $this->questionsMarked 
@@ -110,7 +110,7 @@ class Controller
             }
         }
     }
-    
+
     public function SelectCompetenceById($competenceId)
     {
         // gets the competence object, based on the id
@@ -130,7 +130,7 @@ class Controller
             }
         }
     }
-    
+
     public function SelectQuestionsByCompetenceId($competenceId)
     {
         // selects all questions from 1 competence, needed for the view
@@ -145,23 +145,14 @@ class Controller
 
     }
 
-    public function GetReport($data){
-        // uses a stored procedure that gets Selected Ids
-        // save each object at index object Id => makes it easier to search by id
-        $array = $data->{'questionId'};
-        $fId = $data->{'functionId'};
-        $context = new \DAL\InterviewContext();
-        $pdf = new \BLL\createPdf($context,new \BLL\PDF());
-        $pdf->ParseData($array, $fId);
-        $pdf->GetData();
-        return $pdf->BuildPdf();
-    }
 
-    public function InsertNewQuestion($competenceId, $question){
+
+    public function InsertNewQuestion($competenceId, $question)
+    {
         $context = new \DAL\InterviewContext();
         return $context->InsertQuestion($question, $competenceId);
     }
-    
+
     /*
     // loads test date, should no longer be needed
     public function LoadTestData()
