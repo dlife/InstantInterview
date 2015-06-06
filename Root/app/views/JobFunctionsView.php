@@ -6,8 +6,6 @@
  * Time: 0:48
  */
 
-// JobFunctionsView
-
 ?>
 <form>
     <div class="form-group col-xs-12 col-md-6">

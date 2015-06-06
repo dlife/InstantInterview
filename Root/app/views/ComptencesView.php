@@ -16,7 +16,7 @@ if (isset($q)) {
     $controller->LoadDataByFunction($q); // loads all data needed to construct the view
 }
 
-// after this $controller->getCompetencesToShow() will contain the competences that need to be shown
+// now $controller->getCompetencesToShow() will contain the competences that need to be shown
 // and $controller->getQuestionsMarked() will contain the questions that have to be marked
 // this is used when generating the controls
 
@@ -27,7 +27,7 @@ if (isset($q)) {
             $questions = $controller->SelectQuestionsByCompetenceId($competence->getId()); // gets all questions for this competence ?>
             <div class="panel panel-primary
             <?php if (!array_key_exists($competence->getId(), $controller->getCompetencesToShow())) {
-                echo ' collapse'; // hide the compence if its id can't be found in getCompetencesToShow
+                echo ' collapse'; // hide the competence if its id can't be found in getCompetencesToShow
             } ?>
             " id="questionssection<?php echo $competence->getId() // name the div questionssection + competence Id ?>">
                 <div class="panel-heading" role="tab" id="heading-<?php echo $q; ?>">

@@ -15,6 +15,12 @@ class Controller
     protected $jobFunctions = array();
     protected $questionsMarked = array();
     protected $competencesToShow = array();
+    protected $context;
+
+    public function __construct()
+    {
+        $this->context = new \DAL\InterviewContext();
+    }
 
     public function getQuestions()
     {
@@ -36,11 +42,15 @@ class Controller
         return $this->competencesToShow;
     }
 
+    private function getContext()
+    {
+        return $this->context;
+    }
+
     public function getJobFunctions()
     {
         // uses a stored procedure that gets all job functions
-        $context = new \DAL\InterviewContext();
-        $return = $context->SelectAllFunctions();
+        $return = $this->getContext()->SelectAllFunctions();
         $result = array();
         foreach ($return as $value) {
             array_push($result, new \Models\JobFunction(intval($value['Id']), $value['Naam']));
@@ -48,6 +58,8 @@ class Controller
         $this->jobFunctions = $result; // voorlopig bijhouden in controller
         return $this->jobFunctions;
     }
+
+
 
     public function LoadDataByFunction($functionId)
     {
@@ -67,8 +79,7 @@ class Controller
     {
         // uses a stored procedure that gets all questions into the questions array
         // save each object at index object Id => makes it easier to search by id
-        $context = new \DAL\InterviewContext();
-        $return = $context->SelectAllQuestions();
+             $return = $this->getContext()->SelectAllQuestions();
         foreach ($return as $value) {
             $this->questions[intval($value['Id'])] = new \Models\Question(intval($value['Id']), $value['Vraag'], intval($value['CompetentieId']));
         }
@@ -78,8 +89,8 @@ class Controller
     {
         // uses a stored procedure that gets all competences into the competences array
         // save each object at index object Id => makes it easier to search by id
-        $context = new \DAL\InterviewContext();
-        $return = $context->SelectAllCompetences();
+
+        $return = $this->getContext()->SelectAllCompetences();
         foreach ($return as $value) {
             $this->competences[intval($value['Id'])] = new \Models\Competence(intval($value['Id']), $value['Naam']);
         }
@@ -89,8 +100,8 @@ class Controller
     {
         // uses a stored procedure that gets questions linked to a function
         // save each object at index object Id => makes it easier to search by id
-        $context = new \DAL\InterviewContext();
-        $return = $context->SelectQuestionIdsFromFunction($functionId);
+
+        $return = $this->getContext()->SelectQuestionIdsFromFunction($functionId);
         foreach ($return as $value) {
             $this->questionsMarked[intval($value['Id'])] = intval($value['Id']);
         }
@@ -149,8 +160,7 @@ class Controller
 
     public function InsertNewQuestion($competenceId, $question)
     {
-        $context = new \DAL\InterviewContext();
-        return $context->InsertQuestion($question, $competenceId);
+        return $this->getContext()->InsertQuestion($question, $competenceId);
     }
 
     /*
