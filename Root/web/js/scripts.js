@@ -94,7 +94,7 @@ function getReport(jsonObj) {
         url: "../BLL/CreateReport.php",
         data: jsonObj,
         success: function (msg) {
-            window.location = "../BLL/Download.php?filename=" + msg; //hide button and show thank you
+            window.location = "../BLL/Download.php?filename=" + msg , "_blank"; //hide button and show thank you
         },
         error: function () {
             alert("failure");

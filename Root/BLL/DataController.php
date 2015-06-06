@@ -27,7 +27,7 @@ class DataController
         $pdf->GetData();
         $pdf->BuildPdf();
         $pdf->OutputToDownloadLater();
-        echo $pdf->getName();
+        return $pdf->getName();
     }
 
     public function DeleteOldTempFiles()
@@ -38,11 +38,11 @@ class DataController
 
         $files = array();
 
-        if (sizeof(scandir('../temp')) === 0) {
+        if (sizeof(scandir('../web/tempData/')) === 0) {
             return;
         }
 
-        foreach (scandir('../temp') as $file) {
+        foreach (scandir('../web/tempData/') as $file) {
             if ('.' === $file) continue;
             if ('..' === $file) continue;
 
@@ -51,11 +51,11 @@ class DataController
 
         foreach ($files as $file) {
 
-            $file_creation_time = filemtime('../temp/' . $file);
+            $file_creation_time = filemtime('../web/tempData/' . $file);
             $difference = $current_time - $file_creation_time;
 
             if ($difference >= $x) {
-                unlink('../temp/' . $file);
+                unlink('../web/tempData/' . $file);
             }
         }
     }
