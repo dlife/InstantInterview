@@ -6,16 +6,11 @@
  * Time: 22:02
  */
 
-include('../../vendor/autoload.php');
+include('../vendor/autoload.php');
 
 header('Content-type: text/html; charset=UTF-8') ;
 
 $controller = new \Controller\Controller();
-/*parse_str($_SERVER['QUERY_STRING']); // parses the query string and makes vars with the key => $q is created
-if (isset($q)) {
-    var_dump($q); // loads all data needed to construct the view
-}
-echo 'tst';*/
 
 if (isset($_POST['selectCompetence'])) {
     $competence = strip_tags($_POST['selectCompetence']);

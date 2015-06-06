@@ -125,12 +125,9 @@ $controller = new Controller\Controller();
         </div>
     </div>
     <div class="container" id="interviewForm">
-            <?php require '../app/views/fetchjobtitles.php'; ?>
+            <?php require '../app/views/JobFunctionsView.php'; ?>
         <!-- Hier komen de competencies en vragen behorende bij de functies-->
-        <!--<div id="fetchCompetencesDiv">
-        </div>-->
-    </div>
-        <!--Button to right to submit standard hidden until a function is selected -->
+     </div>
     <div class="container">
         <div class="row">
             <button class="btn btn-primary hidden" id="QSubmit">Rapport</button>

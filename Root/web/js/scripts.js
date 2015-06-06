@@ -3,164 +3,82 @@
  */
 
 /*
-* Used to fetch the data from sql server
-*
- */
-
-function fetchdata(id) {
-    if (document.getElementById(id) != null) {
-        document.getElementById(id).innerHTML = "";
-    }
-    var xmlhttp;
-    if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-
-    // this will be called when loaded succesfully
-    xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            document.getElementById(id).innerHTML = xmlhttp.responseText;
-        }
-    };
-    // actually make the call
-    xmlhttp.open("GET", "../app/views/fetchquestions.php?q=" + id.replace('questionssection',''), true);
-    xmlhttp.send();
-}
-
-/*$(document ).ready(function() {
- // one by one load the data
- $('[id^="questionssection"]').each(function(i, obj) {
- fetchdata(obj.id);
- });
- });*/
-
-/*
-* Used by fetchjobtitles.php
+* Used by JobFunctionsView.php
 **/
 function jobFunctionSelectChanged() {
     // this funtion will be called whenever the user selects a function from the dropdown
     // fetchcompetences wordt gebruikt om in de div fetchCompetencesDiv te steken
     // nadat de php pagina is ingeladen wordt op elek questionssection class div fetchdata toegepast die data uit de controller haalt.
-    var div = document.getElementById("fetchCompetencesDiv");
-    div.innerHTML = "<img src='img/loading.gif' width='30'/><span>Loading...</span>";
-    var xmlhttp;
-
-    if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-
-    // this will be called when loaded succesfully
-    xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            div.innerHTML = xmlhttp.responseText;
-
-            // Unhide buttons
-            document.getElementById('QSubmit').classList.remove('hidden');
-            document.getElementById('ShowAll').classList.remove('hidden');
-            document.getElementById('AddQuestionButton').classList.remove('hidden');
-        }
-    };
-    // actually make the call
-    var select = document.getElementById("jobTitleSelect");
-    var id = select.options[select.selectedIndex].value;
-    xmlhttp.open("GET", "../app/views/fetchcompetences.php?q=" + id , true); // substring to cut function- off
-    xmlhttp.send();
-
     HideButtons();
+    var cdiv = $("#fetchCompetencesDiv");
+    cdiv.html("<img src='img/loading.gif' width='30'/><span>Loading...</span>"); // making a loading effect
+    var select = document.getElementById("jobTitleSelect");
+    var id = select.options[select.selectedIndex].value; // gets the JobFunction Id
+
+    $.ajax({
+        type: "GET",
+        url: "../app/views/ComptencesView.php",
+        data: {q: id},
+        success: function (msg) {
+            cdiv.html(msg);
+            // Unhide buttons
+            $("#QSubmit").removeClass("hidden");
+            $("#ShowAll").removeClass("hidden");
+            $("#AddQuestionButton").removeClass("hidden");
+        },
+        error: function () {
+            alert("failure");
+        }
+    });
 }
 
-function HideButtons(){
+function HideButtons() {
     // Hide buttons
-    document.getElementById('QSubmit').classList.add('hidden');
-    document.getElementById('ShowAll').classList.add('hidden');
-    document.getElementById('AddQuestionButton').classList.add('hidden');
+    $("#QSubmit").addClass("hidden");
+    $("#ShowAll").addClass("hidden");
+    $("#AddQuestionButton").addClass("hidden");
 }
 
-/*
-* Button functionality used in index.php
- */
-
-function FillModelWithQuestions(){
+function FillModelWithQuestions() {
     var out = "";
-    var checkedboxes = $("input:checked").parent().next('div').find('label');
-    for (var i = 0; i<checkedboxes.length;i++){
-        out += checkedboxes[i].innerText + '</br>';
-    }
+    $("input:checked").parent().next("div").find("label").each(function () {
+        out += $(this).text() + "</br>";
+    });
 
-    document.getElementById('reportBody').innerHTML = out;
+    $("#reportBody").html(out);
 }
 
-function FillModalSelect(){
-
+function FillModalAddQuestionSelect() {
+    //
     var select = $('#competenceSelect');
-    var competenceElements = $("div[id^='questionssection']").find(".panel-title");
-    var competenceIDs = $("div[id^='questionssection']");
 
-    for (var i=0;i<competenceElements.length;i++) {
-        select.append(
-            $('<option></option>').val(competenceIDs[i].id.substring(16)).html(competenceElements[i].innerText)
-        );
-        //out += competenceIDs[i].id + ' : ' + competenceElements[i].innerText + '<br/>';
-    }
+    $("div[id^='questionssection']").each(function () { // for each question section
+        select.append($('<option></option>') // add an option to the select element
+            .val(this.id.substring(16)) // with value question section Id (competence Id)
+            .html($(this).find(".panel-title").text())); // and as text the competence
+    });
 }
 
 function showAll() {
     $("div[id^='questionssection']").collapse('show');
-    document.getElementById('ShowAll').classList.add('hidden');
+    $("#ShowAll").addClass("hidden");
 }
 
 function sendQuestion() {
-    /*// do stuff
-    alert('make a new question');
-    var xmlhttp;
-
-    if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-
-    // this will be called when loaded succesfully
-    xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            document.getElementById("testdiv").innerHTML = xmlhttp.responseText;
-           // location.reload(true);
-        }
-    }
-    // actually make the call
-    var select = $('#competenceSelect');
-    var cValue = select.options[select.selectedIndex].value;
-    var text = $('#newQuestion');
-    if (cValue != null & text.value != "") {
-        xmlhttp.open("GET", "../app/views/addquestion.php?c=" + cValue + "&q=" + text.value, true);
-        xmlhttp.send();
-    } else
-    {
-        alert ("not sent");
-    }
-    */
     $.ajax({
         type: "POST",
-        url: "../app/views/addquestion.php", //process to mail
+        url: "../BLL/AddQuestion.php", //process to mail
         data: $('form#formAddQuestion').serialize(),
-        success: function(msg){
+        success: function (msg) {
             $("#testdiv").html(msg); //hide button and show thank you
             $("#interviewForm").empty();
             HideButtons();
             $("#AddQuestionModal").modal('hide'); //hide popup
-            window.setTimeout(function(){location.reload()},3000); // refresh the page after 3 seconds
+            window.setTimeout(function () {
+                location.reload()
+            }, 3000); // refresh the page after 3 seconds
         },
-        error: function(){
+        error: function () {
             alert("failure");
         }
     });
@@ -170,43 +88,23 @@ function sendQuestion() {
 /*
 * Function to request data for report
 * */
-function getReport(jsonObj){
-    var xmlhttp;
-    if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-
-    // this will be called when loaded succesfully
-    xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-           // window.open(xmlhttp.responseText, '_blank');
-          // var reportArray = xmlhttp.responseText;
-            //document.getElementById('reportBody').innerHTML = xmlhttp.responseText;
-            window.location="../BLL/Download.php?filename=" + xmlhttp.responseText;
+function getReport(jsonObj) {
+    $.ajax({
+        type: "POST",
+        url: "../BLL/CreateReport.php",
+        data: jsonObj,
+        success: function (msg) {
+            window.location = "../BLL/Download.php?filename=" + msg; //hide button and show thank you
+        },
+        error: function () {
+            alert("failure");
         }
-    }
-
-    // posting the JSON data object
-    xmlhttp.open("POST", "../BLL/fetchReport.php");
-    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xmlhttp.send(jsonObj);
-
-
+    });
 }
-
- /*
-* Collapse for collapsing the questions in the fetchCompetences.php
-* */
-$(".collapse").collapse();
 
 /*
 * Toggle the clicked competence
 * */
-
 function handleCompetenceClick(id) {
     $("#questionssection" + id).toggle();
 }
@@ -214,28 +112,26 @@ function handleCompetenceClick(id) {
 /*
  * Button to get and download the report
  * */
-
-
-$(document).ready(function(){
-    $('#QSubmit').click(function(){
+$(document).ready(function() {
+    $('#QSubmit').click(function () {
         $('#report').modal();
         FillModelWithQuestions();
     });
 
-    $('#GetPdf').click(function(){
+    $('#GetPdf').click(function () {
         var checkboxes = $("input.questionsCheck:checked");
         var func = document.getElementById('jobTitleSelect');
         var jobTitle = func.options[func.selectedIndex].value;
         var ids = [];
-        for(x= 0;x < checkboxes.length; x++){
-            if(checkboxes[x].checked ){
+        for (x = 0; x < checkboxes.length; x++) {
+            if (checkboxes[x].checked) {
                 ids.push(checkboxes[x].id);
             }
         }
 
         var result = {"functionId": jobTitle};
         var arr = [];
-        ids.forEach(function(element, index){
+        ids.forEach(function (element, index) {
             arr.push(element.substring(9));
         });
         result.questionId = arr;
@@ -246,17 +142,13 @@ $(document).ready(function(){
     /*
      * Add question button
      * */
-    $('#AddQuestionButton').click(function(){
+    $('#AddQuestionButton').click(function () {
         $('#AddQuestionModal').modal();
-        FillModalSelect();
+        FillModalAddQuestionSelect();
     });
+
+    /*
+     * Collapse for collapsing the questions in the fetchCompetences.php
+     * */
+    $(".collapse").collapse();
 });
-
-/*
- * Fetch report for pdf download
- * */
-
-
-function downloadPDF(data) {
-
-}

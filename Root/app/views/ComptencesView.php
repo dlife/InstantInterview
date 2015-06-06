@@ -59,19 +59,3 @@ if (isset($q)) {
         <?php } ?>
     </div>
 </div>
-
-<!--
-$().button('toggle')
-
-Toggles push state. Gives the button the appearance that it has been activated.
-
-$().button('reset')
-
-Resets button state - swaps text to original text.
-
-$().button(string)
-
-Swaps text to any data defined text state.
--->
-
-
