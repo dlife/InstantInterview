@@ -158,13 +158,12 @@ function sendQuestion() {
             $("#interviewForm").empty();
             HideButtons();
             $("#AddQuestionModal").modal('hide'); //hide popup
-            window.setTimeout(function(){location.reload()},3000);
+            window.setTimeout(function(){location.reload()},3000); // refresh the page after 3 seconds
         },
         error: function(){
             alert("failure");
         }
     });
-
 }
 
 
@@ -258,6 +257,6 @@ $(document).ready(function(){
  * */
 
 
-function downloadPDF(data){
+function downloadPDF(data) {
 
 }

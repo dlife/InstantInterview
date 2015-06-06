@@ -7,6 +7,8 @@
  */
 include('../../vendor/autoload.php');
 
+header('Content-type: text/html; charset=UTF-8') ;
+
 $controller = new Controller\Controller();
 
 parse_str($_SERVER['QUERY_STRING']); // parses the query string and makes vars with the key => $q is created

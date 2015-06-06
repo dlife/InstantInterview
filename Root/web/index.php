@@ -8,6 +8,8 @@
 
 include('../vendor/autoload.php');
 
+header('Content-type: text/html; charset=UTF-8') ;
+
 $controller = new Controller\Controller();
 ?>
 

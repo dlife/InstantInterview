@@ -4,12 +4,16 @@ namespace DAL;
 class InterviewContext
 {
 
+    /*$link = mysql_connect('localhost', 'user', 'password');
+mysql_set_charset('utf8',$link);*/
+
     public function InsertCompentence($competentie)
     {
         $log = new Helpers\LogApp('en_US');
         $connection = new Provider($log);
         $pdo = new \PDO($connection->connectionString, $connection->getUserName(), $connection->getPassword());
         $preparedStatement = $pdo->prepare("call CompetentieInsert(@pId,:name);");
+        mysqli_set_charset($preparedStatement,"utf8");
         $preparedStatement->bindParam(':name', $competentie, \PDO::PARAM_STR);
         $result = $preparedStatement->execute();
         return $result;

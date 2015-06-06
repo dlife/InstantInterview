@@ -31,8 +31,6 @@ class LogApp extends Log
 
     public function connectionFailed($hostName, $databaseName)
     {
-        return 'stuff failed';
-
         return \MessageFormatter::formatMessage($this->locale,
             $this->message[$this->locale]['CONNECTION'], 
             array($hostName, $databaseName, 'f'));
@@ -54,7 +52,6 @@ class LogApp extends Log
 
     public function connectionNotConnected($hostName, $databaseName)
     {
-        return 'stuff did not connect';
         return \MessageFormatter::formatMessage($this->locale,
             $this->message[$this->locale]['CONNECTION'],
             array($hostName, $databaseName, 'n'));
