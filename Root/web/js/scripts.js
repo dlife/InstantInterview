@@ -10,7 +10,7 @@ function jobFunctionSelectChanged() {
     // CompetencesView will used inside the div fetchCompetencesDiv, fetched with Ajax
 
     HideButtons();
-    var cdiv = $("#fetchCompetencesDiv");
+    var cdiv = $("#fetch-competences-div");
     cdiv.html("<img src='img/loading.gif' width='30'/><span>Loading...</span>"); // making a loading effect
 
     var select = document.getElementById("jobfunction-select");
@@ -23,9 +23,9 @@ function jobFunctionSelectChanged() {
         success: function (msg) {
             cdiv.html(msg);
             // Unhide buttons
-            $("#QSubmit").removeClass("hidden");
-            $("#ShowAll").removeClass("hidden");
-            $("#AddQuestionButton").removeClass("hidden");
+            $("#modal-report-button").removeClass("hidden");
+            $("#show-all-button").removeClass("hidden");
+            $("#add-question-button").removeClass("hidden");
         },
         error: function () {
             alert("failure");
@@ -35,9 +35,9 @@ function jobFunctionSelectChanged() {
 
 function HideButtons() {
     // Hide buttons
-    $("#QSubmit").addClass("hidden");
-    $("#ShowAll").addClass("hidden");
-    $("#AddQuestionButton").addClass("hidden");
+    $("#modal-report-button").addClass("hidden");
+    $("#show-all-button").addClass("hidden");
+    $("#add-question-button").addClass("hidden");
 }
 
 // user clicks "Laat alles zien" button
@@ -46,7 +46,7 @@ function showAll() {
     $("div[id^='questionssection']").collapse('show');
 
     // hide the button since it is no longer needed
-    $("#ShowAll").addClass("hidden");
+    $("#show-all-button").addClass("hidden");
 }
 
 // user clicks "Voeg Toe" button
@@ -55,12 +55,12 @@ function sendQuestion() {
     $.ajax({
         type: "POST",
         url: "../BLL/AddQuestion.php",
-        data: $('form#formAddQuestion').serialize(),
+        data: $('form#form-add-question').serialize(),
         success: function (msg) {
             $("#testdiv").html(msg); //hide button and show thank you
-            $("#interviewForm").empty();
+            $("#interview-form").empty();
             HideButtons();
-            $("#AddQuestionModal").modal('hide'); //hide popup
+            $("#add-question-modal").modal('hide'); //hide popup
             window.setTimeout(function () {
                 location.reload()
             }, 3000); // refresh the page after 3 seconds
@@ -80,20 +80,20 @@ function handleCompetenceClick(id) {
 
 $(document).ready(function() {
     // user clicks the "Rapport" button
-    $('#QSubmit').click(function () {
+    $('#modal-report-button').click(function () {
         // Show the report modal
-        $('#report').modal();
+        $('#report-modal').modal();
 
         // print out each question in the body of the modal fordoublecheck.
         var out = "";
         $("input:checked").parent().next("div").find("label").each(function () {
             out += $(this).text() + "</br>";
         });
-        $("#reportBody").html(out);
+        $("#report-body").html(out);
     });
 
     // user clicks the "Download PDF" button
-    $('#GetPdf').click(function () {
+    $('#get-report-button').click(function () {
         // gets the Id of the selected function
         var func = document.getElementById('jobfunction-select');
         var jobTitle = func.options[func.selectedIndex].value;
@@ -125,11 +125,11 @@ $(document).ready(function() {
     });
 
     // user clicks the "Voeg vraag toe" button
-    $('#AddQuestionButton').click(function () {
+    $('#add-question-button').click(function () {
         // Show the add question modal
-        $('#AddQuestionModal').modal();
+        $('#add-question-modal').modal();
 
-        var select = $('#competenceSelect');
+        var select = $('#competence-select');
         $("div[id^='questionssection']").each(function () { // for each question section
             select.append($('<option></option>') // add an option to the select element
                 .val(this.id.substring(16)) // with value question section Id (competence Id)

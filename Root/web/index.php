@@ -125,63 +125,63 @@ header('Content-type: text/html; charset=UTF-8') ;
                 <h1>Interview</h1>
             </div>
         </div>
-        <div class="container" id="interviewForm">
+        <div class="container" id="interview-form">
             <?php require '../app/views/JobFunctionsView.php'; ?>
             <!-- insert views -->
          </div>
         <div class="container">
             <div class="row">
-                <button class="btn btn-primary hidden" id="QSubmit">Rapport</button>
-                <button class="btn btn-primary hidden" id="ShowAll" onclick="showAll()">Laat alles zien</button>
-                <button class="btn btn-primary hidden" id="AddQuestionButton">Voeg vraag toe</button>
+                <button class="btn btn-primary hidden" id="modal-report-button">Rapport</button>
+                <button class="btn btn-primary hidden" id="show-all-button" onclick="showAll()">Laat alles zien</button>
+                <button class="btn btn-primary hidden" id="add-question-button">Voeg vraag toe</button>
             </div>
             <div class="row">
                 <div id="testdiv"></div>
             </div>
             <!-- Modal Report -->
-            <div class="modal fade" id="report" role="dialog" aria-labelledby="reportLabel" aria-hidden="true">
+            <div class="modal fade" id="report-modal" role="dialog" aria-labelledby="report-label" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="reportLabel">Rapport</h4>
+                            <h4 class="modal-title" id="report-label">Rapport</h4>
                         </div>
-                        <div class="modal-body" id="reportBody">
+                        <div class="modal-body" id="report-body">
                             <!-- Fetch questions for report-->
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" id="GetPdf">Download PDF</button>
+                            <button type="button" class="btn btn-primary" id="get-report-button">Download PDF</button>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!--Modal Add question-->
-            <div class="modal fade" id="AddQuestionModal" role="dialog" aria-labelledby="AddQuestionLabel" aria-hidden="true">
+            <div class="modal fade" id="add-question-modal" role="dialog" aria-labelledby="add-question-label" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="AddQuestionLabel">Voeg een niewe vraag toe.</h4>
+                            <h4 class="modal-title" id="add-question-label">Voeg een niewe vraag toe.</h4>
                         </div>
                         <div class="modal-body">
-                            <form id="formAddQuestion" name="formAddQuesiton">
+                            <form id="form-add-question" name="form-add-question">
                                 <div class="form-group">
-                                            <h2>Selecteer hier een competentie.</h2>
-                                            <select class="form-control" id="competenceSelect" name="selectCompetence">
-                                                <option selected disabled hidden value=''></option>
-                                            </select>
+                                    <h2>Selecteer hier een competentie.</h2>
+                                    <select class="form-control" id="competence-select" name="competence-select">
+                                        <option selected disabled hidden value=''></option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="newQuestion" class="control-label">Niewe vraag:</label>
-                                    <textarea class="form-control" id="newQuestion" name="questionText"></textarea>
+                                    <label for="new-question" class="control-label">Niewe vraag:</label>
+                                    <textarea class="form-control" id="new-question" name="question-text"></textarea>
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" id="sendQuestionButton" type="submit" onclick="sendQuestion()">Voeg Toe</button>
+                            <button type="button" class="btn btn-primary" id="send-question-button" type="submit" onclick="sendQuestion()">Voeg Toe</button>
                         </div>
                     </div>
                 </div>

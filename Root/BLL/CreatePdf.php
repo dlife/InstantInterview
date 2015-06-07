@@ -46,7 +46,7 @@ class CreatePdf
     public function getData()
     {
         $idList = preg_replace("/[^0-9,]/", "", $this->questionString);
-        $this->PdfData = $this->context->SelectReportData($idList);
+        $this->PdfData = $this->context->selectReportData($idList);
         // print_r($this->PdfData);
 
         //  echo '<Br><Br>';

@@ -12,13 +12,13 @@ header('Content-type: text/html; charset=UTF-8') ;
 
 $controller = new \Controller\Controller();
 
-if (isset($_POST['selectCompetence'])) {
-    $competence = strip_tags($_POST['selectCompetence']);
-    $question = strip_tags($_POST['questionText']);
+if (isset($_POST['competence-select'])) {
+    $competence = strip_tags($_POST['competence-select']);
+    $question = strip_tags($_POST['question-text']);
     $result = $controller->insertNewQuestion($competence, $question);
 
-    if($result == true){
-    $message = <<<DOC
+    if ($result == true) {
+        $message = <<<DOC
     <br><div class="alert alert-success alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
         <strong>Success!</strong> De nieuwe vraag is toegevoegd aan de databank. De pagina zal binnen enkele seconden vernieuwen<br>
@@ -26,7 +26,7 @@ if (isset($_POST['selectCompetence'])) {
         <stong>Question: </strong>$question<br>
     </div>
 DOC;
-    echo $message;
+        echo $message;
     } else {
         $message = <<<DOC
     <br><div class="alert alert-danger alert-dismissible" role="alert">
@@ -36,7 +36,6 @@ DOC;
 DOC;
         echo $message;
     }
-
 } else {
     $message = <<<DOC
     <br><div class="alert alert-danger alert-dismissible" role="alert">

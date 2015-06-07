@@ -20,4 +20,4 @@
         </select>
     </div>
 </form>
-<div id="fetchCompetencesDiv"></div>
+<div id="fetch-competences-div"></div>
