@@ -6,13 +6,14 @@
 * Used by JobFunctionsView.php
 **/
 function jobFunctionSelectChanged() {
-    // this funtion will be called whenever the user selects a function from the dropdown
-    // fetchcompetences wordt gebruikt om in de div fetchCompetencesDiv te steken
-    // nadat de php pagina is ingeladen wordt op elek questionssection class div fetchdata toegepast die data uit de controller haalt.
+    // Will be called whenever the user selects a job function from the dropdown
+    // CompetencesView will used inside the div fetchCompetencesDiv, fetched with Ajax
+
     HideButtons();
     var cdiv = $("#fetchCompetencesDiv");
     cdiv.html("<img src='img/loading.gif' width='30'/><span>Loading...</span>"); // making a loading effect
-    var select = document.getElementById("jobTitleSelect");
+
+    var select = document.getElementById("jobfunction-select");
     var id = select.options[select.selectedIndex].value; // gets the JobFunction Id
 
     $.ajax({
@@ -39,35 +40,21 @@ function HideButtons() {
     $("#AddQuestionButton").addClass("hidden");
 }
 
-function FillModelWithQuestions() {
-    var out = "";
-    $("input:checked").parent().next("div").find("label").each(function () {
-        out += $(this).text() + "</br>";
-    });
-
-    $("#reportBody").html(out);
-}
-
-function FillModalAddQuestionSelect() {
-    //
-    var select = $('#competenceSelect');
-
-    $("div[id^='questionssection']").each(function () { // for each question section
-        select.append($('<option></option>') // add an option to the select element
-            .val(this.id.substring(16)) // with value question section Id (competence Id)
-            .html($(this).find(".panel-title").text())); // and as text the competence
-    });
-}
-
+// user clicks "Laat alles zien" button
 function showAll() {
+    // all questionssection are shown
     $("div[id^='questionssection']").collapse('show');
+
+    // hide the button since it is no longer needed
     $("#ShowAll").addClass("hidden");
 }
 
+// user clicks "Voeg Toe" button
 function sendQuestion() {
+    // with Ajax send the serialized form to AddQuestion.php
     $.ajax({
         type: "POST",
-        url: "../BLL/AddQuestion.php", //process to mail
+        url: "../BLL/AddQuestion.php",
         data: $('form#formAddQuestion').serialize(),
         success: function (msg) {
             $("#testdiv").html(msg); //hide button and show thank you
@@ -79,25 +66,7 @@ function sendQuestion() {
             }, 3000); // refresh the page after 3 seconds
         },
         error: function () {
-            alert("failure");
-        }
-    });
-}
-
-
-/*
-* Function to request data for report
-* */
-function getReport(jsonObj) {
-    $.ajax({
-        type: "POST",
-        url: "../BLL/CreateReport.php",
-        data: jsonObj,
-        success: function (msg) {
-            window.location = "../BLL/Download.php?filename=" + msg , "_blank"; //hide button and show thank you
-        },
-        error: function () {
-            alert("failure");
+            alert("Something went wrong, please try again.");
         }
     });
 }
@@ -109,36 +78,63 @@ function handleCompetenceClick(id) {
     $("#questionssection" + id).toggle();
 }
 
-/*
- * Button to get and download the report
- * */
 $(document).ready(function() {
+    // user clicks the "Rapport" button
     $('#QSubmit').click(function () {
+        // Show the report modal
         $('#report').modal();
-        FillModelWithQuestions();
+
+        // print out each question in the body of the modal fordoublecheck.
+        var out = "";
+        $("input:checked").parent().next("div").find("label").each(function () {
+            out += $(this).text() + "</br>";
+        });
+        $("#reportBody").html(out);
     });
 
+    // user clicks the "Download PDF" button
     $('#GetPdf').click(function () {
-        var func = document.getElementById('jobTitleSelect');
+        // gets the Id of the selected function
+        var func = document.getElementById('jobfunction-select');
         var jobTitle = func.options[func.selectedIndex].value;
 
+        // creates an array of selected questions
         var ids = [];
         $("input.questionsCheck:checked").each(function() {
             ids.push(this.id.substring(9));
         });
 
+        // combine into a JSON object
         var result = {"functionId": jobTitle};
         result.questionId = ids;
         var jsonObj = JSON.stringify(result);
-        getReport(jsonObj);
+
+        // send it to the server with AJAX
+        // upon receiving a result, send it to Download.php to to download the file that was created.
+        $.ajax({
+            type: "POST",
+            url: "../BLL/CreateReport.php",
+            data: jsonObj,
+            success: function (msg) {
+                window.location = "../BLL/Download.php?filename=" + msg , "_blank"; //hide button and show thank you
+            },
+            error: function () {
+                alert("The pdf file was not ready for download. Please try again.");
+            }
+        });
     });
 
-    /*
-     * Add question button
-     * */
+    // user clicks the "Voeg vraag toe" button
     $('#AddQuestionButton').click(function () {
+        // Show the add question modal
         $('#AddQuestionModal').modal();
-        FillModalAddQuestionSelect();
+
+        var select = $('#competenceSelect');
+        $("div[id^='questionssection']").each(function () { // for each question section
+            select.append($('<option></option>') // add an option to the select element
+                .val(this.id.substring(16)) // with value question section Id (competence Id)
+                .html($(this).find(".panel-title").text())); // and as text the competence
+        });
     });
 
     /*

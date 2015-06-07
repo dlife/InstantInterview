@@ -137,7 +137,7 @@ $controller = new Controller\Controller();
         <div class="row">
             <div id="testdiv"></div>
         </div>
-        <!-- Modal -->
+        <!-- Modal Report -->
         <div class="modal fade" id="report" role="dialog" aria-labelledby="reportLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
