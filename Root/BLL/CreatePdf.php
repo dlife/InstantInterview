@@ -52,9 +52,6 @@ class CreatePdf
         //  echo '<Br><Br>';
     }
 
-    /**
-     *
-     */
     public function BuildPdf()
     {
         $this->fpdf->AliasNbPages();

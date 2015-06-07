@@ -45,7 +45,7 @@ if (isset($q)) {
                             <span class="input-group-addon">
                                 <input type="checkbox" class="questionsCheck" id="question-<?php echo $question->getId(); // name the checkbox ?>"
                                     <?php if (array_key_exists($question->getId(), $controller->getQuestionsMarked())) 
-                                        { echo ' checked'; } // check the checkbox if the question Id is in getQuestionsMarked ?>>
+                                        { echo ' checked'; } // mark the checkbox if the question Id is in getQuestionsMarked ?>>
                             </span>
                             <div class="list-group-item">
                                 <label for="question-<?php echo $question->getId(); ?>">

@@ -8,6 +8,8 @@
 
 include('../vendor/autoload.php');
 
+// used as a workaround to download a created pdf
+
 parse_str($_SERVER['QUERY_STRING']); // parses the query string and makes vars with the key => $q is created
 if (isset($filename)) {
     $fullPath = '../web/tempData/';

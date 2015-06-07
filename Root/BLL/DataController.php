@@ -10,6 +10,7 @@ namespace BLL;
 
 class DataController
 {
+    // helper class to manage data retrieval, generate a pdf and do cleanup of files.
 
     public function GetReport($data)
     {
