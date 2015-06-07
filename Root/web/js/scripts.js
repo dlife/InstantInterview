@@ -18,7 +18,7 @@ function jobFunctionSelectChanged() {
 
     $.ajax({
         type: "GET",
-        url: "../app/views/ComptencesView.php",
+        url: "../app/views/CompetencesView.php",
         data: {q: id},
         success: function (msg) {
             cdiv.html(msg);
