@@ -14,7 +14,6 @@ class DataController
     public function GetReport($data)
     {
         // clean up old files first
-        // gives a file not found error when run from index.php
         $this->DeleteOldTempFiles();
 
         // uses a stored procedure that gets Selected Ids
@@ -32,7 +31,7 @@ class DataController
 
     public function DeleteOldTempFiles()
     {
-        $x = 60; //1 hour
+        $x = 60; //1 minute
 
         $current_time = time();
 
