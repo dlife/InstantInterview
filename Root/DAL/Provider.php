@@ -16,8 +16,8 @@ class Provider extends \DAL\Helpers\Connection
         $this->databaseName = 'InterviewDBTest';
         $this->password = '9uPZV)U;z_)+';
         $this->userName = 'CvoProject';
-        $this->hostName = 'trouw.benoot-cupers.com:3306';//'localhost';
-        $this->connectionString = "mysql:host=$this->hostName;dbname=$this->databaseName;charset=utf8"; // fixes the character encoding issue
+        $this->hostName = 'trouw.benoot-cupers.com:3306'; //'localhost';
+        $this->connectionString = "mysql:host=$this->hostName;dbname=$this->databaseName;charset=utf8"; // charset=utf8 fixes the character encoding issue
     }
 }
 

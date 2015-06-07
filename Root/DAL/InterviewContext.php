@@ -41,7 +41,6 @@ class InterviewContext
         $result = $preparedStatement->execute();
         $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
         return $data;
-//        echo http_build_query($data) . "\n";
     }
 
     public function SelectOneCompetence($cId)
@@ -51,7 +50,6 @@ class InterviewContext
         $result = $preparedStatement->execute();
         $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
         return $data;
-//        echo http_build_query($data) . "\n";
     }
 
     public function SelectQuestionsFromOneCompetence($cId)
@@ -61,7 +59,6 @@ class InterviewContext
         $result = $preparedStatement->execute();
         $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
         return $data;
-//        echo http_build_query($data) . "\n";
     }
 
     public function UpdateCompetence($cId, $cName)
@@ -124,7 +121,6 @@ class InterviewContext
         $result = $preparedStatement->execute();
         $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
         return $data;
-//        echo http_build_query($data) . "<Br>";
     }
 
     public function SelectQuestionsFromFunction($fId)
@@ -134,7 +130,6 @@ class InterviewContext
         $result = $preparedStatement->execute();
         $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
         return $data;
-//        echo http_build_query($data) . "<Br>";
     }
 
     public function SelectAllFunctions()
@@ -143,7 +138,6 @@ class InterviewContext
         $result = $preparedStatement->execute();
         $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
         return $data;
-//        echo http_build_query($data) . "\n";
     }
 
     public function SelectFunctionById($id)
@@ -153,17 +147,14 @@ class InterviewContext
         $result = $preparedStatement->execute();
         $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
         return $data;
-//        echo http_build_query($data) . "\n";
     }
 
-    //Added stored procedures
     public function SelectAllQuestions()
     {
         $preparedStatement = $this->controller->getPDO()->prepare("call QuestionsSelectAll();");
         $result = $preparedStatement->execute();
         $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
         return $data;
-//        echo http_build_query($data) . "\n";
     }
 
     public function SelectQuestionsOnID($Ids)
@@ -173,7 +164,6 @@ class InterviewContext
         $result = $preparedStatement->execute();
         $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
         return $data;
-//        echo http_build_query($data) . "\n";
     }
 
     public function SelectQuestionIdsFromFunction($fId)
@@ -183,7 +173,6 @@ class InterviewContext
         $result = $preparedStatement->execute();
         $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
         return $data;
-//        echo http_build_query($data) . "<Br>";
     }
 
     public function SelectReportData($qId)
@@ -192,9 +181,7 @@ class InterviewContext
         $preparedStatement->bindParam(':pId', $qId, \PDO::PARAM_STR);
         $result = $preparedStatement->execute();
         $data = $preparedStatement->fetchAll(\PDO::FETCH_ASSOC);
-//      echo http_build_query($data) . "<Br>";
         return $data;
     }
 }
-//Added stored procedures
 ?>

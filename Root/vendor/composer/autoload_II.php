@@ -20,5 +20,4 @@ return array(
     'Views\\' => array($appDir . '/views'),
     'DAL\\' => array($dalDir),
     'BLL\\' => array($bllDir),
-
 );

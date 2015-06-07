@@ -1,11 +1,6 @@
 <?php
-//include ('Feedback.php');
-//include('Log.php');
-//include "LogApp.php";
-//include('Connection.php');
 
-    // maak een logboek
-    //$log = new LogApp();
+// valid test 07/06/215 13:16
 
 include_once('../vendor/autoload.php');
 

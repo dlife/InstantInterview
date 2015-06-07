@@ -10,6 +10,8 @@ namespace DAL;
 
 class ContextController
 {
+    // helper class to use one single PDO for multiple stored procedures on a single page
+
     private $log;
     private $connection;
     private $pdo;
