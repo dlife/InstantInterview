@@ -62,7 +62,7 @@ class CreatePdf
         $this->fpdf->SetFont("Arial", "", 12);
         // breedte, hoogte, tekst, rand, ln, align, fill, link
         // Naam = competentie
-        // // Vraag = vraag voluit
+        // Vraag = vraag voluit
 
         if ($this->PdfData[0]['CompNaam'] == null) { // should not be empty
             return;
