@@ -125,8 +125,8 @@ $controller = new Controller\Controller();
         </div>
     </div>
     <div class="container" id="interviewForm">
-            <?php require '../app/views/JobFunctionsView.php'; ?>
-        <!-- Hier komen de competencies en vragen behorende bij de functies-->
+        <?php require '../app/views/JobFunctionsView.php'; ?>
+        <!-- insert views -->
      </div>
     <div class="container">
         <div class="row">
