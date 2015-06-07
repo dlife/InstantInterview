@@ -10,7 +10,7 @@
 
 include_once('../vendor/autoload.php');
 
-$pdf = new \BLL\CreatePdf(new \DAL\InterviewContext(),new \BLL\PDF(), '../web/tempData/');
+$pdf = new \BLL\CreatePdf(new \DAL\InterviewContext(),new \BLL\PDF(), '../temp/');
 $array = [1,2,31,4,11,50,15,18,40,7,9];
 $fId = 2;
 

@@ -102,7 +102,7 @@ class CreatePdf
 
     public function outputToDownloadLater()
     {
-        $this->fpdf->Output('../web/tempData/' . $this->name, 'F');
+        $this->fpdf->Output('../temp/' . $this->name, 'F');
     }
 
     public function getName()

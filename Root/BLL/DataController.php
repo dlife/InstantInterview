@@ -38,11 +38,11 @@ class DataController
 
         $files = array();
 
-        if (sizeof(scandir('../web/tempData/')) === 0) {
+        if (sizeof(scandir('../temp/')) === 0) {
             return;
         }
 
-        foreach (scandir('../web/tempData/') as $file) {
+        foreach (scandir('../temp/') as $file) {
             if ('.' === $file) continue;
             if ('..' === $file) continue;
 
@@ -51,11 +51,11 @@ class DataController
 
         foreach ($files as $file) {
 
-            $file_creation_time = filemtime('../web/tempData/' . $file);
+            $file_creation_time = filemtime('../temp/' . $file);
             $difference = $current_time - $file_creation_time;
 
             if ($difference >= $x) {
-                unlink('../web/tempData/' . $file);
+                unlink('../temp/' . $file);
             }
         }
     }
