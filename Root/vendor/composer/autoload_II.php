@@ -12,10 +12,8 @@ $appDir = realpath($baseDir . '/app/');
 $dalDir = realpath($baseDir . '/DAL/');
 $bllDir = realpath($baseDir . '/BLL/');
 
-
 return array(
     'Controller\\' => array($appDir . '/controller'),
-    'InstantInterview\\' => array($appDir . '/InstantInterview'),
     'Models\\' => array($appDir . '/models'),
     'Views\\' => array($appDir . '/views'),
     'DAL\\' => array($dalDir),
