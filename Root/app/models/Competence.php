@@ -6,8 +6,7 @@
  * Time: 19:51
  */
 
-namespace models;
-
+namespace Models;
 
 class Competence {
     private $id;

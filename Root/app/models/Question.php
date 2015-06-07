@@ -6,7 +6,7 @@
  * Time: 18:32
  */
 
-namespace models;
+namespace Models;
 
 class Question
 {

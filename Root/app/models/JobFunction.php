@@ -8,7 +8,6 @@
 
 namespace Models;
 
-
 class JobFunction {
     private $id;
 
