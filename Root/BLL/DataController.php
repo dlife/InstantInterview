@@ -12,10 +12,10 @@ class DataController
 {
     // helper class to manage data retrieval, generate a pdf and do cleanup of files.
 
-    public function GetReport($data)
+    public function getReport($data)
     {
         // clean up old files first
-        $this->DeleteOldTempFiles();
+        $this->deleteOldTempFiles();
 
         // uses a stored procedure that gets Selected Ids
         // save each object at index object Id => makes it easier to search by id
@@ -23,14 +23,14 @@ class DataController
         $fId = $data->{'functionId'};
         $context = new \DAL\InterviewContext();
         $pdf = new \BLL\CreatePdf($context, new \BLL\PDF());
-        $pdf->ParseData($array, $fId);
-        $pdf->GetData();
-        $pdf->BuildPdf();
-        $pdf->OutputToDownloadLater();
+        $pdf->parseData($array, $fId);
+        $pdf->getData();
+        $pdf->buildPdf();
+        $pdf->outputToDownloadLater();
         return $pdf->getName();
     }
 
-    public function DeleteOldTempFiles()
+    public function deleteOldTempFiles()
     {
         $x = 60; //1 minute
 

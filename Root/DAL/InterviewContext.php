@@ -10,7 +10,7 @@ class InterviewContext
         $this->controller = new \DAL\ContextController();
     }
 
-    public function InsertCompentence($competentie)
+    public function insertCompentence($competentie)
     {
         $preparedStatement = $this->controller->getPDO()->prepare("call CompetentieInsert(@pId,:name);");
         $preparedStatement->bindParam(':name', $competentie, \PDO::PARAM_STR);
@@ -18,7 +18,7 @@ class InterviewContext
         return $result;
     }
 
-    public function InsertQuestion($vraag, $cId)
+    public function insertQuestion($vraag, $cId)
     {
         $preparedStatement = $this->controller->getPDO()->prepare("call VraagInsert(@pId,:vraag,:compId);");
         $preparedStatement->bindParam(':vraag', $vraag, \PDO::PARAM_STR);
@@ -27,7 +27,7 @@ class InterviewContext
         return $result;
     }
 
-    public function InsertFunction($functie)
+    public function insertFunction($functie)
     {
         $preparedStatement = $this->controller->getPDO()->prepare("call FunctieInsert(@pId,:name);");
         $preparedStatement->bindParam(':name', $functie, \PDO::PARAM_STR);
@@ -35,7 +35,7 @@ class InterviewContext
         return $result;
     }
 
-    public function SelectAllCompetences()
+    public function selectAllCompetences()
     {
         $preparedStatement = $this->controller->getPDO()->prepare("call CompetentiesSelectAll();");
         $result = $preparedStatement->execute();
@@ -43,7 +43,7 @@ class InterviewContext
         return $data;
     }
 
-    public function SelectOneCompetence($cId)
+    public function selectOneCompetence($cId)
     {
         $preparedStatement = $this->controller->getPDO()->prepare("call CompetentiesSelectOne(:pId);");
         $preparedStatement->bindParam(':pId', $cId, \PDO::PARAM_INT);
@@ -52,7 +52,7 @@ class InterviewContext
         return $data;
     }
 
-    public function SelectQuestionsFromOneCompetence($cId)
+    public function selectQuestionsFromOneCompetence($cId)
     {
         $preparedStatement = $this->controller->getPDO()->prepare("call CompetentiesSelectQuestions(:pId);");
         $preparedStatement->bindParam(':pId', $cId, \PDO::PARAM_INT);
@@ -61,7 +61,7 @@ class InterviewContext
         return $data;
     }
 
-    public function UpdateCompetence($cId, $cName)
+    public function updateCompetence($cId, $cName)
     {
         $preparedStatement = $this->controller->getPDO()->prepare("call CompetentieUpdate(:pId, :pName);");
         $competentie = 10;
@@ -72,7 +72,7 @@ class InterviewContext
         return $result;
     }
 
-    public function UpdateQuestion($qId, $qName)
+    public function updateQuestion($qId, $qName)
     {
         $preparedStatement = $this->controller->getPDO()->prepare("call VraagUpdate(:pId, :pName);");
         $preparedStatement->bindParam(':pId', $qId, \PDO::PARAM_INT);
@@ -81,7 +81,7 @@ class InterviewContext
         return $result;
     }
 
-    public function UpdateFunction($fId, $fName)
+    public function updateFunction($fId, $fName)
     {
         $preparedStatement = $this->controller->getPDO()->prepare("call FunctieUpdate(:pId, :pName);");
         $preparedStatement->bindParam(':pId', $fId, \PDO::PARAM_INT);
@@ -90,7 +90,7 @@ class InterviewContext
         return $result;
     }
 
-    public function DeleteCompetence($cId)
+    public function deleteCompetence($cId)
     {
         $preparedStatement = $this->controller->getPDO()->prepare("call CompetentieDelete(:pId);");
         $preparedStatement->bindParam(':pId', $cId, \PDO::PARAM_INT);
@@ -98,7 +98,7 @@ class InterviewContext
         return $result;
     }
 
-    public function DeleteQuestion($qId)
+    public function deleteQuestion($qId)
     {
         $preparedStatement = $this->controller->getPDO()->prepare("call VraagDelete(:pId);");
         $preparedStatement->bindParam(':pId', $qId, \PDO::PARAM_INT);
@@ -106,7 +106,7 @@ class InterviewContext
         return $result;
     }
 
-    public function DeleteFunction($fId)
+    public function deleteFunction($fId)
     {
         $preparedStatement = $this->controller->getPDO()->prepare("call FunctieDelete(:pId);");
         $preparedStatement->bindParam(':pId', $fId, \PDO::PARAM_INT);
@@ -114,7 +114,7 @@ class InterviewContext
         return $result;
     }
 
-    public function SelectQuestionsFromCompetenceWithFunction($cId)
+    public function selectQuestionsFromCompetenceWithFunction($cId)
     {
         $preparedStatement = $this->controller->getPDO()->prepare("call SelectQuestionsFunctionCompetencesOrderByCompetence(:pId);");
         $preparedStatement->bindParam(':pId', $cId, \PDO::PARAM_INT);
@@ -123,7 +123,7 @@ class InterviewContext
         return $data;
     }
 
-    public function SelectQuestionsFromFunction($fId)
+    public function selectQuestionsFromFunction($fId)
     {
         $preparedStatement = $this->controller->getPDO()->prepare("call SelectQuestionsFunctionCompetencesOnFunction(:pId);");
         $preparedStatement->bindParam(':pId', $fId, \PDO::PARAM_INT);
@@ -132,7 +132,7 @@ class InterviewContext
         return $data;
     }
 
-    public function SelectAllFunctions()
+    public function selectAllFunctions()
     {
         $preparedStatement = $this->controller->getPDO()->prepare("call FunctiesSelectAll();");
         $result = $preparedStatement->execute();
@@ -140,7 +140,7 @@ class InterviewContext
         return $data;
     }
 
-    public function SelectFunctionById($id)
+    public function selectFunctionById($id)
     {
         $preparedStatement = $this->controller->getPDO()->prepare("call FunctiesSelectAll(:pId);");
         $preparedStatement->bindParam(':pId', $id, \PDO::PARAM_INT);
@@ -149,7 +149,7 @@ class InterviewContext
         return $data;
     }
 
-    public function SelectAllQuestions()
+    public function selectAllQuestions()
     {
         $preparedStatement = $this->controller->getPDO()->prepare("call QuestionsSelectAll();");
         $result = $preparedStatement->execute();
@@ -157,7 +157,7 @@ class InterviewContext
         return $data;
     }
 
-    public function SelectQuestionsOnID($Ids)
+    public function selectQuestionsOnID($Ids)
     {
         $preparedStatement = $this->controller->getPDO()->prepare("call SelectReportData(:pListId);");
         $preparedStatement->bindParam(':pListId', $Ids, \PDO::PARAM_STR);
@@ -166,7 +166,7 @@ class InterviewContext
         return $data;
     }
 
-    public function SelectQuestionIdsFromFunction($fId)
+    public function selectQuestionIdsFromFunction($fId)
     {
         $preparedStatement = $this->controller->getPDO()->prepare("call SelectQuestionsIdsOnFunction(:pId);");
         $preparedStatement->bindParam(':pId', $fId, \PDO::PARAM_INT);
@@ -175,7 +175,7 @@ class InterviewContext
         return $data;
     }
 
-    public function SelectReportData($qId)
+    public function selectReportData($qId)
     {
         $preparedStatement = $this->controller->getPDO()->prepare("call SelectReportData(:pId);");
         $preparedStatement->bindParam(':pId', $qId, \PDO::PARAM_STR);

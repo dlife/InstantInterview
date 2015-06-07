@@ -15,9 +15,9 @@ $array = [1,2,31,4,11,50,15,18,40,7,9];
 $fId = 2;
 
 
-$pdf->ParseData($array,$fId);
-$pdf->GetData();
-$pdf->BuildPdf();
+$pdf->parseData($array,$fId);
+$pdf->getData();
+$pdf->buildPdf();
 
 // use this to see the result in the browser directly
 $pdf->OutputDirect();
@@ -26,4 +26,4 @@ $pdf->OutputDirect();
 
 // do cleanup
 $datacontroller = new \BLL\DataController();
-$datacontroller->DeleteOldTempFiles();
+$datacontroller->deleteOldTempFiles();

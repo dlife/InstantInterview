@@ -15,7 +15,7 @@ $controller = new \Controller\Controller();
 if (isset($_POST['selectCompetence'])) {
     $competence = strip_tags($_POST['selectCompetence']);
     $question = strip_tags($_POST['questionText']);
-    $result = $controller->InsertNewQuestion($competence, $question);
+    $result = $controller->insertNewQuestion($competence, $question);
 
     if($result == true){
     $message = <<<DOC

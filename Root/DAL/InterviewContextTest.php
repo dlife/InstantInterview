@@ -11,4 +11,4 @@
 include_once('../vendor/autoload.php');
 $context = new DAL\InterviewContext();
 $Ids = "1,2,11,31";
-var_dump($context->SelectAllFunctions());
+var_dump($context->selectAllFunctions());

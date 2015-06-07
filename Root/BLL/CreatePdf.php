@@ -20,7 +20,7 @@ class CreatePdf
         $this->fpdf = $_fpdf;
     }
 
-    public function ParseData($array, $funcId)
+    public function parseData($array, $funcId)
     {
         try {
             $funcId = intval($funcId);
@@ -43,7 +43,7 @@ class CreatePdf
 
     }
 
-    public function GetData()
+    public function getData()
     {
         $idList = preg_replace("/[^0-9,]/", "", $this->questionString);
         $this->PdfData = $this->context->SelectReportData($idList);
@@ -52,7 +52,7 @@ class CreatePdf
         //  echo '<Br><Br>';
     }
 
-    public function BuildPdf()
+    public function buildPdf()
     {
         $this->fpdf->AliasNbPages();
         $this->fpdf->AddPage();
@@ -64,6 +64,7 @@ class CreatePdf
         if ($this->PdfData[0]['CompNaam'] == null) { // should not be empty
             return;
         }
+
         $comp = "";
         $data = array();
         foreach ($this->PdfData as $datarow) {
@@ -91,7 +92,7 @@ class CreatePdf
         $this->name = 'Interview_' . date('Y-m-d_H-i-s', $t) . '.pdf';
     }
 
-    public function OutputDirect()
+    public function outputDirect()
     {
         // for testing
 
@@ -99,7 +100,7 @@ class CreatePdf
         $this->fpdf->Output($this->name, 'I');
     }
 
-    public function OutputToDownloadLater()
+    public function outputToDownloadLater()
     {
         $this->fpdf->Output('../web/tempData/' . $this->name, 'F');
     }

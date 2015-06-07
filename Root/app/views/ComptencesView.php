@@ -13,7 +13,7 @@ $controller = new Controller\Controller();
 
 parse_str($_SERVER['QUERY_STRING']); // parses the query string and makes vars with the key => $q is created
 if (isset($q)) {
-    $controller->LoadDataByFunction($q); // loads all data needed to construct the view
+    $controller->loadDataByFunction($q); // loads all data needed to construct the view
 }
 
 // now $controller->getCompetencesToShow() will contain the competences that need to be shown
@@ -24,7 +24,7 @@ if (isset($q)) {
 <div class="col-xs-12" id="questions">
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
         <?php foreach ($controller->getCompetences() as $competence) { // iterate through all the competences and prepare a div for questions for each competence
-            $questions = $controller->SelectQuestionsByCompetenceId($competence->getId()); // gets all questions for this competence ?>
+            $questions = $controller->selectQuestionsByCompetenceId($competence->getId()); // gets all questions for this competence ?>
             <div class="panel panel-primary
             <?php if (!array_key_exists($competence->getId(), $controller->getCompetencesToShow())) {
                 echo ' collapse'; // hide the competence if its id can't be found in getCompetencesToShow

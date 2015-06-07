@@ -19,7 +19,7 @@ $data = array(
     )
 
 );
-$return = $controller->GetReport($data);
+$return = $controller->getReport($data);
 $return->Output('../../web/tempData/temp1.pdf','I');
 
 ?>

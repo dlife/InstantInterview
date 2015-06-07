@@ -22,7 +22,7 @@ header('Content-type: text/html; charset=UTF-8') ;
 $request_body = file_get_contents('php://input');
 $jsondata = json_decode($request_body);
 //$return = $controller->GetReport($jsondata);
-$name = $dataController->GetReport($jsondata);
+$name = $dataController->getReport($jsondata);
 echo $name;
 
 
