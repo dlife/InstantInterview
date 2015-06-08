@@ -77,7 +77,7 @@ class Controller
     {
         // uses a stored procedure that gets all questions into the questions array
         // save each object at index object Id => makes it easier to search by id
-        $return = $this->getContext()->SelectAllQuestions();
+        $return = $this->getContext()->selectAllQuestions();
         foreach ($return as $value) {
             $this->questions[intval($value['Id'])] = new \Models\Question(intval($value['Id']), $value['Vraag'], intval($value['CompetentieId']));
         }
@@ -87,7 +87,7 @@ class Controller
     {
         // uses a stored procedure that gets all competences into the competences array
         // save each object at index object Id => makes it easier to search by id
-        $return = $this->getContext()->SelectAllCompetences();
+        $return = $this->getContext()->selectAllCompetences();
         foreach ($return as $value) {
             $this->competences[intval($value['Id'])] = new \Models\Competence(intval($value['Id']), $value['Naam']);
         }
@@ -97,7 +97,7 @@ class Controller
     {
         // uses a stored procedure that gets questions linked to a function
         // save each object at index object Id => makes it easier to search by id
-        $return = $this->getContext()->SelectQuestionIdsFromFunction($functionId);
+        $return = $this->getContext()->selectQuestionIdsFromFunction($functionId);
         foreach ($return as $value) {
             $this->questionsMarked[intval($value['Id'])] = intval($value['Id']);
         }
@@ -108,7 +108,7 @@ class Controller
         // makes an array $this->competencesToShow using $this->questions and $this->questionsMarked 
         // that will be used to hide competences that don't have any marked questions by default
         foreach ($this->questionsMarked as $questionId) {
-            $question = $this->SelectQuestionById($questionId);
+            $question = $this->selectQuestionById($questionId);
             if (isset ($question)) {
                 if (!array_key_exists($question->getCompetenceId(), $this->competencesToShow)) {
                     $this->competencesToShow[$question->getCompetenceId()] = $question->getCompetenceId();
