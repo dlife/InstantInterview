@@ -57,13 +57,12 @@ function sendQuestion() {
         url: "../BLL/AddQuestion.php",
         data: $('form#form-add-question').serialize(),
         success: function (msg) {
-            $("#testdiv").html(msg); //hide button and show thank you
+            //$("#testdiv").html(msg); //hide button and show thank you
             $("#interview-form").empty();
+            $("#interview-form").html(msg);
             HideButtons();
             $("#add-question-modal").modal('hide'); //hide popup
-            window.setTimeout(function () {
-                location.reload()
-            }, 3000); // refresh the page after 3 seconds
+            //$('#jobfunction-select').load('../app/views/JobFunctionsView.php');
         },
         error: function () {
             alert("Something went wrong, please try again.");

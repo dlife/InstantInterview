@@ -27,6 +27,7 @@ if (isset($_POST['competence-select'])) {
     </div>
 DOC;
         echo $message;
+        require '../app/views/JobFunctionsView.php';
     } else {
         $message = <<<DOC
     <br><div class="alert alert-danger alert-dismissible" role="alert">

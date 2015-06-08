@@ -7,6 +7,9 @@
  */
 
 ?>
+<div class="row">
+    <div id="testdiv"></div>
+</div>
 <form>
     <div class="form-group col-xs-12 col-md-6">
         <h2>Selecteer hier een functie.</h2>
