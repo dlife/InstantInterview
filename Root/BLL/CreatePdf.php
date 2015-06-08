@@ -7,17 +7,20 @@ class CreatePdf
     protected $fId;
     protected $questionString;
     protected $PdfData;
+    protected $preparedData;
     protected $Pdf;
     protected $name;
     protected $fpdf;
     protected $context;
     protected $tempFolder;
+    protected $line;
 
     public function __construct($_context, $_fpdf, $_tempFolder)
     {
         $this->context = $_context;
         $this->fpdf = $_fpdf;
         $this->tempFolder = $_tempFolder;
+        $this->line = str_repeat('.', 160);
     }
 
     public function parseData($array, $funcId)
@@ -37,7 +40,6 @@ class CreatePdf
         } catch (Exception $e) {
             echo $e;
         }
-
     }
 
     public function getData()
@@ -46,12 +48,8 @@ class CreatePdf
         $this->PdfData = $this->context->selectReportData($idList);
     }
 
-    public function buildPdf()
+    private function prepareData()
     {
-        $this->fpdf->AliasNbPages();
-        $this->fpdf->AddPage();
-        $this->fpdf->SetFont("Arial", "", 12);
-
         if ($this->PdfData[0]['CompNaam'] == null) { // should not be empty
             return;
         }
@@ -67,16 +65,43 @@ class CreatePdf
             array_push($data[$datarow['CompNaam']], $datarow['Vraag']); // put question in the array
         }
 
-        foreach ($data as $key => $value) {
+        $this->preparedData = $data;
+    }
+
+    public function buildPdf()
+    {
+        $this->fpdf->AliasNbPages();
+        $this->fpdf->AddPage();
+        $this->fpdf->SetFont("Arial", "", 12);
+
+        $this->prepareData();
+
+        foreach ($this->preparedData as $key => $value) {
             $comp = $key;
-            $this->fpdf->Cell(50, 10, $comp, 1, 1);
+
+            $this->fpdf->SetTextColor(68, 110, 155);
+            $this->fpdf->Cell(0, 10, $comp, 0, 1);
+            $this->fpdf->SetTextColor(0, 0, 0);
+            $this->fpdf->Ln(0);
             foreach ($value as $vraag) {
-                $this->fpdf->MultiCell(0, 10, $vraag, 1, 1);
+                $this->fpdf->SetTextColor(0, 0, 0);
+                $this->fpdf->MultiCell(0, 5, $vraag, 0, 1);
+                $this->fpdf->Ln(0);
+                $this->addTripleLine();
+                $this->fpdf->Ln(5);
             }
-            $this->fpdf->Ln(10);
+            $this->fpdf->Ln(0);
         }
         $t = time();
         $this->name = 'Interview_' . date('Y-m-d_H-i-s', $t) . '.pdf';
+    }
+
+    public function addTripleLine()
+    {
+        for ($i = 0; $i < 3; $i++) {
+            $this->fpdf->Cell(0, 10, $this->line, 0, 1);
+            $this->fpdf->Ln(-2);
+        }
     }
 
     public function outputDirect()

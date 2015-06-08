@@ -19,9 +19,7 @@ include_once('../vendor/autoload.php');
 </head>
 <body>
 <?php
-foreach ($log->getBook() as $key => $feedback)
-{
-    ?>
+foreach ($log->getBook() as $key => $feedback) { ?>
     <h1><?php echo $key;?></h1>
     <p><b>Name</b> <?php echo $feedback->getName();?></p>
     <p><b>Feedback</b> <?php echo $feedback->getText();?></p>
@@ -31,6 +29,6 @@ foreach ($log->getBook() as $key => $feedback)
     <p><b>Is error</b> <?php echo $feedback->getIsError();?></p>
     <p><b>Start</b> <?php echo $feedback->getStartTime();?></p>
     <p><b>End</b> <?php echo $feedback->getEndTime();?></p>
-<?php            }?>
+<?php } ?>
 </body>
 </html>

@@ -23,6 +23,11 @@ class ContextController
         $this->pdo = new \PDO($this->connection->connectionString, $this->connection->getUserName(), $this->connection->getPassword());
     }
 
+    public function getLog()
+    {
+        return $this->log;
+    }
+
     public function getPDO()
     {
         return $this->pdo;

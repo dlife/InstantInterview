@@ -10,6 +10,11 @@ class InterviewContext
         $this->controller = new \DAL\ContextController();
     }
 
+    public function getController()
+    {
+        return $this->controller;
+    }
+
     public function insertCompentence($competentie)
     {
         $preparedStatement = $this->controller->getPDO()->prepare("call CompetentieInsert(@pId,:name);");

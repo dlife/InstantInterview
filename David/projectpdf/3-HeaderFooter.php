@@ -6,10 +6,7 @@
  * Time: 19:23
  */
 
-
-
 require('fpdf.php');
-
 
 class PDF extends FPDF{
     function Header()

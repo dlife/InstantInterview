@@ -19,7 +19,7 @@ class PDF extends \FPDF
         // Move to the right
         $this->Cell(70);
         // Title
-        $this->Cell(50, 10, 'Interview Vragen', 1, 0, 'C');
+        $this->Cell(50, 10, 'Interview Vragen', 0, 0, 'C');
         // Line break
         $this->Ln(20);
     }

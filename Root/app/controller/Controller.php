@@ -47,6 +47,11 @@ class Controller
         return $this->context;
     }
 
+    public function getLog()
+    {
+        return $this->context->getController()->getLog();
+    }
+
     public function getJobFunctions()
     {
         // uses a stored procedure that gets all job functions
