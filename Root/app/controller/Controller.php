@@ -50,12 +50,12 @@ class Controller
     public function getJobFunctions()
     {
         // uses a stored procedure that gets all job functions
-        $return = $this->getContext()->SelectAllFunctions();
+        $return = $this->getContext()->selectAllFunctions();
         $result = array();
         foreach ($return as $value) {
             array_push($result, new \Models\JobFunction(intval($value['Id']), $value['Naam']));
         }
-        $this->jobFunctions = $result; // voorlopig bijhouden in controller
+        $this->jobFunctions = $result;
         return $this->jobFunctions;
     }
 
