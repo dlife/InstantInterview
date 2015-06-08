@@ -55,7 +55,7 @@ class Controller
         foreach ($return as $value) {
             array_push($result, new \Models\JobFunction(intval($value['Id']), $value['Naam']));
         }
-        $this->jobFunctions = $result; // voorlopig bijhouden in controller
+        $this->jobFunctions = $result;
         return $this->jobFunctions;
     }
 
