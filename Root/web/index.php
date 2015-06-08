@@ -135,9 +135,6 @@ header('Content-type: text/html; charset=UTF-8') ;
                 <button class="btn btn-primary hidden" id="show-all-button" onclick="showAll()">Laat alles zien</button>
                 <button class="btn btn-primary hidden" id="add-question-button">Voeg vraag toe</button>
             </div>
-            <div class="row">
-                <div id="testdiv"></div>
-            </div>
             <!-- Modal Report -->
             <div class="modal fade" id="report-modal" role="dialog" aria-labelledby="report-label" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
