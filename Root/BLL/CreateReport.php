@@ -9,7 +9,7 @@ include('../vendor/autoload.php');
 
 $dataController = new BLL\DataController();
 
-// Send Headers
+// set headers
 header('Content-type: text/html; charset=UTF-8') ;
 // request the data and put it in $jsondata
 $request_body = file_get_contents('php://input');
