@@ -9,12 +9,15 @@ function jobFunctionSelectChanged() {
     // Will be called whenever the user selects a job function from the dropdown
     // CompetencesView will used inside the div fetchCompetencesDiv, fetched with Ajax
 
+    var select = document.getElementById("jobfunction-select");
+    var id = select.options[select.selectedIndex].value; // gets the JobFunction Id
+    if (id == "") {
+        return; // actually, nothing was selected, so stop here
+    }
+
     HideButtons();
     var cdiv = $("#fetch-competences-div");
     cdiv.html("<img src='img/loading.gif' width='30'/><span>Loading...</span>"); // making a loading effect
-
-    var select = document.getElementById("jobfunction-select");
-    var id = select.options[select.selectedIndex].value; // gets the JobFunction Id
 
     $.ajax({
         type: "GET",
@@ -52,6 +55,9 @@ function showAll() {
 // user clicks "Voeg Toe" button
 function sendQuestion() {
     // with Ajax send the serialized form to AddQuestion.php
+    var func = document.getElementById('jobfunction-select');
+    var id = func.options[func.selectedIndex].value;
+
     $.ajax({
         type: "POST",
         url: "../BLL/AddQuestion.php",
@@ -59,12 +65,25 @@ function sendQuestion() {
         success: function (msg) {
             //$("#testdiv").html(msg); //hide button and show thank you
             $("#interview-form").empty();
-            $("#interview-form").html(msg);
+            //$("#interview-form").html(msg); // this shoudl target a div outside $("#interview-form")
             HideButtons();
             $("#add-question-modal").modal('hide'); //hide popup
             //$('#jobfunction-select').load('../app/views/JobFunctionsView.php');
 
             // maak hier een nieuwe methode die opnieuw ajax gebruikt om JobFunctionsView te vernieuwen met als querystring de nu geselecteerde jobfunctie
+
+            $.ajax({
+                type: "GET",
+                url: "../app/views/JobFunctionsView.php",
+                data: {q: id},
+                success: function (msg2) {
+                    $("#interview-form").html(msg2);
+                    jobFunctionSelectChanged();
+                },
+                error: function () {
+                    alert("failure");
+                }
+            });
         },
         error: function () {
             alert("Something went wrong, please try again.");
@@ -142,4 +161,6 @@ $(document).ready(function() {
      * Collapse for collapsing the questions in the fetchCompetences.php
      * */
     $(".collapse").collapse();
+
+    jobFunctionSelectChanged();
 });
