@@ -73,7 +73,7 @@ class Controller
         $this->fillCompetencesToShow();
     }
 
-    public function loadQuestions()
+    private function loadQuestions()
     {
         // uses a stored procedure that gets all questions into the questions array
         // save each object at index object Id => makes it easier to search by id
@@ -83,7 +83,7 @@ class Controller
         }
     }
 
-    public function loadCompetences()
+    private function loadCompetences()
     {
         // uses a stored procedure that gets all competences into the competences array
         // save each object at index object Id => makes it easier to search by id
@@ -93,7 +93,7 @@ class Controller
         }
     }
 
-    public function loadQuestionsToMark($functionId)
+    private function loadQuestionsToMark($functionId)
     {
         // uses a stored procedure that gets questions linked to a function
         // save each object at index object Id => makes it easier to search by id
@@ -103,7 +103,7 @@ class Controller
         }
     }
 
-    public function fillCompetencesToShow()
+    private function fillCompetencesToShow()
     {
         // makes an array $this->competencesToShow using $this->questions and $this->questionsMarked 
         // that will be used to hide competences that don't have any marked questions by default
