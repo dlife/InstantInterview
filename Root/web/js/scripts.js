@@ -63,6 +63,8 @@ function sendQuestion() {
             HideButtons();
             $("#add-question-modal").modal('hide'); //hide popup
             //$('#jobfunction-select').load('../app/views/JobFunctionsView.php');
+
+            // maak hier een nieuwe methode die opnieuw ajax gebruikt om JobFunctionsView te vernieuwen met als querystring de nu geselecteerde jobfunctie
         },
         error: function () {
             alert("Something went wrong, please try again.");
