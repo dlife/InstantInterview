@@ -6,9 +6,21 @@
  * Time: 9:02
  */
 
-// valid test 07/06/2015 13:20
+// valid test 08/06/2015 20:06
 
 include_once('../vendor/autoload.php');
 $context = new DAL\InterviewContext();
-$Ids = "1,2,11,31";
-var_dump($context->selectAllFunctions());
+
+?>
+<html>
+<head>
+    <title>ControllerTest</title>
+</head>
+<body>
+<h3>Data Loaded by the InterviewContext:</h3>
+<pre>
+    <?php var_dump($context->selectAllFunctions()); ?>
+</pre>
+</body>
+</html>
+

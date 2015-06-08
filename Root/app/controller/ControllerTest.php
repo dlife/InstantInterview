@@ -6,9 +6,7 @@
  * Time: 12:40
  */
 
-// not working as this is right now.
-// this should be a test for connection, maybe a select all functions to show the db actually works
-// use a controller method to show this.
+// valid test 08/06/2015 20:03
 
 include "../../vendor/autoload.php";
 $controller = new \Controller\Controller();
