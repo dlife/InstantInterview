@@ -2,8 +2,6 @@
 
 namespace BLL;
 
-//include_once('../vendor/autoload.php');
-
 class CreatePdf
 {
     protected $fId;
@@ -24,16 +22,13 @@ class CreatePdf
     {
         try {
             $funcId = intval($funcId);
-            // print $funcId . '<Br>';
             foreach ($array as $val) {
                 $valint = intval($val);
                 if ($valint != 0) {
                     if (strlen($this->questionString) != 0) {
                         $this->questionString .= ",$valint";
-                        //            print $this->questionString . '<Br>';
                     } else {
                         $this->questionString .= "$valint";
-                        //         print $this->questionString . '<Br>';
                     }
                 }
             }
@@ -47,9 +42,6 @@ class CreatePdf
     {
         $idList = preg_replace("/[^0-9,]/", "", $this->questionString);
         $this->PdfData = $this->context->selectReportData($idList);
-        // print_r($this->PdfData);
-
-        //  echo '<Br><Br>';
     }
 
     public function buildPdf()
@@ -57,9 +49,6 @@ class CreatePdf
         $this->fpdf->AliasNbPages();
         $this->fpdf->AddPage();
         $this->fpdf->SetFont("Arial", "", 12);
-        // breedte, hoogte, tekst, rand, ln, align, fill, link
-        // Naam = competentie
-        // Vraag = vraag voluit
 
         if ($this->PdfData[0]['CompNaam'] == null) { // should not be empty
             return;
@@ -76,15 +65,11 @@ class CreatePdf
             array_push($data[$datarow['CompNaam']], $datarow['Vraag']); // put question in the array
         }
 
-        // access data:
-
         foreach ($data as $key => $value) {
             $comp = $key;
             $this->fpdf->Cell(50, 10, $comp, 1, 1);
             foreach ($value as $vraag) {
-                // gebruik
                 $this->fpdf->MultiCell(0, 10, $vraag, 1, 1);
-                //$this->fpdf->Ln(0);
             }
             $this->fpdf->Ln(10);
         }
@@ -94,9 +79,6 @@ class CreatePdf
 
     public function outputDirect()
     {
-        // for testing
-
-        //$this->fpdf->Output($this->path . $this->name,'I');
         $this->fpdf->Output($this->name, 'I');
     }
 
