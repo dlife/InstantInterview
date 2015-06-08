@@ -11,11 +11,13 @@ class CreatePdf
     protected $name;
     protected $fpdf;
     protected $context;
+    protected $tempFolder;
 
-    public function __construct($_context, $_fpdf)
+    public function __construct($_context, $_fpdf, $_tempFolder)
     {
         $this->context = $_context;
         $this->fpdf = $_fpdf;
+        $this->tempFolder = $_tempFolder;
     }
 
     public function parseData($array, $funcId)
@@ -84,7 +86,7 @@ class CreatePdf
 
     public function outputToDownloadLater()
     {
-        $this->fpdf->Output('../temp/' . $this->name, 'F');
+        $this->fpdf->Output($this->tempFolder . $this->name, 'F');
     }
 
     public function getName()

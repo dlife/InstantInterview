@@ -12,6 +12,8 @@ class DataController
 {
     // helper class to manage data retrieval, generate a pdf and do cleanup of files.
 
+    private $tempFolder = '../temp/';
+
     public function getReport($data)
     {
         // clean up old files first
@@ -22,7 +24,7 @@ class DataController
         $array = $data->{'questionId'};
         $fId = $data->{'functionId'};
         $context = new \DAL\InterviewContext();
-        $pdf = new \BLL\CreatePdf($context, new \BLL\PDF());
+        $pdf = new \BLL\CreatePdf($context, new \BLL\PDF(), $this->tempFolder);
         $pdf->parseData($array, $fId);
         $pdf->getData();
         $pdf->buildPdf();
@@ -38,11 +40,11 @@ class DataController
 
         $files = array();
 
-        if (sizeof(scandir('../temp/')) === 0) {
+        if (sizeof(scandir($this->tempFolder)) === 0) {
             return;
         }
 
-        foreach (scandir('../temp/') as $file) {
+        foreach (scandir($this->tempFolder) as $file) {
             if ('.' === $file) continue;
             if ('..' === $file) continue;
 
@@ -51,11 +53,11 @@ class DataController
 
         foreach ($files as $file) {
 
-            $file_creation_time = filemtime('../temp/' . $file);
+            $file_creation_time = filemtime($this->tempFolder . $file);
             $difference = $current_time - $file_creation_time;
 
             if ($difference >= $x) {
-                unlink('../temp/' . $file);
+                unlink($this->tempFolder . $file);
             }
         }
     }
