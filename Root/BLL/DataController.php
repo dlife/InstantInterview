@@ -52,7 +52,6 @@ class DataController
         }
 
         foreach ($files as $file) {
-
             $file_creation_time = filemtime($this->tempFolder . $file);
             $difference = $current_time - $file_creation_time;
 
