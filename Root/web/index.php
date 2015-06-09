@@ -136,7 +136,7 @@ header('Content-type: text/html; charset=UTF-8') ;
                         <li>MVC</li>
                     </ul>
                 </div>
-                <div class="col-xs-12 col-md-12">
+                <div class="col-xs-12 col-md-8">
                     <h3>Concreet</h3>
                     <p>
                         Dit project is een PHP project met een MySQL database. Sommige van de keuzes die hier gemaakt zijn, zijn omwille van de mogelijkheden of beperkingen die daar bij horen. Zo is beslist om dit project een single page website te maken. Aangezien de gebruiker vragen zal aanvinken of keuzes maken is het niet wenselijk veel van pagina te veranderen.
