@@ -16,7 +16,7 @@
         <select class="form-control" id="jobfunction-select" onchange="jobFunctionSelectChanged()">
             <option selected disabled hidden value=''></option>
             <?php foreach ($controller->getJobFunctions() as $jobFunction) { // iterate through all the JobFunctions and make an option in the dropdown for each function
-                if(isset($functionId)){
+                /*if(isset($functionId)){
                     if($functionId == $jobFunction->getId()){ ?>
                         <option
                             selected value="<?php echo $jobFunction->getId()?>" ><?php echo $jobFunction->getName() ?>
@@ -27,11 +27,11 @@
                             value="<?php echo $jobFunction->getId()?>" ><?php echo $jobFunction->getName() ?>
                         </option>
                     <?php }
-                } else { ?>
+                } else { */?>
                     <option
                         value="<?php echo $jobFunction->getId()?>" ><?php echo $jobFunction->getName() ?>
                     </option>
-                <?php }
+                <?php /*}*/
             } ?>
         </select>
     </div>
