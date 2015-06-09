@@ -65,22 +65,9 @@ function sendQuestion() {
         success: function (msg) {
             $("#interview-form").empty();
             HideButtons();
+            $("#interview-form").html(msg);
             $("#add-question-modal").modal('hide'); //hide popup
 
-            // maak hier een nieuwe methode die opnieuw ajax gebruikt om JobFunctionsView te vernieuwen met als querystring de nu geselecteerde jobfunctie
-
-            $.ajax({
-                type: "GET",
-                url: "../app/views/JobFunctionsView.php",
-                data: {q: id},
-                success: function (msg2) {
-                    $("#interview-form").html(msg2);
-                    jobFunctionSelectChanged();
-                },
-                error: function () {
-                    alert("failure");
-                }
-            });
         },
         error: function () {
             alert("Something went wrong, please try again.");
