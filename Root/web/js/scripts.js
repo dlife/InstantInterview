@@ -55,8 +55,6 @@ function showAll() {
 // user clicks "Voeg Toe" button
 function sendQuestion() {
     // with Ajax send the serialized form to AddQuestion.php
-    var func = document.getElementById('jobfunction-select');
-    var id = func.options[func.selectedIndex].value;
     var formdata = $('form#form-add-question').serialize();
     var funcId = $('#jobfunction-select option:selected').val();
 
@@ -68,6 +66,8 @@ function sendQuestion() {
             $("#interview-form").empty();
             HideButtons();
             $("#interview-form").html(msg);
+            $("#interview-form").html(msg);
+            jobFunctionSelectChanged();
             $("#add-question-modal").modal('hide'); //hide popup
 
         },
@@ -147,6 +147,4 @@ $(document).ready(function() {
      * Collapse for collapsing the questions in the fetchCompetences.php
      * */
     $(".collapse").collapse();
-
-    jobFunctionSelectChanged();
 });

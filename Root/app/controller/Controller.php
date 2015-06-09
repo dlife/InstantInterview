@@ -128,6 +128,9 @@ class Controller
         if (isset($competenceId)) {
             if (array_key_exists($competenceId, $this->competences)) {
                 return $this->competences[$competenceId];
+            } else {
+                $this->loadCompetences();
+                return $this->competences[$competenceId];
             }
         }
     }

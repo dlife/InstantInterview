@@ -19,7 +19,6 @@
                     <option
                         selected value="<?php echo $jobFunction->getId()?>" ><?php echo $jobFunction->getName() ?>
                     </option>
-                    <script type="text/javascript">jobFunctionSelectChanged()</script>
                 <?php } else {  ?>
                     <option
                         value="<?php echo $jobFunction->getId()?>" ><?php echo $jobFunction->getName() ?>
