@@ -68,7 +68,6 @@ function sendQuestion() {
             $("#interview-form").html(msg);
             jobFunctionSelectChanged();
             $("#add-question-modal").modal('hide'); //hide popup
-
         },
         error: function () {
             alert("Something went wrong, please try again.");
