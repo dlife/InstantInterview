@@ -14,11 +14,9 @@ $controller = new \Controller\Controller();
 
 if (isset($_POST['functionId'])) {
     $functionId = strip_tags($_POST['functionId']);
-    $formData = strip_tags($_POST['formdata']);
-    $formArray = "";
-    preg_match('/competence-select=([0-9]+)\&question-text=([0-9A-Za-z]*)/', $formData, $formArray);
-    $competence = $formArray[1];
-    $question = $formArray[2];
+    parse_str(strip_tags($_POST['formdata']), $formData);
+    $competence = $formData['competence-select'];
+    $question = $formData['question-text'];
     $result = $controller->insertNewQuestion($competence, $question);
 
     if ($result == true) {

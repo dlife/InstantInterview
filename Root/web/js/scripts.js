@@ -57,11 +57,13 @@ function sendQuestion() {
     // with Ajax send the serialized form to AddQuestion.php
     var func = document.getElementById('jobfunction-select');
     var id = func.options[func.selectedIndex].value;
+    var formdata = $('form#form-add-question').serialize();
+    var funcId = $('#jobfunction-select option:selected').val();
 
     $.ajax({
         type: "POST",
         url: "../BLL/AddQuestion.php",
-        data: {functionId: $('#jobfunction-select option:selected').val(),formdata:$('form#form-add-question').serialize()},
+        data: {functionId: funcId ,formdata: formdata},
         success: function (msg) {
             $("#interview-form").empty();
             HideButtons();
