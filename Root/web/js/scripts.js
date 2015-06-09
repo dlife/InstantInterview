@@ -17,7 +17,7 @@ function jobFunctionSelectChanged() {
 
     HideButtons();
     var cdiv = $("#fetch-competences-div");
-    cdiv.html("<img src='img/loading.gif' width='30'/><span>Loading...</span>"); // making a loading effect
+    cdiv.html("<img src='img/loading.gif' class='img-responsive' width='30'/><span>Loading...</span>"); // making a loading effect
 
     $.ajax({
         type: "GET",

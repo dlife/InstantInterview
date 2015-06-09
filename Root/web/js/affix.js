@@ -7,7 +7,7 @@ $('#nav').affix({
     }
 });
 
-$('section').css("height", $(window).height());
+$('section').css("min-height", $(window).height());
 
 $('#scroll').scrollspy({target: '#nav'});
 
