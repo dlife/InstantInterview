@@ -6,7 +6,7 @@ class CreatePdf
 {
     protected $fId;
     protected $questionString;
-    protected $PdfData;
+    protected $pdfData;
     protected $preparedData;
     protected $Pdf;
     protected $name;
@@ -25,8 +25,8 @@ class CreatePdf
 
     public function parseData($array, $funcId)
     {
+        // prepares a string to use in the stored procdedure.
         try {
-            $funcId = intval($funcId);
             foreach ($array as $val) {
                 $valint = intval($val);
                 if ($valint != 0) {
@@ -44,19 +44,21 @@ class CreatePdf
 
     public function getData()
     {
+        // loads pdfData with the resultset from the stored procedure
         $idList = preg_replace("/[^0-9,]/", "", $this->questionString);
-        $this->PdfData = $this->context->selectReportData($idList);
+        $this->pdfData = $this->context->selectReportData($idList);
     }
 
     private function prepareData()
     {
-        if ($this->PdfData[0]['CompNaam'] == null) { // should not be empty
+        // prepares the data for easy use later.
+        if ($this->pdfData[0]['CompNaam'] == null) { // should not be empty
             return;
         }
 
         $comp = "";
         $data = array();
-        foreach ($this->PdfData as $datarow) {
+        foreach ($this->pdfData as $datarow) {
             if ($datarow['CompNaam'] != $comp) {
                 // if new competence, create a new array
                 $data[$datarow['CompNaam']] = array();
@@ -70,6 +72,7 @@ class CreatePdf
 
     public function buildPdf()
     {
+        // creates the actual pdf file
         $this->fpdf->AliasNbPages();
         $this->fpdf->AddPage();
         $this->fpdf->SetFont("Arial", "", 12);
@@ -77,10 +80,8 @@ class CreatePdf
         $this->prepareData();
 
         foreach ($this->preparedData as $key => $value) {
-            $comp = $key;
-
             $this->fpdf->SetTextColor(68, 110, 155);
-            $this->fpdf->Cell(0, 10, $comp, 0, 1);
+            $this->fpdf->Cell(0, 10, $key, 0, 1);
             $this->fpdf->SetTextColor(0, 0, 0);
             $this->fpdf->Ln(0);
             foreach ($value as $vraag) {
@@ -96,8 +97,9 @@ class CreatePdf
         $this->name = 'Interview_' . date('Y-m-d_H-i-s', $t) . '.pdf';
     }
 
-    public function addTripleLine()
+    private function addTripleLine()
     {
+        // add three dotted lines
         for ($i = 0; $i < 3; $i++) {
             $this->fpdf->Cell(0, 10, $this->line, 0, 1);
             $this->fpdf->Ln(-2);
