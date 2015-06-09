@@ -64,19 +64,19 @@ header('Content-type: text/html; charset=UTF-8') ;
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
                         <div class="item active">
-                            <h1>Lorem Ipsum zever 1</h1>
+                            <h1>Carousel 1</h1>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                         </div>
                         <div class="item">
-                            <h1>Lorem Ipsum zever 2</h1>
+                            <h1>Carousel 2</h1>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                         </div>
                         <div class="item">
-                            <h1>Lorem Ipsum zever 3</h1>
+                            <h1>Carousel 3</h1>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                         </div>
                         <div class="item">
-                            <h1>Lorem Ipsum zever 4</h1>
+                            <h1>Carousel 4</h1>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                         </div>
                     </div>
