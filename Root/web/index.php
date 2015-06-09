@@ -121,10 +121,29 @@ header('Content-type: text/html; charset=UTF-8') ;
             </div>
             <div class="row">
                 <div class="col-xs-12 col-md-6">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                    <h3>Concept</h3>
+                    <p>Het concept Instant Interview werd bedacht door Cedric. Hij doet interviews met kandidaten voor een sollicitatie. Hierbij gebruikt hij een lijst met vragen die gerangschikt staan per competentie in een Excel lijst. Verder heeft hij ook manier om voor een bepaalde functie een vaste lijst vragen te laten opstellen. Maar deze manier van werken is weinig overzichtelijk, niet gebruiksvriendelijk en moeilijk te onderhouden. Bovendien wil hij dit eventueel op termijn verder uitbouwen naar een online formulier waar hij ook meteen de antwoorden van de kandidaat kan invullen tijdens het interview. Daarom hebben wij, Cedric, Dieter en ik, een deel van dit concept uitgewerkt als project voor dit vak.</p>
                 </div>
                 <div class="col-xs-12 col-md-6">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                    <h3>Gebruikte concepten en frameworks</h3>
+                    <p>De volgende zaken worden in dit project gebruikt:</p>
+                    <ul>
+                        <li>Bootstrap</li>
+                        <li>jQuery</li>
+                        <li>FPDF (netasign)</li>
+                        <li>Composer</li>
+                        <li>Helper klassen uit AnOrmApart</li>
+                        <li>MVC</li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-md-12">
+                    <h3>Concreet</h3>
+                    <p>
+                        Dit project is een PHP project met een MySQL database. Sommige van de keuzes die hier gemaakt zijn, zijn omwille van de mogelijkheden of beperkingen die daar bij horen. Zo is beslist om dit project een single page website te maken. Aangezien de gebruiker vragen zal aanvinken of keuzes maken is het niet wenselijk veel van pagina te veranderen.
+                        De gebruiker kan naar de verschillende delen op de website gaan, maar blijft op 1 pagina. Het Instant Interview gedeelte zelf wordt ook binnen deze ene pagina opgebouwd. De gebruiker krijgt een keuzelijst te zien waaruit een functie kan geselecteerd worden. Wanneer de gebruikt een keuze maakt, worden verschillende competenties weergeven die bij deze functie horen, de anderen worden voorlopig verborgen. Er worden al een aantal vragen aangeduid, maar de gebruiker is vrij om meer vragen aan te duiden. De vragen worden zichtbaar telkens er op een competentie geklikt wordt.
+                        De gebruiker kan alle competenties zien door op een knop te klikken. Wanneer hij op de “Rapport” knop klikt, verschijnt in een kleiner bovenliggend venster een overzicht van de vragen die aangeduid zijn. Wanneer in dat venster op de “Download PDF” knop wordt geklikt, genereert de server een pdf met de aangeduide vragen en zal de browser dit bestand downloaden.
+                        De laatste mogelijkheid die de gebruiker heeft, is het toevoegen van een vraag. Hiervoor klikt hij op de “Voeg vraag toe” knop die een kleiner venster opent. Hier kan men een competentie uit een keuzelijst selecteren en een vraag in een tekstvak typen. De vraag wordt dan aan de geselecteerd competentie toegevoegd. Hiervoor wordt de pagina wel vernieuwd en verdwijnt de selectie van vragen.
+                    </p>
                 </div>
             </div>
     </section>
