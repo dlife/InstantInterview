@@ -10,9 +10,8 @@ include('../vendor/autoload.php');
 
 header('Content-type: text/html; charset=UTF-8') ;
 
-$controller = new \Controller\Controller();
-
 if (isset($_POST['functionId'])) {
+    $controller = new \Controller\Controller();
     $functionId = strip_tags($_POST['functionId']);
     parse_str(strip_tags($_POST['formdata']), $formData);
     $competence = $formData['competence-select'];
@@ -49,5 +48,3 @@ DOC;
 DOC;
     echo $message;
 }
-?>
-
