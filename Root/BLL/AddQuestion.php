@@ -25,8 +25,8 @@ if (isset($_POST['functionId'])) {
     <br><div class="alert alert-success alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
         <strong>Success!</strong> De nieuwe vraag is toegevoegd aan de databank.<br>
-        <stong>Competence: </strong>$competenceFull<br>
-        <stong>Question: </strong>$question<br>
+        <stong>Competentie: </strong>$competenceFull<br>
+        <stong>Vraag: </strong>$question<br>
     </div>
 DOC;
         echo $message;
