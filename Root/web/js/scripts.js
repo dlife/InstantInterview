@@ -66,7 +66,6 @@ function sendQuestion() {
             $("#interview-form").empty();
             HideButtons();
             $("#interview-form").html(msg);
-            $("#interview-form").html(msg);
             jobFunctionSelectChanged();
             $("#add-question-modal").modal('hide'); //hide popup
         },
@@ -141,9 +140,4 @@ $(document).ready(function() {
                 .html($(this).find(".panel-title").text())); // and as text the competence
         });
     });
-
-    /*
-     * Collapse for collapsing the questions in the fetchCompetences.php
-     * */
-    $(".collapse").collapse();
 });
