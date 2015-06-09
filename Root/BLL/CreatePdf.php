@@ -52,7 +52,7 @@ class CreatePdf
     private function prepareData()
     {
         // prepares the data for easy use later.
-        if ($this->pdfData[0]['CompNaam'] == null) { // should not be empty
+        if (isset($this->pdfData[0]['CompNaam'])) { // should not be empty
             return;
         }
 
