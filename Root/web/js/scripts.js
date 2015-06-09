@@ -55,6 +55,14 @@ function showAll() {
 // user clicks "Voeg Toe" button
 function sendQuestion() {
     // with Ajax send the serialized form to AddQuestion.php
+    if(!$.trim($('form#form-add-question option:selected').val())){
+        $('#divCompetence').addClass('has-error').focus();
+        return;
+    }
+    if (!$.trim($('form#form-add-question textarea').val())){
+        $('#divQuestion').addClass('has-error').focus();
+        return;
+    }
     var formdata = $('form#form-add-question').serialize();
     var funcId = $('#jobfunction-select option:selected').val();
 
