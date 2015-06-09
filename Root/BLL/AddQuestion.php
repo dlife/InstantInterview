@@ -12,9 +12,13 @@ header('Content-type: text/html; charset=UTF-8') ;
 
 $controller = new \Controller\Controller();
 
-if (isset($_POST['competence-select'])) {
-    $competence = strip_tags($_POST['competence-select']);
-    $question = strip_tags($_POST['question-text']);
+if (isset($_POST['functionId'])) {
+    $functionId = strip_tags($_POST['functionId']);
+    $formData = strip_tags($_POST['formdata']);
+    $formArray = "";
+    preg_match('/competence-select=([0-9]+)\&question-text=([0-9A-Za-z]*)/', $formData, $formArray);
+    $competence = $formArray[1];
+    $question = $formArray[2];
     $result = $controller->insertNewQuestion($competence, $question);
 
     if ($result == true) {

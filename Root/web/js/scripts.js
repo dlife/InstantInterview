@@ -55,7 +55,7 @@ function sendQuestion() {
     $.ajax({
         type: "POST",
         url: "../BLL/AddQuestion.php",
-        data: $('form#form-add-question').serialize(),
+        data: {functionId: $('#jobfunction-select option:selected').val(),formdata:$('form#form-add-question').serialize()},
         success: function (msg) {
             //$("#testdiv").html(msg); //hide button and show thank you
             $("#interview-form").empty();
