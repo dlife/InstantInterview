@@ -88,7 +88,7 @@ $(document).ready(function() {
         // Show the report modal
         $('#report-modal').modal();
 
-        // print out each question in the body of the modal fordoublecheck.
+        // print out each question in the body of the modal for doublecheck.
         var out = "";
         $("input:checked").parent().next("div").find("label").each(function () {
             out += $(this).text() + "</br>";
