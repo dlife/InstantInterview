@@ -158,7 +158,7 @@ header('Content-type: text/html; charset=UTF-8') ;
         <div class="container">
             <div class="row">
                 <button class="btn btn-primary hidden pull-right" id="modal-report-button">Rapport</button>
-                <button class="btn btn-primary hidden pull-right" id="show-all-button" onclick="showAll()">Laat alles zien</button>
+                <button class="btn btn-primary hidden pull-right" id="show-all-button" onclick="showAll()">Toon alle competenties</button>
                 <button class="btn btn-primary hidden" id="add-question-button">Voeg vraag toe</button>
             </div>
             <!-- Modal Report -->
