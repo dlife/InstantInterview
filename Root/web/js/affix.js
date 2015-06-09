@@ -15,6 +15,6 @@ $('.scrollAnimate').click(function(event){
     // preventDefault zorgt voor een smooth overgang
     event.preventDefault();
     $('html, body').animate({
-            scrollTop: $(this.children[0].attributes[0].value).offset().top}, 1000
+            scrollTop: $(this.children[0].attributes[0].value).offset().top }, 1000
     );
 });
