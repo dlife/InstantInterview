@@ -17,7 +17,7 @@ function jobFunctionSelectChanged() {
 
     HideButtons();
     var cdiv = $("#fetch-competences-div");
-    cdiv.html("<img src='img/loading.gif' width='30'/><span>Loading...</span>"); // making a loading effect
+    cdiv.html("<img src='img/loading.gif' class='img-responsive' width='30'/><span>Loading...</span>"); // making a loading effect
 
     $.ajax({
         type: "GET",
@@ -57,7 +57,7 @@ function sendQuestion() {
     // with Ajax send the serialized form to AddQuestion.php
     if(!$.trim($('form#form-add-question option:selected').val())){
         $('#divCompetence').addClass('has-error').focus();
-        return;
+        return;// actually, nothing was selected, so stop here
     }
     if (!$.trim($('form#form-add-question textarea').val())){
         $('#divQuestion').addClass('has-error').focus();
