@@ -83,11 +83,11 @@ header('Content-type: text/html; charset=UTF-8') ;
                     <!-- Left and right controls -->
                     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
+                        <span class="sr-only">Vorige</span>
                     </a>
                     <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
+                        <span class="sr-only">Volgende</span>
                     </a>
                 </div>
             </div>
@@ -147,7 +147,7 @@ header('Content-type: text/html; charset=UTF-8') ;
                             <!-- Fetch questions for report-->
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
                             <button type="button" class="btn btn-primary" id="get-report-button">Download PDF</button>
                         </div>
                     </div>
@@ -177,7 +177,7 @@ header('Content-type: text/html; charset=UTF-8') ;
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
                             <button type="button" class="btn btn-primary" id="send-question-button" type="submit" onclick="sendQuestion()">Voeg Toe</button>
                         </div>
                     </div>
