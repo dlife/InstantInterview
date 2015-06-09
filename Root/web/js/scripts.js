@@ -63,12 +63,9 @@ function sendQuestion() {
         url: "../BLL/AddQuestion.php",
         data: {functionId: $('#jobfunction-select option:selected').val(),formdata:$('form#form-add-question').serialize()},
         success: function (msg) {
-            //$("#testdiv").html(msg); //hide button and show thank you
             $("#interview-form").empty();
-            //$("#interview-form").html(msg); // this shoudl target a div outside $("#interview-form")
             HideButtons();
             $("#add-question-modal").modal('hide'); //hide popup
-            //$('#jobfunction-select').load('../app/views/JobFunctionsView.php');
 
             // maak hier een nieuwe methode die opnieuw ajax gebruikt om JobFunctionsView te vernieuwen met als querystring de nu geselecteerde jobfunctie
 
