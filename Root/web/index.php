@@ -190,13 +190,13 @@ header('Content-type: text/html; charset=UTF-8') ;
                         </div>
                         <div class="modal-body">
                             <form id="form-add-question" name="form-add-question">
-                                <div class="form-group">
+                                <div class="form-group" id="divCompetence">
                                     <h2>Selecteer hier een competentie.</h2>
                                     <select class="form-control" id="competence-select" name="competence-select">
                                         <option selected disabled hidden value=''></option>
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" id="divQuestion">
                                     <label for="new-question" class="control-label">Niewe vraag:</label>
                                     <textarea class="form-control" id="new-question" name="question-text"></textarea>
                                 </div>
@@ -225,9 +225,9 @@ header('Content-type: text/html; charset=UTF-8') ;
                 </div>
             </div>
     </section>
-    <!-- Local javascript -->
-    <!-- Dit moet hier geplaatst worden anders werkt affix navbar niet, vanwege timing inlezen js file -->
     </body>
+        <!-- Local javascript -->
+
     <script type="text/javascript" src="js/affix.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
 </html>
