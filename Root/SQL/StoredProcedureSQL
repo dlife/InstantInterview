@@ -1,0 +1,362 @@
+/*Inserten Competenties*/
+use InterviewDB;
+DROP PROCEDURE IF EXISTS CompetentieInsert;
+DELIMITER //
+CREATE PROCEDURE `CompetentieInsert`
+(
+	OUT pId INT ,
+	IN pName VARCHAR (200)
+)
+BEGIN
+INSERT INTO `Competentie`
+	(
+		`Competentie`.`Naam`
+	)
+	VALUES
+	(
+		pName
+  );
+	SELECT LAST_INSERT_ID() INTO pId;
+END //
+DELIMITER ;
+
+/*Inserten Vragen*/
+use InterviewDB;
+DROP PROCEDURE IF EXISTS VraagInsert;
+DELIMITER //
+CREATE PROCEDURE `VraagInsert`
+(
+	OUT pId INT ,
+	IN pName TEXT,
+	IN pCompId INT
+)
+BEGIN
+INSERT INTO `Vraag`
+	(
+		`Vraag`.`Vraag`,
+		`Vraag`.`CompetentieId`
+	)
+	VALUES
+	(
+		pName,
+		pCompId
+  );
+	SELECT LAST_INSERT_ID() INTO pId;
+END //
+DELIMITER ;
+
+/*Inserten Functies*/
+use InterviewDB;
+DROP PROCEDURE IF EXISTS FunctieInsert;
+DELIMITER //
+CREATE PROCEDURE `FunctieInsert`
+  (
+    OUT pId INT ,
+IN pName VARCHAR (200)
+)
+BEGIN
+INSERT INTO `Functie`
+(
+`Functie`.`Naam`
+)
+VALUES
+(
+pName
+);
+SELECT LAST_INSERT_ID() INTO pId;
+END //
+DELIMITER ;
+
+/*Alle competenties selecteren */
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS CompetentiesSelectAll;
+DELIMITER //
+CREATE PROCEDURE `CompetentiesSelectAll`
+  (
+  )
+  BEGIN
+    SELECT Competentie.Naam, Competentie.Id FROM `Competentie`;
+  END //
+DELIMITER ;
+
+/*Specifieke competentie selecteren */
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS CompetentiesSelectOne;
+DELIMITER //
+CREATE PROCEDURE `CompetentiesSelectOne`
+  (
+  pId INT
+  )
+  BEGIN
+    SELECT Competentie.Naam, Competentie.Id FROM `Competentie`
+  WHERE `Competentie`.`Id` = pId;
+  END //
+DELIMITER ;
+
+/*Vragen van specifieke competentie selecteren */
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS CompetentiesSelectQuestions;
+DELIMITER //
+CREATE PROCEDURE `CompetentiesSelectQuestions`
+  (
+    IN pCompId INT
+  )
+  BEGIN
+    SELECT Vraag.Vraag, Competentie.Naam FROM `Vraag`
+      INNER JOIN Competentie ON CompetentieId = Competentie.Id
+    WHERE `Vraag`.`CompetentieId` = pCompId;
+  END //
+DELIMITER ;
+
+/*Update van specifieke competentie*/
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS CompetentieUpdate;
+DELIMITER //
+CREATE PROCEDURE `CompetentieUpdate`
+  (
+    pId INT ,
+   pName VARCHAR (200)
+)
+BEGIN
+UPDATE `Competentie`
+SET
+  `Competentie`.`Naam` = pName
+WHERE `Competentie`.`Id` = pId;
+END //
+DELIMITER ;
+
+/*Update van specifieke vraag*/
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS VraagUpdate;
+DELIMITER //
+CREATE PROCEDURE `VraagUpdate`
+  (
+    pId INT ,
+  pName NVARCHAR (200)
+)
+BEGIN
+UPDATE `Vraag`
+SET
+  `Vraag`.`Vraag` = pName
+WHERE `Vraag`.`Id` = pId;
+END //
+DELIMITER ;
+
+/*Update van specifieke functie*/
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS FunctieUpdate;
+DELIMITER //
+CREATE PROCEDURE `FunctieUpdate`
+  (
+  pId INT ,
+  pName VARCHAR (200)
+)
+BEGIN
+UPDATE `Functie`
+SET
+  `Functie`.`Naam` = pName
+WHERE `Functie`.`Id` = pId;
+END //
+DELIMITER ;
+
+# // delete Competentie
+
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS CompetentieDelete;
+DELIMITER //
+CREATE PROCEDURE `CompetentieDelete`
+  (
+    pId INT
+  )
+  BEGIN
+    DELETE FROM `Competentie`
+    WHERE `Competentie`.`Id` = pId;
+  END //
+DELIMITER ;
+
+# // delete Functie
+
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS FunctieDelete;
+DELIMITER //
+CREATE PROCEDURE `FunctieDelete`
+  (
+    pId INT
+  )
+  BEGIN
+    DELETE FROM `Functie`
+    WHERE `Functie`.`Id` = pId;
+  END //
+DELIMITER ;
+
+# // delete Vraag
+
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS VraagDelete;
+DELIMITER //
+CREATE PROCEDURE `VraagDelete`
+  (
+    pId INT
+  )
+  BEGIN
+    DELETE FROM `Vraag`
+    WHERE `Vraag`.`Id` = pId;
+  END //
+DELIMITER ;
+
+/*Inserten Vraagfunctie*/
+use InterviewDB;
+DROP PROCEDURE IF EXISTS VraagFunctieInsert;
+DELIMITER //
+CREATE PROCEDURE `VraagFunctieInsert`
+  (
+    OUT pId INT ,
+    IN FuncId INT,
+      IN VraagId INT
+  )
+  BEGIN
+    INSERT INTO `Competentie`
+    (
+      `VraagFunctie`.`FunctieId`,
+    `VraagFunctie`.`VraagId`
+    )
+    VALUES
+    (
+    FuncId,
+      VraagId
+    );
+    SELECT LAST_INSERT_ID() INTO pId;
+  END //
+DELIMITER ;
+
+# // delete VraagFunctie
+
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS VraagFunctieDelete;
+DELIMITER //
+CREATE PROCEDURE `VraagFunctieDelete`
+  (
+    pId INT
+  )
+  BEGIN
+    DELETE FROM `VraagFunctie`
+    WHERE `VraagFunctie`.`Id` = pId;
+  END //
+DELIMITER ;
+
+/*Update van specifieke vraag*/
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS VraagFunctieUpdate();
+DELIMITER //
+CREATE PROCEDURE `VraagFunctieUpdate`
+  (
+    pId INT ,
+    IN FuncId INT,
+    IN VraagId INT
+)
+BEGIN
+UPDATE `VraagFunctie`
+SET
+  `VraagFunctie`.`VraagId` = VraagId,
+  `VraagFunctie`.`FunctieId` = FuncId
+WHERE `VraagFunctie`.`Id` = pId;
+END //
+DELIMITER ;
+
+/*FUNCTIE + VRAGEN + COMPETENTIES obv competenties*/
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS SelectQuestionsFunctionCompetencesOrderByCompetence;
+DELIMITER //
+CREATE PROCEDURE `SelectQuestionsFunctionCompetencesOrderByCompetence`
+  (
+    IN pCompId INT
+  )
+  BEGIN
+    SELECT f.Naam as FuncNaam,c.Naam as CompNaam ,v.Vraag FROM `VraagFunctie`
+      INNER JOIN Vraag as v ON VraagId = v.Id
+      INNER JOIN Functie as f ON FunctieId = f.Id
+      INNER JOIN Competentie as c ON v.CompetentieId = c.Id
+    WHERE `v`.`CompetentieId` = pCompId
+    ORDER BY c.Naam;
+  END //
+DELIMITER ;
+
+/*FUNCTIE + VRAGEN + COMPETENTIES obv functie*/
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS SelectQuestionsFunctionCompetencesOnFunction;
+DELIMITER //
+CREATE PROCEDURE `SelectQuestionsFunctionCompetencesOnFunction`
+  (
+    IN pFuncId INT
+  )
+  BEGIN
+    SELECT f.Naam as FuncNaam,c.Naam as CompNaam ,v.Vraag FROM `VraagFunctie`
+      INNER JOIN Vraag as v ON VraagId = v.Id
+      INNER JOIN Functie as f ON FunctieId = f.Id
+      INNER JOIN Competentie as c ON v.CompetentieId = c.Id
+    WHERE `VraagFunctie`.`FunctieId` = pFuncId
+    ORDER BY FuncNaam AND CompNaam;
+  END //
+DELIMITER ;
+
+/*VRAGEN + ID obv id*/
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS SelectQuestionsIdsOnFunction;
+DELIMITER //
+CREATE DEFINER=`CvoProject`@`%` PROCEDURE `SelectQuestionsIdsOnFunction`(
+    IN pFuncId INT
+  )
+BEGIN
+    SELECT v.Id FROM `VraagFunctie`
+      INNER JOIN Vraag as v ON VraagId = v.Id
+      INNER JOIN Functie as f ON FunctieId = f.Id
+    WHERE `VraagFunctie`.`FunctieId` = pFuncId;
+  END //
+DELIMITER ;
+
+/*Alle vragen selecteren */
+           USE InterviewDB;
+           DROP PROCEDURE IF EXISTS QuestionsSelectAll;
+           DELIMITER //
+           CREATE PROCEDURE `QuestionsSelectAll`
+             (
+             )
+             BEGIN
+               SELECT * FROM `Vraag`;
+             END //
+           DELIMITER ;
+
+/*Selecteer functie door id*/
+USE InterviewDB;
+DROP PROCEDURE IF EXISTS FunctionSelectById;
+DELIMITER //
+CREATE PROCEDURE `FunctionSelectById`
+  (
+    IN pId INT
+  )
+  BEGIN
+    SELECT * FROM `Functie`
+    WHERE Id = pId;
+  END //
+DELIMITER ;
+
+/*FUNCTIE + VRAGEN + COMPETENTIES obv Vraag*/
+USE `InterviewDB`;
+DROP procedure IF EXISTS `SelectQuestionsCompetencesOnQuestion`;
+
+DELIMITER $$
+USE `InterviewDB`$$
+CREATE PROCEDURE `SelectQuestionsCompetencesOnQuestion`(
+  IN pVraagId text
+)
+  BEGIN
+    SELECT c.Naam as CompNaam ,V.Vraag as Vraag FROM `Vraag` as `V`
+      INNER JOIN Competentie as c ON V.CompetentieId = c.Id
+    Where V.Id = (pVraagId)
+    ORDER BY CompNaam;
+  END$$
+
+DELIMITER ;
+
+
+

@@ -28,7 +28,7 @@ header('Content-type: text/html; charset=UTF-8') ;
     <!-- viewport for bootstrap device initialisation-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>InstantInterview</title>
+    <title>Instant Interview</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">

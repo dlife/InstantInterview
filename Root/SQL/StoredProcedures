@@ -1,0 +1,20 @@
+SelectVragenByIdCompetentie - OK
+SelectAllCompententies  - OK
+InsertCompetentie - OK
+UpdateCompetentie - OK
+DeleteCompetentie - OK
+InsertVraag - OK
+UpdateVraag - OK
+DeleteVraag - OK
+InsertFunctie - OK
+UpdateFunctie - OK
+DeleteFunctie - OK
+
+//werking bekijken//
+InsertVraagFunctie - OK
+UpdateVraagFunctie - OK
+DeleteVraagFunctie - OK
+
+SelectVragenobvCompmetfunctie - OK
+SelectVragenobvFunctiemetCompetentie - OK
+
