@@ -7,5 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'fpdi' => array($vendorDir . '/setasign/fpdi'),
-    'fpdf' => array($vendorDir . '/setasign/fpdf')
+    'fpdf' => array($vendorDir . '/setasign/fpdf'),
 );
