@@ -8,7 +8,6 @@
 function jobFunctionSelectChanged() {
     // Will be called whenever the user selects a job function from the dropdown
     // CompetencesView will used inside the div fetchCompetencesDiv, fetched with Ajax
-
     var select = document.getElementById("jobfunction-select");
     var id = select.options[select.selectedIndex].value; // gets the JobFunction Id
     if (id == "") {
@@ -34,6 +33,14 @@ function jobFunctionSelectChanged() {
             alert("failure");
         }
     });
+}
+
+function SelectFunctionModal(){
+    $('#divCompetence').removeClass('has-error').addClass('has-success');
+}
+
+function FilledTextModal(){
+    $('#divQuestion').removeClass('has-error').addClass('has-success');
 }
 
 function HideButtons() {
@@ -71,9 +78,8 @@ function sendQuestion() {
         url: "../BLL/AddQuestion.php",
         data: {functionId: funcId ,formdata: formdata},
         success: function (msg) {
-            $("#interview-form").empty();
+            $("#interview-form").empty().html(msg);
             HideButtons();
-            $("#interview-form").html(msg);
             jobFunctionSelectChanged();
             $("#add-question-modal").modal('hide'); //hide popup
         },

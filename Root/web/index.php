@@ -191,14 +191,14 @@ header('Content-type: text/html; charset=UTF-8') ;
                         <div class="modal-body">
                             <form id="form-add-question" name="form-add-question">
                                 <div class="form-group" id="divCompetence">
-                                    <h2>Selecteer hier een competentie.</h2>
-                                    <select class="form-control" id="competence-select" name="competence-select">
+                                    <label for="competence-select" class="control-label">Selecteer hier een competentie:</label>
+                                    <select class="form-control" id="competence-select" name="competence-select" onchange="SelectFunctionModal()">
                                         <option selected disabled hidden value=''></option>
                                     </select>
                                 </div>
                                 <div class="form-group" id="divQuestion">
                                     <label for="new-question" class="control-label">Niewe vraag:</label>
-                                    <textarea class="form-control" id="new-question" name="question-text"></textarea>
+                                    <textarea class="form-control" id="new-question" name="question-text" onchange="FilledTextModal()"></textarea>
                                 </div>
                             </form>
                         </div>
